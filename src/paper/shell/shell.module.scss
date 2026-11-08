@@ -610,6 +610,13 @@
     margin-bottom: 20px;
   }
 }
+.viewTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
 .viewTitleBlock {
   min-width: 0;
   display: flex;

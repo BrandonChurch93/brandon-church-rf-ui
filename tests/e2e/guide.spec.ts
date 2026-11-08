@@ -82,8 +82,8 @@ test.describe('guide · module', () => {
     await expect(sheet.getByText('Enter a valid email address, like help@example.com')).toBeVisible();
     await sheet.getByLabel('Reply-to').fill('summit@rainfocus.example');
     await sheet.getByRole('button', { name: 'Save' }).click();
-    await expect(sheet).toBeHidden();
     await expect(main(page).locator('[data-check="drawing"]')).toHaveCount(1);
+    await expect(sheet).toBeHidden();
     await expect(main(page).getByRole('button', { name: /^Communications\s*Configured/ })).toBeVisible();
     await expect(main(page).getByRole('progressbar', { name: 'Setup progress, 5 of 8 configured' })).toBeVisible();
   });

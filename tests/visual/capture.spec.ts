@@ -144,3 +144,31 @@ for (const theme of ['light', 'dark'] as const) {
     await shot(page, `states/${theme}/horizon-locked-1447.png`);
   });
 }
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`attendees states ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'attendees', reducedMotion: true });
+    const main = page.locator('#paper-main');
+    const rows = main.locator('tbody tr[data-flip-id]');
+    await rows.nth(0).getByRole('checkbox').check();
+    await rows.nth(2).getByRole('checkbox').check();
+    await rows.nth(4).hover();
+    await shot(page, `states/${theme}/attendees-selection-1447.png`);
+    await page.keyboard.press('Escape');
+    await rows.first().locator('td').nth(4).click();
+    await shot(page, `states/${theme}/attendee-detail-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: 'Type filter' }).click();
+    await shot(page, `states/${theme}/attendees-filter-1447.png`);
+  });
+  test(`attendees mobile ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'attendees', width: 390, height: 844, reducedMotion: true });
+    const main = page.locator('#paper-main');
+    await main.getByRole('button', { name: 'Select', exact: true }).click();
+    await main.getByRole('button', { name: /^Select / }).nth(1).click();
+    await shot(page, `states/${theme}/attendees-select-390.png`);
+    await main.getByRole('button', { name: 'Done' }).click();
+    await main.getByRole('button', { name: 'Filters' }).click();
+    await shot(page, `states/${theme}/attendees-filters-390.png`);
+  });
+}

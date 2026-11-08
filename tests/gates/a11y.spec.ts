@@ -112,3 +112,22 @@ test.describe('a11y gate · guide layers', () => {
     });
   }
 });
+
+test.describe('a11y gate · attendees layers', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`detail sheet, selection, remove confirm · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, hash: 'attendees', reducedMotion: true });
+      const main = page.locator('#paper-main');
+      await main.locator('tbody tr[data-flip-id]').first().locator('td').nth(4).click();
+      await audit(page, `attendee-detail-${theme}`);
+      await page.getByRole('button', { name: 'Edit', exact: true }).click();
+      await audit(page, `attendee-detail-edit-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.keyboard.press('Escape');
+      await main.locator('tbody tr[data-flip-id]').nth(1).getByRole('checkbox').check();
+      await audit(page, `attendee-bulk-${theme}`);
+      await main.getByRole('region', { name: 'Bulk actions' }).getByRole('button', { name: 'Remove' }).click();
+      await audit(page, `attendee-confirm-${theme}`);
+    });
+  }
+});

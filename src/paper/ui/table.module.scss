@@ -9,7 +9,9 @@
   overflow: hidden;
 }
 .scroller {
-  overflow-x: auto;
+  overflow: auto;
+  max-height: max(360px, calc(100dvh - 300px));
+  overscroll-behavior: contain;
   @include m.scrollbar;
 }
 .table {

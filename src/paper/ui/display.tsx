@@ -38,7 +38,7 @@ export const FilterChip = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTM
   const active = count > 0;
   return (
     <span className={s.filterGroup} data-active={active}>
-      <button ref={ref} type="button" className={s.filterChip} data-active={active} {...rest}>
+      <button ref={ref} type="button" className={s.filterChip} data-active={active} aria-label={active ? `${label} filter, ${count} selected` : `${label} filter`} {...rest}>
         {!active && <Icon name="plus" size={14} />}
         {active ? `${label} · ${count}` : label}
         <Icon name="chevron-down" size={14} />

@@ -11,7 +11,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P3 Design system, primitives and shell
 [x] P4 Store and data
 [x] P5 Guide view
-[ ] P6 Attendees view
+[x] P6 Attendees view
 [ ] P7 Attendee types, Packages, Reg codes, Discounts
 [ ] P8 Content view
 [ ] P9 Exhibitors view
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P6 · Attendees view.
+P7 · Attendee types, Packages, Reg codes, Discounts.
 
 ## Session log
 
@@ -66,6 +66,11 @@ Next: P5 Guide view.
 Done: hero (logo editor with upload, zoom, pan, reset, 512 px PNG; inline rename with validation and flash; status chip from calendar dates in the event timezone; Edit event), intro with summary, Attendee module accordion (GSAP height, persisted per event) with gradient progress, Step 1 settings panel (container-query layout) and the General, Attendee attributes (sortable, undo, locked pair) and Communications sheets with the draw-and-pop check, Step 2 gate with tooltip and unlock rise, sortable workflow cards (pointer, touch, keyboard, announcements) with hover actions, rename, duplicate, remove with confirm and undo, Show all, template picker and workflow editor (Live rules, sortable steps, add step popover), Step 3 portal and calendar previews from live data. Landing beats registered with the transition. Shared: InlineEdit, SortableList, DisabledReason, card styles.
 Gates: verify green. guide.spec 18 tests stable (x2). Motion longest task 81 ms (under 100). a11y clean incl. sheets, picker, editor, portal both themes. Build gate checks the Guide heading, dark theme and persistence over file://.
 Next: P6 Attendees.
+
+### 2026-11-08 03:10 · P6 Attendees view
+Done: table (sortable columns with aria-sort, selection with indeterminate header, keyboard row focus, Cmd or Ctrl+A, row hover kebab with View, Change type popover, Resend, Cancel or Reinstate, Remove), toolbar (debounced search, Type, Status and Package filter chips with counts, Clear filters, live count), pagination with page size, bulk bar (change type and status with undo, select all, export selected, remove with confirm and undo at original positions), detail sheet (inline name, explicit Edit with validation, activity timeline), add sheet (duplicate email with View link, flash, sorted insert), CSV export (named file, toast), empty states, mobile card list with Load more, filters bottom sheet with sort and live count, long-press and Select mode with the pill stepping aside. Palette Attendees group live.
+Gates: verify green. attendees.spec 16 tests stable (x2). a11y clean incl. detail, edit, bulk, confirm. CSV download verified over file://.
+Next: P7.
 
 ## Notes for future sessions
 

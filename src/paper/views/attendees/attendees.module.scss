@@ -1,0 +1,472 @@
+// Attendees: toolbar, table, mobile cards, bulk bar, detail and add sheets.
+@use '@/styles/mixins' as m;
+
+// ---------- Toolbar ----------
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.search {
+  width: 320px;
+  @include m.md {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.count {
+  margin-left: auto;
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.mobileTools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 6px;
+  min-width: 220px;
+  max-height: 340px;
+  overflow: auto;
+}
+.filterOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: var(--r-md);
+  @include m.hover {
+    background: var(--surface-2);
+  }
+  @include m.md {
+    min-height: 48px;
+  }
+}
+.filterCount {
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.filterFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  border-top: 1px solid var(--line);
+}
+.sheetGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 4px 8px 12px;
+}
+.sheetGroupTitle {
+  @include m.type(micro);
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.sheetFooter {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px 8px calc(4px + env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  > :last-child {
+    flex: 1;
+  }
+}
+
+// ---------- Table ----------
+.tableCard {
+  position: relative;
+}
+.table {
+  min-width: 860px;
+  @include m.lg {
+    min-width: 700px;
+  }
+  col.colCompany {
+    @include m.lg {
+      display: none;
+      visibility: collapse;
+    }
+  }
+  .company {
+    @include m.lg {
+      display: none;
+    }
+  }
+}
+.nameCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.nameText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.nameButton {
+  @include m.type(title);
+  color: var(--text);
+  text-align: left;
+  @include m.truncate;
+  max-width: 100%;
+  border-radius: var(--r-xs);
+  @include m.hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--line-hover);
+  }
+}
+.email {
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.truncate;
+}
+.cellStack {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  > span {
+    @include m.truncate;
+  }
+  > span:first-child {
+    @include m.type(body-sm);
+    color: var(--text-2);
+  }
+  > span:last-child:not(:first-child) {
+    @include m.type(caption);
+    color: var(--muted);
+  }
+}
+.none {
+  color: var(--muted);
+}
+.date {
+  @include m.type(body-sm);
+  font-variant-numeric: tabular-nums;
+}
+.checkCell {
+  padding-right: 0 !important;
+}
+.actionsCell {
+  text-align: right;
+  padding-left: 0 !important;
+}
+.tbody:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: -2px;
+}
+.emptyCell {
+  height: auto !important;
+}
+
+// ---------- Bulk bar ----------
+.bulk {
+  position: sticky;
+  bottom: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0 0;
+  padding: 8px 8px 8px 16px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  animation: bulk-in 320ms var(--ease-out) both;
+  @include m.md {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(var(--tabbar-h) + 12px);
+    margin: 0;
+    width: auto;
+    z-index: 45;
+    flex-wrap: nowrap;
+    padding: 6px 6px 6px 14px;
+  }
+}
+@keyframes bulk-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+.bulkCount {
+  @include m.type(title);
+  color: var(--text);
+  margin-right: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.bulkIcons {
+  display: flex;
+  margin-left: auto;
+  gap: 2px;
+  > :nth-child(4) {
+    color: var(--danger);
+  }
+}
+.bulkDivider {
+  width: 1px;
+  height: 20px;
+  background: var(--line);
+  @include m.md {
+    display: none;
+  }
+}
+
+// ---------- Mobile cards ----------
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 12px 12px 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  user-select: none;
+  -webkit-touch-callout: none;
+  transition:
+    background-color var(--dur-sm) var(--ease-out),
+    border-color var(--dur-sm) var(--ease-out);
+  &[data-selected] {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent-ink) 40%, transparent);
+  }
+}
+.cardBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cardOpen {
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  text-align: left;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-lg);
+  }
+  &:focus-visible {
+    outline: none;
+    &::after {
+      outline: 2px solid var(--accent-ink);
+      outline-offset: 2px;
+    }
+  }
+}
+.cardName {
+  @include m.type(title);
+  font-size: 15px;
+  color: var(--text);
+  @include m.truncate;
+  display: block;
+}
+.cardRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  @include m.type(caption);
+  color: var(--muted);
+}
+.cardCheck {
+  position: relative;
+  z-index: 1;
+}
+.cardChevron {
+  flex: none;
+  color: var(--muted);
+}
+.loadMore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0 4px;
+  @include m.type(caption);
+  color: var(--muted);
+}
+
+// ---------- Detail sheet ----------
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px 16px;
+  border-bottom: 1px solid var(--line);
+  @include m.md {
+    padding: 0 20px 14px;
+  }
+}
+.detailHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.detailName {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+  @include m.type(h3);
+}
+.section + .section {
+  margin-top: 28px;
+}
+.dl {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 12px 16px;
+  dt {
+    @include m.type(caption);
+    color: var(--muted);
+    padding-top: 2px;
+  }
+  dd {
+    @include m.type(body);
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+  @include m.sm {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+    dd {
+      margin-bottom: 10px;
+    }
+  }
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+.editGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  > .full {
+    grid-column: 1 / -1;
+  }
+  @include m.sm {
+    grid-template-columns: 1fr;
+  }
+}
+.editActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 22px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+}
+.event {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: -21px;
+    top: 5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--line-hover);
+  }
+  &:first-child::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  span {
+    @include m.type(body-sm);
+    color: var(--text);
+  }
+  time {
+    @include m.type(caption);
+    color: var(--muted);
+  }
+}
+
+// ---------- Add sheet ----------
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  @include m.sm {
+    grid-template-columns: 1fr;
+  }
+}
+.duplicate {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  button {
+    color: var(--accent-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}

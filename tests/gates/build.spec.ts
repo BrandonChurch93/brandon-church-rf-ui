@@ -55,6 +55,14 @@ test.describe('build over file://', () => {
     await page.evaluate(() => localStorage.clear());
   });
 
+  test('CSV export downloads over file://', async ({ page }) => {
+    await page.goto(FILE);
+    await page.evaluate(() => window.__rf.setMode('paper', { instant: true }));
+    await page.evaluate(() => (window.location.hash = 'attendees'));
+    const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Export CSV' }).click()]);
+    expect(download.suggestedFilename()).toMatch(/^rainfocus-summit-attendees-\d{4}-\d{2}-\d{2}\.csv$/);
+  });
+
   test('no horizontal scroll at 320', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 800 });
     await page.goto(FILE);
