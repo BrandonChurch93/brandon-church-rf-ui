@@ -91,8 +91,11 @@ test.describe('events', () => {
     await page.getByRole('button', { name: /switch event/i }).first().click();
     await page.getByRole('button', { name: 'Create event' }).click();
     const sheet = page.getByRole('dialog', { name: 'Create event' });
-    await sheet.getByLabel('Event name').fill('');
+    // Tabbing through the pristine form flags nothing (D-25); once edited, leaving an empty field does.
+    await sheet.getByLabel('Event name').focus();
     await sheet.getByLabel('Location').focus();
+    await expect(sheet.getByText('Event name is required')).toHaveCount(0);
+    await sheet.getByLabel('Location').fill('Portland');
     await sheet.getByLabel('Event name').focus();
     await sheet.getByLabel('Location').focus();
     await expect(sheet.getByText('Event name is required')).toBeVisible();

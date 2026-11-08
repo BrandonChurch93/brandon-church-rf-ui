@@ -18,7 +18,7 @@ export function useFlipList(container: RefObject<HTMLElement | null>, key: unkno
     const el = container.current;
     if (!el) return;
     const targets = Array.from(el.querySelectorAll<HTMLElement>(':scope > [data-flip-id]'));
-    if (last.current && !isReducedMotion()) {
+    if (last.current && targets.length && !isReducedMotion()) {
       Flip.from(last.current, {
         targets,
         duration,

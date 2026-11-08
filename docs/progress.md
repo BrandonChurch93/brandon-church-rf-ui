@@ -16,13 +16,13 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P8 Content view
 [x] P9 Exhibitors view
 [x] P10 Mobile pass
-[ ] P11 Polish pass
+[x] P11 Polish pass
 [ ] P12 Delivery
 ```
 
 ## Current phase
 
-P11 · Polish pass.
+P12 · Delivery.
 
 ## Session log
 
@@ -94,6 +94,12 @@ Tests: tests/e2e/mobile.spec.ts (targets at 390 and 320 at rest, targets in over
 Gates: verify green (e2e 146 + mobile).
 Next: P11 Polish pass.
 
+### 2026-11-08 11:00 · P11 Polish pass
+Done: copy audit (no em or en dashes, no exclamation marks in strings, no TODO, Lorem, "goes here" or "coming soon" in src/paper, src/app, src/store, src/motion); motion audit (no transition: all, the only filter blur is the pill halo, will-change set and cleared by the transition only); D-25 blur rule extended to the event editor and Add attendee; dev console clean (fixed a GSAP "target not found" warning when a Flip list empties); build warnings removed (swatch map keys quoted); empty audit (every view with no records) and long-name audit (event, attendee, type, package, session, exhibitor, discount, code, workflow) at 1447 and 390 with no overflow; dark captures reviewed beside light; sign-out and sign-in dismiss pending toasts.
+Performance: build/index.html 1,954.88 kB (gzip 887.43 kB), a single file with fonts and images inlined. Motion gate now runs on one worker (D-27); three consecutive runs: in about 1.96 s, out about 1.73 s, reduced about 0.28 s, longest task 0 ms.
+Gates: verify green. The a11y gate writes one report file per audit atomically (parallel workers had raced on one JSON file); five consecutive passes.
+Next: P12 Delivery.
+
 ## Notes for future sessions
 
 Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
@@ -107,6 +113,7 @@ Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
 - Scratch screenshot scripts live in the session scratchpad with a node_modules symlink to the repo; tests/helpers.ts `boot()` is the standard way to open the app in tests.
 - The a11y gate measures at a fixed scroll position; controls under the mobile tab bar are excluded by marking them `data-axe-under-chrome` (tab bar has `data-tabbar`).
 - Never run `npm run build` while a Playwright run is in progress: the preview server serves build/ live and tests fail mid-run.
+- Performance numbers are only meaningful serially: gate:motion uses --workers=1. Gate reports written by parallel tests must be per-test files (see the a11y gate).
 - Faker surnames replaced by a curated list (D-2). Re-run `npm run seed`; it fails loudly if any count drifts.
 
 ## Completion report

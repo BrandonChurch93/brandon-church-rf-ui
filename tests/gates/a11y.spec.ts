@@ -1,7 +1,7 @@
 // A11y gate (docs/18-accessibility.md): zero serious or critical axe violations.
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, readdirSync, renameSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { boot } from '../helpers';
 
@@ -28,15 +28,23 @@ async function audit(page: Page, name: string, opts: { disable?: string[] } = {}
   const results = await builder.analyze();
   const blocking = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
   const moderate = results.violations.filter((v) => v.impact === 'moderate' || v.impact === 'minor');
-  mkdirSync(OUT, { recursive: true });
-  const file = `${OUT}/a11y.json`;
-  const report = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {};
-  report[name] = {
+  // Each audit writes its own file (atomically, via rename), and the merged report is rebuilt from
+  // the directory: parallel workers never read a half-written file or overwrite each other.
+  const entry = {
     blocking: blocking.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target.join(' ')).slice(0, 8) })),
     moderate: moderate.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => n.target.join(' ')).slice(0, 8) })),
   };
-  writeFileSync(file, JSON.stringify(report, null, 2));
-  expect(blocking, `${name}: ${JSON.stringify(report[name].blocking, null, 2)}`).toEqual([]);
+  const dir = `${OUT}/a11y`;
+  mkdirSync(dir, { recursive: true });
+  const tmp = `${dir}/.${name}.${process.pid}.tmp`;
+  writeFileSync(tmp, JSON.stringify(entry, null, 2));
+  renameSync(tmp, `${dir}/${name}.json`);
+  const report: Record<string, unknown> = {};
+  for (const f of readdirSync(dir).filter((x) => x.endsWith('.json')).sort()) report[f.slice(0, -5)] = JSON.parse(readFileSync(`${dir}/${f}`, 'utf8'));
+  const merged = `${OUT}/.a11y.${process.pid}.tmp`;
+  writeFileSync(merged, JSON.stringify(report, null, 2));
+  renameSync(merged, `${OUT}/a11y.json`);
+  expect(blocking, `${name}: ${JSON.stringify(entry.blocking, null, 2)}`).toEqual([]);
 }
 
 test.describe('a11y gate · faithful mode', () => {

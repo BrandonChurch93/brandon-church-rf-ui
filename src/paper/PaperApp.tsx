@@ -8,7 +8,7 @@ import { Announcer } from './shell/Announcer';
 import { TooltipHost } from './ui/Tooltip';
 import { ToastHost } from './ui/ToastHost';
 import { ConfirmHost } from './ui/ConfirmHost';
-import { toast } from './ui/toastStore';
+import { toast, useToasts } from './ui/toastStore';
 import { useStore } from '@/store/store';
 import { onStorageFallback } from '@/store/storage';
 import { isReducedMotion } from '@/motion/reduced';
@@ -38,6 +38,8 @@ export function PaperApp({ onViewOriginal, arriving }: PaperAppProps) {
   const fadeSwap = (next: boolean) => {
     const el = app.current;
     layerStack.closeAll({ instant: true });
+    // Signing out or in starts a fresh session: toasts about the previous one go with it.
+    useToasts.getState().toasts.forEach((t) => useToasts.getState().dismiss(t.id));
     if (!el || isReducedMotion()) {
       setSignedOut(next);
       return;

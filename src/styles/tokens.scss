@@ -82,26 +82,26 @@ $dark: (
 // ---------- Swatches (attendee types, tracks, monograms) ----------
 // fill: dots and bars. ink: text on the soft fill. Light and dark values per 05-design-system.
 $swatches-light: (
-  grape: (fill: #5c00dc, ink: #5c00dc),
-  berry: (fill: #e71356, ink: #b80f45),
-  amber: (fill: #d98a1f, ink: #8a5a0c),
-  teal: (fill: #0f8c8c, ink: #0b6b6b),
-  sky: (fill: #1f6fd4, ink: #1a57a8),
-  lime: (fill: #5b8e1e, ink: #43701a),
-  plum: (fill: #8a2e8a, ink: #6e2470),
-  slate: (fill: #5c6478, ink: #4a5163),
-  silver: (fill: #8e8a93, ink: #5f5b64),
+  'grape': (fill: #5c00dc, ink: #5c00dc),
+  'berry': (fill: #e71356, ink: #b80f45),
+  'amber': (fill: #d98a1f, ink: #8a5a0c),
+  'teal': (fill: #0f8c8c, ink: #0b6b6b),
+  'sky': (fill: #1f6fd4, ink: #1a57a8),
+  'lime': (fill: #5b8e1e, ink: #43701a),
+  'plum': (fill: #8a2e8a, ink: #6e2470),
+  'slate': (fill: #5c6478, ink: #4a5163),
+  'silver': (fill: #8e8a93, ink: #5f5b64),
 );
 $swatches-dark: (
-  grape: (fill: #9a66ff, ink: #c4a3ff),
-  berry: (fill: #ff4d7d, ink: #ff9db5),
-  amber: (fill: #f0b254, ink: #f0b254),
-  teal: (fill: #3fc1c1, ink: #3fc1c1),
-  sky: (fill: #5fa3ff, ink: #5fa3ff),
-  lime: (fill: #9ad14a, ink: #9ad14a),
-  plum: (fill: #c967c9, ink: #e3a6e3),
-  slate: (fill: #9aa3b8, ink: #9aa3b8),
-  silver: (fill: #a9a4b0, ink: #c3bfc9),
+  'grape': (fill: #9a66ff, ink: #c4a3ff),
+  'berry': (fill: #ff4d7d, ink: #ff9db5),
+  'amber': (fill: #f0b254, ink: #f0b254),
+  'teal': (fill: #3fc1c1, ink: #3fc1c1),
+  'sky': (fill: #5fa3ff, ink: #5fa3ff),
+  'lime': (fill: #9ad14a, ink: #9ad14a),
+  'plum': (fill: #c967c9, ink: #e3a6e3),
+  'slate': (fill: #9aa3b8, ink: #9aa3b8),
+  'silver': (fill: #a9a4b0, ink: #c3bfc9),
 );
 
 // ---------- Spacing (4 px base) ----------

@@ -56,8 +56,11 @@ export function AddAttendee({ open, onClose, onAdded, onView }: { open: boolean;
   if (d.phone && !PHONE_RE.test(d.phone.trim())) errors.phone = 'Use digits, spaces, dashes or a leading +';
   const show = (k: keyof Draft) => (touched[k] || submitted ? errors[k] : undefined);
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => setD((x) => ({ ...x, [k]: v }));
-  const touch = (k: keyof Draft) => setTouched((t) => ({ ...t, [k]: true }));
   const dirty = JSON.stringify(d) !== JSON.stringify(blank());
+  // Leaving a field flags it only once the form has been edited (D-25).
+  const touch = (k: keyof Draft) => {
+    if (dirty) setTouched((t) => ({ ...t, [k]: true }));
+  };
   const cancel = useCloseGuard(dirty && flow.state === 'idle', onClose);
 
   const submit = () => {

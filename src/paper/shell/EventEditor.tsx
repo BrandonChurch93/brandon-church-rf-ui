@@ -80,7 +80,10 @@ export function EventEditor({ onCreated }: { onCreated?: (id: string) => void })
   const defaultLogo: Logo = mode === 'edit' && ev.id === 'evt-rainfocus-summit' ? { kind: 'bundled', key: 'rainfocus' } : (monogramPreview ?? (ev.logo.kind === 'monogram' ? ev.logo : { kind: 'monogram', letters: ev.name.slice(0, 2).toUpperCase(), swatch: 'grape' }));
 
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => setDraft((cur) => (cur ? { ...cur, [k]: v } : cur));
-  const blur = (k: keyof Draft) => setTouched((t) => ({ ...t, [k]: true }));
+  // Leaving a field flags it only once the form has been edited (D-25).
+  const blur = (k: keyof Draft) => {
+    if (dirty) setTouched((t) => ({ ...t, [k]: true }));
+  };
   const close = () => setMode(null);
   const cancel = useCloseGuard(dirty && save.state === 'idle', close);
 
