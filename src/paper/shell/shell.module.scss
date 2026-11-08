@@ -33,10 +33,11 @@
 .body {
   flex: 1;
   min-width: 0;
-  padding: 40px 48px;
+  // Bottom padding leaves room for the pill so the last row never sits under it.
+  padding: 40px 48px 104px;
   outline: none;
   @include m.lg {
-    padding: 32px;
+    padding: 32px 32px 104px;
   }
   @include m.md {
     padding: 24px 24px calc(var(--tabbar-h) + 72px);

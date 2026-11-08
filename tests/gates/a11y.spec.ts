@@ -92,3 +92,23 @@ test.describe('a11y gate · layers', () => {
     });
   }
 });
+
+test.describe('a11y gate · guide layers', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`setting sheet, template picker, workflow editor, portal · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, reducedMotion: true });
+      const main = page.locator('#paper-main');
+      await main.getByRole('button', { name: /^Attendee attributes/ }).click();
+      await audit(page, `guide-attributes-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: 'Add registration workflow' }).click();
+      await audit(page, `guide-picker-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: /^Attendee Registration, Live/ }).click();
+      await audit(page, `guide-editor-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: /^Attendee Portal/ }).click();
+      await audit(page, `guide-portal-${theme}`);
+    });
+  }
+});

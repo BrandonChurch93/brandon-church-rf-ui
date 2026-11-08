@@ -1,0 +1,887 @@
+// The Event setup guide: hero, intro, the Attendee module and its three steps.
+@use '@/styles/mixins' as m;
+
+.view {
+  display: flex;
+  flex-direction: column;
+}
+
+// ---------- Hero ----------
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 40px;
+  @include m.md {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+}
+.logoButton {
+  position: relative;
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  transition:
+    transform var(--dur-hover-out) var(--ease-out),
+    box-shadow var(--dur-hover-out) var(--ease-out);
+  > :first-child {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0;
+  }
+  @include m.hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-3);
+    transition-duration: var(--dur-hover-in);
+    .logoOverlay {
+      opacity: 1;
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+  &:focus-visible .logoOverlay {
+    opacity: 1;
+  }
+  @include m.md {
+    width: 72px;
+    height: 72px;
+  }
+}
+.logoOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: rgba(38, 36, 43, 0.45);
+  color: #ffffff;
+  @include m.type(micro);
+  opacity: 0;
+  transition: opacity var(--dur-hover-out) var(--ease-out);
+}
+.heroText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding-top: 4px;
+  @include m.md {
+    flex: 1 1 180px;
+  }
+}
+.eventName {
+  @include m.type(display);
+  color: var(--text);
+  @include m.sm {
+    font-size: 26px;
+  }
+}
+.eventMeta {
+  @include m.type(body);
+  color: var(--muted);
+}
+.chipRow {
+  margin-top: 4px;
+}
+.heroAction {
+  flex: none;
+  @include m.md {
+    flex: 1 1 100%;
+    > button {
+      width: 100%;
+    }
+  }
+}
+
+// ---------- Intro ----------
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 32px;
+  @include m.md {
+    margin-bottom: 24px;
+  }
+}
+.introRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.introTitle {
+  @include m.type(h1);
+  color: var(--text);
+  @include m.sm {
+    font-size: 22px;
+  }
+}
+.introDescription {
+  @include m.type(body);
+  color: var(--muted);
+}
+.summary {
+  flex: none;
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+// ---------- Module ----------
+.module {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+.moduleHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  transition: background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    background: var(--surface-2);
+    transition-duration: var(--dur-hover-in);
+  }
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+  @include m.sm {
+    gap: 14px;
+    padding: 16px;
+  }
+}
+.moduleIcon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+}
+.moduleTitleBlock {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.moduleTitle {
+  @include m.type(h2);
+  color: var(--text);
+}
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+  > :first-child {
+    flex: 1;
+    max-width: 420px;
+  }
+}
+.progressText {
+  flex: none;
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.chevron {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  transition: transform 320ms var(--ease-out);
+  &[data-open='true'] {
+    transform: rotate(180deg);
+  }
+}
+.moduleBody {
+  overflow: hidden;
+}
+.moduleInner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 24px 28px;
+  @include m.sm {
+    gap: 28px;
+    padding: 0 16px 20px;
+  }
+}
+
+// ---------- Steps ----------
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stepLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 30px;
+  flex-wrap: wrap;
+}
+.stepName {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  strong {
+    @include m.type(title);
+    color: var(--text);
+  }
+  span {
+    @include m.type(body-sm);
+    color: var(--muted);
+  }
+}
+.stepMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  @include m.type(caption);
+  color: var(--muted);
+}
+.emptyNote {
+  @include m.type(caption);
+  color: var(--muted);
+}
+
+// ---------- Step 1 settings panel ----------
+.settingsWrap {
+  container-type: inline-size;
+}
+.settings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.setting {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 88px;
+  padding: 16px 40px 16px 20px;
+  text-align: left;
+  border-left: 1px solid var(--line);
+  transition: background-color var(--dur-hover-out) var(--ease-out);
+  &:first-child {
+    border-left: 0;
+  }
+  @include m.hover {
+    background: var(--surface-2);
+    transition-duration: var(--dur-hover-in);
+    .settingChevron {
+      transform: translateX(2px);
+      color: var(--text);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+  &:focus-visible {
+    outline-offset: -2px;
+    border-radius: var(--r-lg);
+  }
+}
+@container (max-width: 839px) {
+  .settings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .setting:nth-child(3) {
+    grid-column: 1 / -1;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+@include m.md {
+  .settings {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .setting {
+    border-left: 0 !important;
+    grid-column: auto !important;
+    & + & {
+      border-top: 1px solid var(--line);
+    }
+  }
+}
+.settingTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.settingTitle {
+  @include m.type(title);
+  color: var(--text);
+}
+.settingDesc {
+  @include m.type(body-sm);
+  color: var(--muted);
+}
+.settingChevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  margin-top: -9px;
+  color: var(--muted);
+  transition:
+    transform var(--dur-hover-out) var(--ease-out),
+    color var(--dur-hover-out) var(--ease-out);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  @include m.type(micro);
+  white-space: nowrap;
+  color: var(--muted);
+  &[data-done='true'] {
+    color: var(--success);
+  }
+}
+
+// ---------- Step 2 gate ----------
+.gateGroup {
+  position: relative;
+  border-radius: var(--r-lg);
+  &[data-locked='true'] .gated {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+.gated {
+  transition: opacity 420ms var(--ease-out);
+}
+.lockBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: var(--r-pill);
+  background: var(--field);
+  color: var(--text-2);
+  @include m.type(micro);
+}
+
+// ---------- Workflow card ----------
+.workflowCard {
+  min-height: 132px;
+  padding: 20px 24px 18px;
+  gap: 6px;
+  @include m.sm {
+    padding: 16px;
+  }
+}
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 24px;
+}
+.cardIcon {
+  flex: none;
+  color: var(--accent-ink);
+}
+.cardTitle {
+  flex: 1;
+  min-width: 0;
+  @include m.type(title);
+  color: var(--text);
+  @include m.truncate;
+}
+.cardRename {
+  flex: 1;
+  min-width: 0;
+  @include m.type(title);
+  color: var(--text);
+}
+.cardDesc {
+  @include m.type(body-sm);
+  color: var(--muted);
+  @include m.clamp(2);
+}
+.cardMeta {
+  margin-top: auto;
+  padding-top: 6px;
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.truncate;
+}
+.handleSlot {
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity var(--dur-hover-out) var(--ease-out);
+  :hover > &,
+  &:focus-within {
+    opacity: 1;
+    transition-duration: var(--dur-hover-in);
+  }
+  @include m.touch {
+    opacity: 1;
+  }
+}
+.dragging {
+  box-shadow: var(--shadow-3) !important;
+  z-index: 5;
+  cursor: grabbing;
+}
+
+// ---------- Experience card ----------
+.experienceCard {
+  min-height: 132px;
+  padding: 20px 24px 18px;
+  gap: 6px;
+  @include m.sm {
+    padding: 16px;
+  }
+}
+
+// ---------- Template picker ----------
+.templates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  @include m.sm {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.template {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  text-align: left;
+  transition:
+    border-color var(--dur-hover-out) var(--ease-out),
+    background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    border-color: var(--line-hover);
+    background: var(--surface-2);
+    transition-duration: var(--dur-hover-in);
+  }
+  &[aria-checked='true'] {
+    border-color: var(--accent-ink);
+    background: var(--accent-soft);
+    box-shadow: inset 0 0 0 1px var(--accent-ink);
+  }
+}
+.templateIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-md);
+  background: var(--field);
+  color: var(--accent-ink);
+}
+.templateText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.templateName {
+  @include m.type(title);
+  color: var(--text);
+}
+.templateDesc {
+  @include m.type(body-sm);
+  color: var(--text-2);
+}
+.templateTarget {
+  margin-top: 4px;
+  @include m.type(caption);
+  color: var(--muted);
+}
+
+// ---------- Sheets ----------
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  @include m.sm {
+    grid-template-columns: 1fr;
+  }
+}
+.note {
+  @include m.type(caption);
+  color: var(--muted);
+  code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: var(--field);
+    color: var(--text-2);
+  }
+}
+.attrList {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.attrRow {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 140px auto 30px;
+  align-items: end;
+  gap: 10px;
+  padding: 12px 12px 12px 8px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  & + & {
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+  }
+  > :first-child,
+  > :last-child {
+    margin-bottom: 4px;
+  }
+  @include m.sm {
+    grid-template-columns: 24px minmax(0, 1fr) 30px;
+    > :nth-child(3),
+    > :nth-child(4) {
+      grid-column: 2;
+    }
+  }
+}
+.requiredToggle {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  padding-bottom: 8px;
+  span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+}
+.stepList {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.stepRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 6px 8px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  & + & {
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+  }
+}
+.stepIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-md);
+  background: var(--field);
+  color: var(--accent-ink);
+}
+.stepText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.stepTitle {
+  @include m.type(title);
+  font-size: 13px;
+  color: var(--text);
+}
+.stepKind {
+  @include m.type(caption);
+  color: var(--muted);
+}
+.listEmpty {
+  padding: 16px;
+  @include m.type(body-sm);
+  color: var(--muted);
+  text-align: center;
+}
+.sectionGap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+// ---------- Previews ----------
+.previewLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.device {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+.deviceBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--line-hover);
+  }
+  span {
+    margin-left: 8px;
+    @include m.type(caption);
+    color: var(--muted);
+  }
+}
+.portal {
+  --portal-accent: var(--sw-grape);
+  --portal-ink: var(--sw-grape-ink);
+  --portal-soft: var(--sw-grape-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  max-height: 420px;
+  overflow: auto;
+  @include m.scrollbar;
+}
+.portalHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--portal-accent);
+}
+.portalName {
+  @include m.type(h3);
+  color: var(--text);
+}
+.portalMeta {
+  @include m.type(caption);
+  color: var(--muted);
+}
+.portalCard {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h4 {
+    @include m.type(micro);
+    color: var(--portal-ink);
+  }
+}
+.portalPerson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  @include m.type(body-sm);
+  color: var(--text-2);
+  strong {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+  }
+}
+.portalSessions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.portalSession {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  @include m.type(body-sm);
+  color: var(--text);
+  span {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  small {
+    @include m.type(caption);
+    color: var(--muted);
+  }
+  @include m.sm {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+.portalButton {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  background: var(--portal-soft);
+  color: var(--portal-ink);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--portal-accent) 35%, transparent);
+  @include m.type(caption);
+  font-weight: 600;
+}
+.portalFooter {
+  @include m.type(caption);
+  color: var(--muted);
+  text-align: center;
+  padding-top: 4px;
+}
+.avatars {
+  display: flex;
+  > * + * {
+    margin-left: -6px;
+  }
+  > * {
+    box-shadow: 0 0 0 2px var(--surface);
+  }
+}
+.settingsStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 24px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface-2);
+  > :last-child {
+    margin-left: auto;
+    width: 200px;
+  }
+  @include m.sm {
+    flex-direction: column;
+    align-items: stretch;
+    > :last-child {
+      margin-left: 0;
+      width: auto;
+    }
+  }
+}
+.calendarPreview {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  padding: 16px;
+  @include m.md {
+    grid-template-columns: 1fr;
+  }
+}
+.calendarDay {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  h4 {
+    @include m.type(title);
+    color: var(--text);
+  }
+}
+.calendarItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--track, var(--accent));
+  border-radius: var(--r-md);
+  background: var(--surface);
+  > div {
+    flex: 1;
+    min-width: 0;
+  }
+  strong {
+    display: block;
+    @include m.type(body-sm);
+    font-weight: 600;
+    color: var(--text);
+    @include m.truncate;
+  }
+  span {
+    @include m.type(caption);
+    color: var(--muted);
+  }
+}
+.calendarAdd {
+  flex: none;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  @include m.type(micro);
+  color: var(--text-2);
+}
+
+// ---------- The configured check (draws in, then pops) ----------
+.check path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 0;
+}
+.checkDraw path {
+  animation: check-draw 360ms var(--ease-out) both;
+}
+.checkDraw {
+  animation: check-pop 300ms cubic-bezier(0.34, 1.9, 0.64, 1) 360ms both;
+}
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 20;
+  }
+}
+@keyframes check-pop {
+  50% {
+    transform: scale(1.15);
+  }
+}

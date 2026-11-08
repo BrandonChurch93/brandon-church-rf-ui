@@ -10,7 +10,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P2 Pill and mode transition
 [x] P3 Design system, primitives and shell
 [x] P4 Store and data
-[ ] P5 Guide view
+[x] P5 Guide view
 [ ] P6 Attendees view
 [ ] P7 Attendee types, Packages, Reg codes, Discounts
 [ ] P8 Content view
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P5 · Guide view.
+P6 · Attendees view.
 
 ## Session log
 
@@ -61,6 +61,11 @@ Next: P4 store and data tests (persistence, reset, version, fallback, create eve
 Done: store proven end to end: persistence across reload (mode never persisted), reset with confirm and toast, version mismatch reseeds with "Demo data was updated", invalid records restored from seed with a console warning, storage failure runs in memory with a one-time toast, create event with the 16 defaults (monogram on the next free swatch, one type, one track, 24 booths) and the switch to it, unsaved-changes guard on the event editor (Cancel, Escape, scrim, close). window.__rf.resetData wired. Overlay focus now inherits the trigger of a layer that opened it (menu item to confirm).
 Gates: verify green; e2e 56 in Chromium plus WebKit smoke.
 Next: P5 Guide view.
+
+### 2026-11-08 01:40 · P5 Guide view
+Done: hero (logo editor with upload, zoom, pan, reset, 512 px PNG; inline rename with validation and flash; status chip from calendar dates in the event timezone; Edit event), intro with summary, Attendee module accordion (GSAP height, persisted per event) with gradient progress, Step 1 settings panel (container-query layout) and the General, Attendee attributes (sortable, undo, locked pair) and Communications sheets with the draw-and-pop check, Step 2 gate with tooltip and unlock rise, sortable workflow cards (pointer, touch, keyboard, announcements) with hover actions, rename, duplicate, remove with confirm and undo, Show all, template picker and workflow editor (Live rules, sortable steps, add step popover), Step 3 portal and calendar previews from live data. Landing beats registered with the transition. Shared: InlineEdit, SortableList, DisabledReason, card styles.
+Gates: verify green. guide.spec 18 tests stable (x2). Motion longest task 81 ms (under 100). a11y clean incl. sheets, picker, editor, portal both themes. Build gate checks the Guide heading, dark theme and persistence over file://.
+Next: P6 Attendees.
 
 ## Notes for future sessions
 

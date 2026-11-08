@@ -117,3 +117,30 @@ for (const theme of ['light', 'dark'] as const) {
     }
   }
 }
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`guide states ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, reducedMotion: true });
+    const main = page.locator('#paper-main');
+    await main.getByRole('button', { name: /^General\s*Configured/ }).click();
+    await shot(page, `states/${theme}/guide-sheet-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: 'Add registration workflow' }).click();
+    await shot(page, `states/${theme}/template-picker-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: 'Change event logo' }).click();
+    await shot(page, `states/${theme}/logo-editor-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: /^Attendee Portal/ }).click();
+    await shot(page, `states/${theme}/portal-preview-1447.png`);
+    await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
+    await main.locator('[data-flip-id]').first().hover();
+    await shot(page, `states/${theme}/hover-card-1447.png`);
+    await page.getByRole('button', { name: /switch event/i }).first().click();
+    await page.getByRole('menuitemradio', { name: /Horizon/ }).click();
+    await page.waitForTimeout(900);
+    await main.getByText('Locked').hover();
+    await shot(page, `states/${theme}/horizon-locked-1447.png`);
+  });
+}

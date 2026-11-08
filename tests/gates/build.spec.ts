@@ -30,10 +30,29 @@ test.describe('build over file://', () => {
     await expect(page.locator('[data-layer="paper"]')).toBeVisible();
     await expect(page.locator('[data-transitioning]')).toHaveCount(0, { timeout: 5000 });
     await expect(page.locator('[data-layer="faithful"]')).toHaveCount(0);
+    await expect(page.locator('[data-layer="paper"]').getByRole('heading', { level: 1, name: 'Event setup guide' })).toBeVisible();
+    await page.evaluate(() => window.__rf.setTheme('dark'));
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await pill.click();
     await expect(page.locator('[data-transitioning]')).toHaveCount(0, { timeout: 5000 });
     await expect(page.locator('[data-layer="faithful"]')).toBeVisible();
     expect(problems).toEqual([]);
+  });
+
+  test('Brandon\'s Mode data persists across a reload over file://', async ({ page }) => {
+    await page.goto(FILE);
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+    await page.evaluate(() => window.__rf.setMode('paper', { instant: true }));
+    await page.getByRole('button', { name: /Event name: RainFocus Summit/ }).click();
+    await page.getByRole('textbox', { name: 'Event name' }).fill('Summit over file');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(400);
+    await page.reload();
+    await expect(page.locator('[data-layer="faithful"]')).toBeVisible();
+    await page.evaluate(() => window.__rf.setMode('paper', { instant: true }));
+    await expect(page.getByRole('button', { name: /Event name: Summit over file/ })).toBeVisible();
+    await page.evaluate(() => localStorage.clear());
   });
 
   test('no horizontal scroll at 320', async ({ page }) => {

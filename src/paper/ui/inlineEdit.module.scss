@@ -1,0 +1,79 @@
+@use '@/styles/mixins' as m;
+
+.wrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  margin: -6px -8px;
+}
+.display {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  min-width: 0;
+  padding: 5px 7px;
+  border-radius: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-align: left;
+  transition: background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    background: var(--field);
+    transition-duration: var(--dur-hover-in);
+    .pencil {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  &:focus-visible .pencil {
+    opacity: 1;
+    transform: none;
+  }
+}
+.text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.pencil {
+  flex: none;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity var(--dur-hover-out) var(--ease-out),
+    transform var(--dur-hover-out) var(--ease-out);
+  @include m.touch {
+    opacity: 0.7;
+    transform: none;
+  }
+}
+.input {
+  width: 100%;
+  min-width: 120px;
+  padding: 5px 7px;
+  border: 1px solid var(--accent-ink);
+  border-radius: inherit;
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  outline: 2px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+  &[data-invalid] {
+    border-color: var(--danger);
+    outline-color: color-mix(in srgb, var(--danger) 22%, transparent);
+  }
+}
+.error {
+  margin-top: 4px;
+  padding: 0 8px;
+  @include m.type(caption);
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--danger);
+}

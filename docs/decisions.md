@@ -112,3 +112,8 @@ Why: valid ARIA beats a nominal menu role; the look and placement match the spec
 Context: Chromium crashed when a View Transition started from an OS color-scheme change (prefers-color-scheme emulation).
 Decision: the circular View Transitions reveal runs when the user switches the theme from a control (it has an origin point); OS-driven changes under "System", and the palette's Toggle theme, use the 320 ms color crossfade fallback.
 Why: robust in every browser; the designed reveal still plays where it matters.
+
+### D-17 · 2026-11-08 · Guide view details
+Context: points 08 leaves open.
+Decision: (a) The page's h1 is "Event setup guide"; the event name in the hero is an inline-edit control, not a heading. (b) The portal preview's "signed-in demo attendee" is the earliest registrant (the seed list is newest first). (c) Preview buttons use the swatch's soft fill with ink text, per 05 "never white text on a swatch". (d) Attendee attributes: Full name and Email keep their label, type and Required switch locked, each explained by the "Required by the registration form" tooltip. (e) Workflow cards are one pointer target (a stretched title button) with separate Edit, menu and drag-handle buttons above it, so there are no nested interactive elements. (f) Add registration workflow from the palette on a locked event shows the gate's own message as a toast instead of opening the picker. (g) The Event editor's and every setting sheet's Cancel goes through the unsaved-changes guard.
+Why: valid semantics and the quality bar's honest affordances; the spec's own copy is reused.

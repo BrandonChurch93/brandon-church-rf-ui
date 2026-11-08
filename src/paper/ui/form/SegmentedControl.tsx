@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { Icon, type IconName } from '../Icon';
-import { Tooltip } from '../Tooltip';
+import { DisabledReason } from '../DisabledReason';
 import s from './form.module.scss';
 
 export interface SegmentOption<T extends string> {
@@ -94,12 +94,9 @@ export function SegmentedControl<T extends string>({ options, value, onChange, l
           </button>
         );
         return o.disabled && o.reason ? (
-          <Tooltip key={o.value} content={o.reason}>
-            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a disabled option is wrapped in a focusable span so keyboard users can read why (05, component anatomy) */}
-            <span tabIndex={0} style={{ display: 'inline-flex' }}>
-              {btn}
-            </span>
-          </Tooltip>
+          <DisabledReason key={o.value} reason={o.reason}>
+            {btn}
+          </DisabledReason>
         ) : (
           btn
         );
