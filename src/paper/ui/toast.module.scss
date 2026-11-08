@@ -1,0 +1,95 @@
+@use '@/styles/mixins' as m;
+
+.host {
+  position: fixed;
+  left: calc(var(--rail-w) + var(--sidebar-w) + 24px);
+  bottom: 24px;
+  z-index: 960;
+  width: 360px;
+  pointer-events: none;
+  @include m.lg {
+    left: calc(var(--rail-w) + 24px);
+  }
+  @include m.md {
+    left: 16px;
+    right: 16px;
+    width: auto;
+    bottom: calc(var(--tabbar-h) + 72px);
+  }
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: toast-in 320ms var(--ease-out) both;
+  &[data-leaving] {
+    animation: toast-out 240ms var(--ease-in) both;
+  }
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.icon {
+  flex: none;
+  color: var(--muted);
+  [data-tone='success'] > & {
+    color: var(--success);
+  }
+  [data-tone='danger'] > & {
+    color: var(--danger);
+  }
+}
+.message {
+  flex: 1;
+  min-width: 0;
+  @include m.type(body-sm);
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.action {
+  flex: none;
+  color: var(--accent-ink);
+}
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  animation: toast-progress linear both;
+  [data-paused] > & {
+    animation-play-state: paused;
+  }
+}
+@keyframes toast-progress {
+  to {
+    transform: scaleX(0);
+  }
+}

@@ -1,0 +1,187 @@
+@use '@/styles/mixins' as m;
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 870;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+  opacity: 0;
+  transition: opacity 160ms var(--ease-in);
+  &[data-state='open'] {
+    opacity: 1;
+    transition: opacity 240ms var(--ease-out);
+  }
+}
+.panel {
+  position: absolute;
+  left: 50%;
+  top: 15vh;
+  display: flex;
+  flex-direction: column;
+  width: min(var(--palette-w), calc(100vw - 32px));
+  max-height: calc(60vh + 60px);
+  margin-left: calc(min(var(--palette-w), calc(100vw - 32px)) / -2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.98) translateY(-8px);
+  transition:
+    opacity 160ms var(--ease-in),
+    transform 160ms var(--ease-in);
+  &[data-state='open'] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 240ms var(--ease-out),
+      transform 240ms var(--ease-out);
+  }
+  &[data-state='opening'] {
+    transition: none;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+  @include m.md {
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  @include m.reduced {
+    transform: none !important;
+  }
+}
+.inputRow {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding: 0 10px 0 16px;
+  border-bottom: 1px solid var(--line);
+}
+.inputIcon {
+  color: var(--muted);
+  flex: none;
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  &::placeholder {
+    color: var(--muted);
+  }
+  @include m.md {
+    font-size: 16px;
+  }
+}
+.clear,
+.close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  height: 30px;
+  min-width: 30px;
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  transition: background-color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    background: var(--field);
+    color: var(--text);
+  }
+  @include m.md {
+    min-width: 44px;
+    height: 44px;
+  }
+}
+.list {
+  flex: 1;
+  min-height: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 6px 8px 10px;
+  overscroll-behavior: contain;
+  @include m.scrollbar;
+  @include m.md {
+    max-height: none;
+  }
+}
+.groupLabel {
+  padding: 12px 10px 6px;
+  @include m.type(micro);
+  color: var(--muted);
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: var(--r-md);
+  color: var(--text-2);
+  cursor: pointer;
+  &[data-active='true'] {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  @include m.md {
+    min-height: 52px;
+  }
+}
+.optionIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  color: var(--muted);
+  [data-active='true'] > & {
+    color: var(--accent-ink);
+  }
+}
+.optionText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.optionLabel {
+  font-size: 14px;
+  font-weight: 500;
+  @include m.truncate;
+}
+.optionSub {
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.truncate;
+}
+.mark {
+  background: none;
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.enter {
+  flex: none;
+}
+.empty {
+  padding: 28px 12px;
+  text-align: center;
+  @include m.type(body-sm);
+  color: var(--muted);
+}

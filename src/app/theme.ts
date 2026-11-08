@@ -32,9 +32,9 @@ export function applyThemeAnimated(theme: 'light' | 'dark', origin?: { x: number
     setRootTheme(theme);
     return;
   }
-  if (doc.startViewTransition) {
-    const x = origin?.x ?? window.innerWidth / 2;
-    const y = origin?.y ?? window.innerHeight / 2;
+  // The circular reveal runs only for a user's own switch (it has an origin); OS changes crossfade.
+  if (doc.startViewTransition && origin) {
+    const { x, y } = origin;
     const r = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
     const vt = doc.startViewTransition(() => setRootTheme(theme));
     vt.ready

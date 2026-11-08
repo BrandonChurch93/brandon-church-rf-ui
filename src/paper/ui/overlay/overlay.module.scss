@@ -1,0 +1,131 @@
+@use '@/styles/mixins' as m;
+
+// ---------- Scrim ----------
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim);
+  opacity: 0;
+  transition: opacity 240ms var(--ease-in);
+  &[data-state='open'] {
+    opacity: 1;
+    transition: opacity 320ms var(--ease-out);
+  }
+}
+
+// ---------- Anchored floating panel (popover, menu, select list) ----------
+.floating {
+  position: fixed;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-height: min(420px, calc(100vh - 16px));
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 140ms var(--ease-in),
+    transform 140ms var(--ease-in);
+  &:focus-visible {
+    outline: none;
+  }
+  &[data-state='open'] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--dur-sm) var(--ease-out),
+      transform var(--dur-sm) var(--ease-out);
+  }
+  @include m.reduced {
+    transform: none;
+  }
+}
+.floatingBody {
+  overflow: auto;
+  overscroll-behavior: contain;
+  @include m.scrollbar;
+}
+
+// ---------- Bottom sheet (mobile popovers, menus, sheets) ----------
+.bottomRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+}
+.bottomPanel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 24px);
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(100%);
+  transition: transform 320ms var(--ease-in);
+  touch-action: pan-y;
+  &:focus-visible {
+    outline: none;
+  }
+  &[data-state='open'] {
+    transform: none;
+    transition: transform 480ms var(--ease-out);
+  }
+  &[data-dragging='true'] {
+    transition: none;
+  }
+  &.full {
+    height: calc(100% - 24px);
+  }
+  @include m.reduced {
+    transform: none;
+    opacity: 0;
+    transition: opacity 150ms linear;
+    &[data-state='open'] {
+      opacity: 1;
+      transition: opacity 150ms linear;
+    }
+  }
+}
+.grabber {
+  flex: none;
+  display: grid;
+  place-items: center;
+  height: 22px;
+  cursor: grab;
+  touch-action: none;
+  &::before {
+    content: '';
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line-hover);
+  }
+}
+.bottomHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 12px 8px 20px;
+  h2 {
+    @include m.type(h3);
+    color: var(--text);
+  }
+}
+.bottomBody {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 4px 8px 12px;
+}

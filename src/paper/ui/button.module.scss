@@ -1,0 +1,153 @@
+@use '@/styles/mixins' as m;
+
+.button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--dur-sm) var(--ease-out),
+    background-color var(--dur-hover-out) var(--ease-out),
+    border-color var(--dur-hover-out) var(--ease-out),
+    box-shadow var(--dur-hover-out) var(--ease-out),
+    color var(--dur-hover-out) var(--ease-out),
+    opacity var(--dur-sm) var(--ease-out);
+
+  @include m.hover {
+    transition-duration: var(--dur-sm), var(--dur-hover-in), var(--dur-hover-in), var(--dur-hover-in), var(--dur-hover-in), var(--dur-sm);
+  }
+  &:active:not(:disabled):not(.busy) {
+    transform: scale(0.98);
+    transition-duration: var(--dur-xs);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.content,
+.check {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition:
+    opacity var(--dur-sm) var(--ease-out),
+    transform var(--dur-sm) var(--ease-out);
+}
+.content[data-hidden] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+.check {
+  opacity: 0;
+  transform: scale(0.8);
+  &[data-shown] {
+    opacity: 1;
+    transform: none;
+  }
+}
+.label {
+  @include m.truncate;
+}
+
+.md {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+  line-height: 1;
+}
+.sm {
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  line-height: 1;
+  .content {
+    gap: 6px;
+  }
+}
+.full {
+  width: 100%;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: var(--glow-accent);
+  @include m.hover {
+    &:not(:disabled):not(.busy) {
+      transform: translateY(-1px);
+      box-shadow: var(--glow-accent-strong);
+    }
+  }
+}
+.secondary {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+  @include m.hover {
+    &:not(:disabled):not(.busy) {
+      background: var(--surface-2);
+      border-color: var(--line-hover);
+    }
+  }
+}
+.ghost {
+  background: transparent;
+  color: var(--text-2);
+  @include m.hover {
+    &:not(:disabled):not(.busy) {
+      background: var(--accent-soft);
+      color: var(--text);
+    }
+  }
+}
+.danger {
+  background: var(--danger);
+  color: var(--on-danger);
+  @include m.hover {
+    &:not(:disabled):not(.busy) {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px color-mix(in srgb, var(--danger) 30%, transparent);
+    }
+  }
+}
+.danger-ghost {
+  background: transparent;
+  color: var(--danger);
+  @include m.hover {
+    &:not(:disabled):not(.busy) {
+      background: var(--danger-soft);
+    }
+  }
+}
+.busy {
+  cursor: progress;
+}
+
+@include m.md {
+  .md {
+    min-height: 44px;
+  }
+}
+@include m.touch {
+  .sm {
+    @include m.touch-target;
+  }
+}
+.button {
+  @include m.reduced {
+    &:active:not(:disabled) {
+      transform: none;
+    }
+  }
+}

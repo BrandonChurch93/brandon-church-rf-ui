@@ -1,0 +1,46 @@
+@use '@/styles/mixins' as m;
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--field);
+  cursor: text;
+  transition: border-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    border-color: var(--line-hover);
+  }
+  &:focus-within {
+    border-color: var(--accent-ink);
+    background: var(--surface);
+    outline: 2px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+  }
+  &[data-invalid='true'] {
+    border-color: var(--danger);
+  }
+  @include m.md {
+    min-height: 44px;
+  }
+}
+.input {
+  flex: 1;
+  min-width: 120px;
+  height: 26px;
+  border: 0;
+  padding: 0 4px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  &::placeholder {
+    color: var(--muted);
+  }
+  @include m.md {
+    font-size: 16px;
+  }
+}

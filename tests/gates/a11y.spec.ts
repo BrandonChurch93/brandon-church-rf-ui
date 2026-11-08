@@ -9,6 +9,8 @@ const OUT = resolve('tests/gates/__out__');
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
 async function audit(page: Page, name: string, opts: { disable?: string[] } = {}) {
+  // Let any enter fade finish so contrast is measured on settled colors.
+  await page.waitForTimeout(350);
   let builder = new AxeBuilder({ page }).withTags(TAGS);
   if (opts.disable?.length) builder = builder.disableRules(opts.disable);
   const results = await builder.analyze();
@@ -44,4 +46,49 @@ test.describe('a11y gate · faithful mode', () => {
     await page.getByRole('button', { name: 'Open navigation' }).click();
     await audit(page, 'faithful-390-drawer', faithfulOpts);
   });
+});
+
+const VIEWS = ['guide', 'attendees', 'attendee-types', 'packages', 'reg-codes', 'discounts', 'content', 'exhibitors'];
+
+test.describe('a11y gate · Brandon\'s Mode views', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    for (const width of [1447, 390]) {
+      test(`all views · ${theme} · ${width}`, async ({ page }) => {
+        await boot(page, { mode: 'paper', theme, width, height: width > 900 ? 1024 : 844, reducedMotion: true });
+        for (const view of VIEWS) {
+          await page.evaluate((v) => (window.location.hash = v), view);
+          await expect(page.locator('#view-title')).toBeVisible();
+          await page.waitForTimeout(700);
+          await audit(page, `paper-${view}-${theme}-${width}`);
+        }
+      });
+    }
+  }
+});
+
+test.describe('a11y gate · layers', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`palette, account menu, confirm · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, reducedMotion: true });
+      await page.keyboard.press('ControlOrMeta+k');
+      await page.keyboard.type('a');
+      await audit(page, `palette-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.getByRole('button', { name: 'FL, Account' }).first().click();
+      await audit(page, `account-${theme}`);
+      await page.getByRole('button', { name: 'Reset demo data' }).click();
+      await expect(page.getByRole('alertdialog')).toBeVisible();
+      await audit(page, `confirm-${theme}`);
+    });
+
+    test(`drawer and about · ${theme} · 390`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, width: 390, height: 844, reducedMotion: true });
+      await page.getByRole('button', { name: 'Open navigation' }).click();
+      await audit(page, `drawer-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.keyboard.press('Shift+?');
+      await expect(page.getByRole('dialog', { name: 'About this build' })).toBeVisible();
+      await audit(page, `about-${theme}`);
+    });
+  }
 });

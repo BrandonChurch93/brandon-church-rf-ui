@@ -77,3 +77,38 @@ Why: the gate's subject is real time; a faked `performance.now` would make its d
 Context: the pill's entrance and stepping aside move it vertically, the mobile position shift moves it vertically, and hover, magnetic and press transform it too.
 Decision: a fixed dock wraps the button. The dock owns position, entrance (`yPercent`), stepping aside (`yPercent`) and the mobile position slide (`y`, FLIP from the previous position, starting at t = 300 for 480 ms). The button owns hover scale, magnetic `x`/`y` and press. The visually hidden description sits outside the button so it is not part of the accessible name.
 Why: separate transform owners never fight, and GSAP composes `yPercent` with `y` cleanly.
+
+### D-10 · 2026-11-07 · `--muted` light value
+Context: 05 gives `--muted` #6F6A75 as AA on canvas and surface; it is also used for placeholders and keyboard hints on `--field`, where axe measured 4.4:1.
+Decision: light `--muted` is #67626D (one step darker). Dark is unchanged (#9A96A3 passes on every dark surface).
+Why: AA everywhere muted text appears; the visual change is barely perceptible.
+
+### D-11 · 2026-11-07 · Event switch fade duration
+Context: 07 says the body fades out 160 ms on event switch; 06 (which says its values are literal) says 240 ms.
+Decision: 240 ms, per 06.
+Why: 06 governs motion values.
+
+### D-12 · 2026-11-07 · Shortcut modifier
+Context: ⌘K and ⌘Z on Mac, Ctrl elsewhere. Platform detection can disagree with the keyboard actually in use (an emulated user agent, a Windows keyboard on a Mac).
+Decision: shortcuts accept either Cmd or Ctrl. The visible hint still shows ⌘ on Mac and Ctrl elsewhere.
+Why: a shortcut that silently fails is worse than one that accepts both modifiers; neither conflicts with browser shortcuts in this app.
+
+### D-13 · 2026-11-07 · Which layers move the pill
+Context: 06 lists sheets, modals, the palette, the drawer and the mobile bulk bar.
+Decision: exactly those, plus every bottom sheet (on mobile, menus and popovers become bottom sheets that cover the pill's corner). Anchored desktop popovers and menus do not move the pill. The step-aside distance is computed from the pill's resting position so it clears the viewport from its raised mobile position too.
+Why: the pill must never sit on a layer's actions, and nothing else should make it jump.
+
+### D-14 · 2026-11-07 · Overlay focus timing
+Context: React restores the element that was focused before a commit at the end of that commit, which undid focus returns made in layout-effect cleanups; a palette keystroke could also arrive before a frame-delayed initial focus.
+Decision: initial focus happens synchronously in the overlay's layout effect (with a one-frame retry), the Escape and Tab handlers attach in the same layout effect, and focus return runs in a microtask after the commit.
+Why: Escape always closes the topmost layer, focus always returns to the trigger, and the first keystroke always lands in the input.
+
+### D-15 · 2026-11-07 · Account menu semantics
+Context: 07 calls the account menu a Menu, but it contains a segmented control and a switch, which a `role="menu"` may not contain.
+Decision: it is a popover dialog (bottom sheet on mobile) holding the header, the two settings rows and menu-styled action buttons. Keyboard: Tab through, Escape closes and returns focus to the avatar.
+Why: valid ARIA beats a nominal menu role; the look and placement match the spec.
+
+### D-16 · 2026-11-07 · Theme reveal only for the user's own switch
+Context: Chromium crashed when a View Transition started from an OS color-scheme change (prefers-color-scheme emulation).
+Decision: the circular View Transitions reveal runs when the user switches the theme from a control (it has an origin point); OS-driven changes under "System", and the palette's Toggle theme, use the 320 ms color crossfade fallback.
+Why: robust in every browser; the designed reveal still plays where it matters.

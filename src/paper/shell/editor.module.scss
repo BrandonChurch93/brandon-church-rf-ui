@@ -1,0 +1,34 @@
+@use '@/styles/mixins' as m;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  @include m.sm {
+    grid-template-columns: 1fr;
+  }
+}
+.logoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.logoLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.logoBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footerHint {
+  @include m.type(caption);
+  color: var(--muted);
+}

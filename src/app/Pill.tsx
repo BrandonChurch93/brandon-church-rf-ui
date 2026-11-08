@@ -19,6 +19,13 @@ interface PillProps {
   onIntent?: () => void;
 }
 
+/** yPercent that moves the dock fully below the viewport from wherever it rests. */
+function offscreenPercent(d: HTMLElement) {
+  const h = d.offsetHeight || 44;
+  const restTop = d.getBoundingClientRect().top - (Number(gsap.getProperty(d, 'y')) || 0) - ((Number(gsap.getProperty(d, 'yPercent')) || 0) / 100) * h;
+  return Math.max(140, ((window.innerHeight - restTop + 24) / h) * 100);
+}
+
 const supportsProperty = typeof CSS !== 'undefined' && 'registerProperty' in CSS;
 const MAGNET = 0.18;
 
@@ -33,6 +40,9 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
   const hovering = useRef(false);
   const reduced = useReducedMotion();
   const [ready, setReady] = useState(false);
+  const entrance = useRef<gsap.core.Tween | null>(null);
+  const asideRef = useRef(stepAside);
+  asideRef.current = stepAside;
 
   const parts = () => ({ pill: pill.current!, ring: ring.current!, sweep: sweep.current!, glyph: glyph.current! });
 
@@ -47,8 +57,11 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
     }
     const tween = pillEntrance(d, () => {
       entered.current = true;
+      entrance.current = null;
       setReady(true);
+      if (asideRef.current) gsap.to(d, { yPercent: offscreenPercent(d), duration: 0.32, ease: 'power2.in' });
     });
+    entrance.current = tween;
     return () => {
       tween.kill();
       gsap.set(d, { clearProps: 'all' });
@@ -70,12 +83,21 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
   // Stepping aside for layers that need the corner.
   useEffect(() => {
     const d = dock.current;
-    if (!d || !entered.current) return;
+    if (!d) return;
+    if (!entered.current) {
+      // A layer opened before the entrance finished: finish it now so the pill can step aside.
+      if (!stepAside || !entrance.current) return;
+      entrance.current.kill();
+      entrance.current = null;
+      entered.current = true;
+      gsap.set(d, { opacity: 1 });
+      setReady(true);
+    }
     if (reduced) {
-      gsap.set(d, { yPercent: stepAside ? 140 : 0 });
+      gsap.set(d, { yPercent: stepAside ? offscreenPercent(d) : 0 });
       return;
     }
-    gsap.to(d, stepAside ? { yPercent: 140, duration: 0.32, ease: 'power2.in', overwrite: 'auto' } : { yPercent: 0, duration: 0.48, ease: 'power3.out', overwrite: 'auto' });
+    gsap.to(d, stepAside ? { yPercent: offscreenPercent(d), duration: 0.32, ease: 'power2.in', overwrite: 'auto' } : { yPercent: 0, duration: 0.48, ease: 'power3.out', overwrite: 'auto' });
   }, [stepAside, reduced]);
 
   // Below 900 px the pill sits higher in Brandon's Mode (above the tab bar). Slide between the two.

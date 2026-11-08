@@ -1,0 +1,90 @@
+@use '@/styles/mixins' as m;
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 6px 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  background: var(--field);
+  color: var(--text);
+  transition:
+    border-color var(--dur-hover-out) var(--ease-out),
+    background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    border-color: var(--line-hover);
+    transition-duration: var(--dur-sm);
+  }
+  &:focus-within {
+    border-color: var(--accent-ink);
+    background: var(--surface);
+    outline: 2px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+  }
+  &.lg {
+    height: 44px;
+  }
+  @include m.md {
+    height: 44px;
+  }
+}
+.icon {
+  flex: none;
+  color: var(--muted);
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  outline: none;
+  &::placeholder {
+    color: var(--muted);
+  }
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+  @include m.md {
+    font-size: 16px;
+  }
+}
+.clear {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--muted);
+  transition:
+    background-color var(--dur-sm) var(--ease-out),
+    color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    background: var(--line);
+    color: var(--text);
+  }
+  @include m.touch {
+    @include m.touch-target;
+  }
+}
+.opener {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  padding-right: 6px;
+  &:focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 2px;
+  }
+}
+.placeholder {
+  flex: 1;
+  color: var(--muted);
+  font-size: 14px;
+}

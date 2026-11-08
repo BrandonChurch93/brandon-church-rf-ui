@@ -14,7 +14,7 @@
     "lint": "eslint . --max-warnings 0",
     "seed": "node scripts/generate-seed.mjs",
     "test:e2e": "playwright test tests/e2e",
-    "test:visual": "playwright test tests/visual --project=chromium",
+    "test:visual": "PW_DEV_SERVER=1 playwright test tests/visual --project=chromium",
     "gate:faithful": "playwright test tests/gates/faithful.spec.ts --project=chromium",
     "gate:a11y": "playwright test tests/gates/a11y.spec.ts --project=chromium",
     "gate:motion": "playwright test tests/gates/motion.spec.ts --project=chromium",

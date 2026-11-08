@@ -135,3 +135,10 @@ $bp-sm: 599px;
     background: transparent;
   }
 }
+
+// Reduced motion, from the OS or the user's own setting (mirrored onto <html data-reduce-motion>).
+@mixin reduced {
+  :global(:root[data-reduce-motion='true']) & {
+    @content;
+  }
+}

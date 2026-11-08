@@ -88,3 +88,17 @@ test('GSAP tweens advance under the installed clock', async ({ page }) => {
   });
   expect(moved).toBe(true);
 });
+
+for (const [w, h] of [
+  [1447, 1024],
+  [390, 844],
+] as const) {
+  test(`steps aside fully while a layer is open (${w})`, async ({ page }) => {
+    await boot(page, { mode: 'paper', width: w, height: h, reducedMotion: true });
+    if (w > 900) await page.getByRole('button', { name: 'About this build' }).click();
+    else await page.getByRole('button', { name: 'FL, Account' }).click();
+    await expect.poll(async () => (await page.locator('[data-pill]').boundingBox())!.y).toBeGreaterThanOrEqual(h);
+    await page.keyboard.press('Escape');
+    await expect.poll(async () => (await page.locator('[data-pill]').boundingBox())!.y).toBeLessThan(h);
+  });
+}

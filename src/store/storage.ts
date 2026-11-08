@@ -26,7 +26,9 @@ export function storageIsFallback() {
 export function onStorageFallback(fn: () => void) {
   listeners.add(fn);
   if (fallback) fn();
-  return () => listeners.delete(fn);
+  return () => {
+    listeners.delete(fn);
+  };
 }
 function goFallback() {
   if (fallback) return;

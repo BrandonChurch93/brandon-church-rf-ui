@@ -1,0 +1,432 @@
+@use '@/styles/mixins' as m;
+
+// ---------- Field: label, control, help or error ----------
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.labelRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.label {
+  @include m.type(caption);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.required {
+  @include m.type(caption);
+  color: var(--muted);
+  font-weight: 500;
+}
+.helpRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  @include m.type(caption);
+  color: var(--muted);
+}
+.error {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--danger);
+  svg {
+    flex: none;
+    margin-top: 1px;
+  }
+}
+.counter {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  &[data-over='true'] {
+    color: var(--danger);
+  }
+}
+
+// ---------- The input box (Input, NumberField, CurrencyField, SearchField, DateField) ----------
+.box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--field);
+  color: var(--text);
+  transition:
+    border-color var(--dur-hover-out) var(--ease-out),
+    background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    border-color: var(--line-hover);
+    transition-duration: var(--dur-sm);
+  }
+  &:focus-within {
+    border-color: var(--accent-ink);
+    background: var(--surface);
+    outline: 2px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+    outline-offset: 0;
+  }
+  &[data-invalid='true'] {
+    border-color: var(--danger);
+    &:focus-within {
+      outline-color: color-mix(in srgb, var(--danger) 22%, transparent);
+    }
+  }
+  &[data-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &.sm {
+    height: 30px;
+  }
+  &.mono input {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  @include m.md {
+    height: 44px;
+    &.sm {
+      height: 40px;
+    }
+  }
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  &:focus-visible {
+    outline: none;
+  }
+  &::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+  @include m.md {
+    font-size: 16px; // avoids iOS zoom on focus
+  }
+}
+.affix {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.affixButtons {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  margin-right: -6px;
+  gap: 2px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 88px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--field);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  transition:
+    border-color var(--dur-hover-out) var(--ease-out),
+    background-color var(--dur-hover-out) var(--ease-out);
+  @include m.hover {
+    border-color: var(--line-hover);
+    transition-duration: var(--dur-sm);
+  }
+  &:focus-visible,
+  &:focus {
+    border-color: var(--accent-ink);
+    background: var(--surface);
+    outline: 2px solid color-mix(in srgb, var(--accent-ink) 22%, transparent);
+    outline-offset: 0;
+  }
+  &[aria-invalid='true'] {
+    border-color: var(--danger);
+  }
+  &::placeholder {
+    color: var(--muted);
+  }
+  @include m.md {
+    font-size: 16px;
+  }
+}
+
+.stepper {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-xs);
+  color: var(--muted);
+  transition:
+    background-color var(--dur-sm) var(--ease-out),
+    color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    &:not(:disabled) {
+      background: var(--line);
+      color: var(--text);
+    }
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  @include m.md {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+// ---------- Switch ----------
+.switchRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+  }
+}
+.switchLabel {
+  @include m.type(body);
+  color: var(--text);
+}
+.switch {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  background: var(--switch-off);
+  transition: background-color var(--dur-sm) var(--ease-out);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(20, 10, 30, 0.3);
+    transition: transform var(--dur-xs) var(--ease-out);
+  }
+  &[aria-checked='true'] {
+    background: var(--accent);
+    &::before {
+      transform: translateX(16px);
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  @include m.touch {
+    @include m.touch-target;
+  }
+}
+
+// ---------- Checkbox and radio ----------
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+.checkControl {
+  position: relative;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  input {
+    position: absolute;
+    inset: -6px;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    opacity: 0;
+    cursor: inherit;
+    z-index: 1;
+  }
+  @include m.touch {
+    input {
+      inset: -14px;
+      width: 44px;
+      height: 44px;
+    }
+  }
+}
+.checkBox,
+.radioDot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--muted);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  color: var(--on-accent);
+  transition:
+    background-color var(--dur-xs) var(--ease-out),
+    border-color var(--dur-xs) var(--ease-out);
+  svg {
+    opacity: 0;
+    transform: scale(0.6);
+    transition:
+      opacity var(--dur-xs) var(--ease-out),
+      transform var(--dur-sm) var(--ease-out);
+  }
+}
+.radioDot {
+  border-radius: 50%;
+  &::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--on-accent);
+    transform: scale(0);
+    transition: transform var(--dur-sm) var(--ease-out);
+  }
+}
+.checkControl input:checked + .checkBox,
+.checkControl input:indeterminate + .checkBox,
+.checkControl input:checked + .radioDot {
+  background: var(--accent);
+  border-color: var(--accent);
+  svg {
+    opacity: 1;
+    transform: none;
+  }
+  &::after {
+    transform: scale(1);
+  }
+}
+.checkControl input:focus-visible + .checkBox,
+.checkControl input:focus-visible + .radioDot {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+.checkControl input:hover:not(:disabled) + .checkBox,
+.checkControl input:hover:not(:disabled) + .radioDot {
+  border-color: var(--text-2);
+}
+.checkText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  @include m.type(body);
+  color: var(--text);
+}
+.checkDescription {
+  @include m.type(caption);
+  color: var(--muted);
+}
+
+// ---------- Segmented control ----------
+.segmented {
+  position: relative;
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--r-md);
+  background: var(--field);
+  isolation: isolate;
+  max-width: 100%;
+  &.full {
+    display: flex;
+    width: 100%;
+    .segment {
+      flex: 1;
+    }
+  }
+}
+.thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  z-index: -1;
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  &.animate {
+    transition:
+      transform 240ms var(--ease-in-out),
+      width 240ms var(--ease-in-out);
+  }
+}
+.segment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    &:not([aria-checked='true']):not(:disabled) {
+      color: var(--text);
+    }
+  }
+  &[aria-checked='true'] {
+    color: var(--text);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  @include m.md {
+    min-height: 38px;
+  }
+}
+.segmented.smSize .segment {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+  @include m.md {
+    min-height: 36px;
+  }
+}

@@ -1,0 +1,50 @@
+@use '@/styles/mixins' as m;
+
+.tabs {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.tab {
+  position: relative;
+  flex: none;
+  height: 40px;
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  transition: color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    color: var(--text);
+  }
+  &[aria-selected='true'] {
+    color: var(--text);
+  }
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+  @include m.md {
+    height: 44px;
+  }
+}
+.bar {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  &.animate {
+    transition:
+      transform 320ms var(--ease-out),
+      width 320ms var(--ease-out);
+  }
+}

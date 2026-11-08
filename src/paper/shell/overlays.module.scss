@@ -1,0 +1,220 @@
+@use '@/styles/mixins' as m;
+
+// ---------- Event switcher ----------
+.switcher {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+.switcherHeading {
+  padding: 8px 10px 6px;
+  @include m.type(micro);
+  color: var(--muted);
+  @include m.md {
+    display: none;
+  }
+}
+.switcherList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  outline: none;
+}
+.switcherRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 10px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    background: var(--accent-soft);
+    transition-duration: var(--dur-xs);
+  }
+  &:focus-visible {
+    background: var(--accent-soft);
+    outline: 2px solid var(--accent-ink);
+    outline-offset: -2px;
+  }
+  @include m.md {
+    min-height: 60px;
+  }
+}
+.switcherText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.switcherName {
+  @include m.type(title);
+  color: var(--text);
+  @include m.truncate;
+}
+.switcherMeta {
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.truncate;
+}
+.switcherCheck {
+  flex: none;
+  color: var(--accent-ink);
+}
+.switcherFooter {
+  margin: 6px -6px -6px;
+  padding: 6px;
+  border-top: 1px solid var(--line);
+}
+
+// ---------- Account menu ----------
+.account {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+.accountHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 12px;
+}
+.accountText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.accountName {
+  @include m.type(title);
+  color: var(--text);
+}
+.accountEmail {
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.truncate;
+}
+.accountDivider {
+  height: 1px;
+  margin: 6px -6px;
+  background: var(--line);
+}
+.accountRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 4px 10px;
+}
+.accountRowText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.accountRowLabel {
+  @include m.type(body);
+  font-weight: 500;
+  color: var(--text);
+}
+.accountRowSub {
+  @include m.type(caption);
+  color: var(--muted);
+}
+.accountItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-radius: var(--r-md);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  transition: background-color var(--dur-sm) var(--ease-out);
+  svg {
+    color: var(--muted);
+  }
+  @include m.hover {
+    background: var(--accent-soft);
+    transition-duration: var(--dur-xs);
+  }
+  &:focus-visible {
+    background: var(--accent-soft);
+    outline-offset: -2px;
+  }
+  @include m.md {
+    min-height: 52px;
+    font-size: 15px;
+  }
+}
+
+// ---------- About ----------
+.aboutMarks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--r-md);
+  }
+}
+.aboutMark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  img {
+    width: 28px;
+    height: 28px;
+    border-radius: 0;
+  }
+}
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & + & {
+    margin-top: 28px;
+  }
+  h3 {
+    @include m.type(h3);
+    color: var(--text);
+  }
+  p {
+    @include m.type(body);
+    color: var(--text-2);
+  }
+}
+.aboutLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.aboutChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.shortcuts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 16px;
+  align-items: center;
+  dt {
+    display: flex;
+    gap: 4px;
+  }
+  dd {
+    @include m.type(body-sm);
+    color: var(--text-2);
+  }
+}

@@ -1,0 +1,164 @@
+@use '@/styles/mixins' as m;
+
+.card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.scroller {
+  overflow-x: auto;
+  @include m.scrollbar;
+}
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-size: 13px;
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    @include m.type(micro);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  td {
+    height: 60px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-2);
+    vertical-align: middle;
+    font-variant-numeric: tabular-nums;
+    overflow: hidden;
+  }
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  tbody tr {
+    position: relative;
+    transition: background-color var(--dur-hover-out) var(--ease-out);
+  }
+  tbody tr[data-clickable] {
+    cursor: pointer;
+    @include m.hover {
+      background: var(--surface-2);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+  tbody tr[data-selected] {
+    background: var(--accent-soft);
+    td:first-child {
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+  }
+  tbody tr[data-focused] {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: -2px;
+  }
+}
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  margin: 0 -6px;
+  padding: 0 6px;
+  border-radius: var(--r-xs);
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  transition:
+    color var(--dur-sm) var(--ease-out),
+    background-color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    color: var(--text);
+    background: var(--field);
+  }
+  &[data-active] {
+    color: var(--text);
+  }
+  &.end {
+    margin-left: auto;
+  }
+}
+.sortIcon {
+  opacity: 0.5;
+  [data-active] > & {
+    opacity: 1;
+    color: var(--accent-ink);
+  }
+}
+.rowActions {
+  opacity: 0;
+  transition: opacity var(--dur-hover-out) var(--ease-out);
+  tr:hover &,
+  tr:focus-within &,
+  &[aria-expanded='true'] {
+    opacity: 1;
+    transition-duration: var(--dur-hover-in);
+  }
+  @include m.touch {
+    opacity: 1;
+  }
+}
+
+// ---------- Pagination ----------
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 12px 10px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+.range {
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.pages {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.page {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color var(--dur-sm) var(--ease-out),
+    color var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    background: var(--field);
+    color: var(--text);
+  }
+  &[aria-current='page'] {
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+}
+.gap {
+  width: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.pageSize {
+  width: 132px;
+  margin-left: 8px;
+}

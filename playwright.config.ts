@@ -41,10 +41,16 @@ export default defineConfig({
   ],
   webServer: process.env.PW_NO_SERVER
     ? undefined
-    : {
-        command: `npm run preview -- --port ${PORT}`,
-        url: `http://localhost:${PORT}`,
-        reuseExistingServer: true,
-        timeout: 60_000,
-      },
+    : [
+        {
+          command: `npm run preview -- --port ${PORT}`,
+          url: `http://localhost:${PORT}`,
+          reuseExistingServer: true,
+          timeout: 60_000,
+        },
+        // The primitives gallery exists only in dev builds; the visual suite starts a dev server for it.
+        ...(process.env.PW_DEV_SERVER
+          ? [{ command: 'npx vite --port 5174 --strictPort', url: 'http://localhost:5174', reuseExistingServer: true, timeout: 60_000 }]
+          : []),
+      ],
 });

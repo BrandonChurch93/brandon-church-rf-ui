@@ -90,6 +90,13 @@ body {
   }
 }
 
+// Reduced motion (OS or the user's setting): long transitions collapse to short crossfades.
+:root[data-reduce-motion='true'] :where([data-layer='paper'], [data-paper-root]) :where(*:not([data-keep-motion]), *::before, *::after) {
+  transition-duration: 150ms !important;
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+}
+
 // The theme switch fallback: color tokens cross-fade for 320 ms while this class is present.
 :root.theme-fading :where([data-layer='paper'], [data-paper-root]) *,
 :root.theme-fading :where([data-layer='paper'], [data-paper-root]) {
@@ -105,4 +112,44 @@ body {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+// Save and add flashes (06-motion: the saved record flashes its border accent at 40% for 600 ms).
+@keyframes rf-flash-bg {
+  0% {
+    background-color: var(--accent-soft);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes rf-flash-border {
+  0%,
+  60% {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+}
+:where([data-layer='paper']) .rf-flash {
+  animation: rf-flash-bg 1200ms var(--ease-out);
+}
+:where([data-layer='paper']) .rf-flash-border {
+  animation: rf-flash-border 600ms var(--ease-out);
+}
+
+// Crossfade for things that swap identity (rail badge and event block on event switch).
+@keyframes rf-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+:where([data-layer='paper'], [data-paper-root]) .rf-fade-in {
+  animation: rf-fade-in 240ms var(--ease-out) both;
+}
+// While a sheet or modal is open the paper layer stops scrolling.
+[data-layer='paper'] {
+  scrollbar-gutter: stable;
+}
+[data-layer='paper'].is-scroll-locked {
+  overflow: hidden !important;
 }

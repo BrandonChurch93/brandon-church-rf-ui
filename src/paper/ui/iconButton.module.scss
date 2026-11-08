@@ -1,0 +1,58 @@
+@use '@/styles/mixins' as m;
+
+.iconButton {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 320ms var(--ease-out),
+    color 320ms var(--ease-out),
+    transform var(--dur-sm) var(--ease-out),
+    opacity var(--dur-sm) var(--ease-out);
+  @include m.hover {
+    &:not(:disabled) {
+      background: var(--field);
+      color: var(--text);
+      transition-duration: var(--dur-sm);
+    }
+  }
+  &:active:not(:disabled) {
+    transform: scale(0.94);
+    transition-duration: var(--dur-xs);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &[aria-expanded='true'],
+  &[aria-pressed='true'] {
+    background: var(--field);
+    color: var(--text);
+  }
+}
+.md {
+  width: 36px;
+  height: 36px;
+}
+.sm {
+  width: 30px;
+  height: 30px;
+}
+.subtle {
+  background: var(--field);
+  color: var(--text-2);
+  @include m.hover {
+    &:not(:disabled) {
+      background: var(--line);
+    }
+  }
+}
+@include m.touch {
+  .iconButton {
+    @include m.touch-target;
+  }
+}
