@@ -17,12 +17,12 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P9 Exhibitors view
 [x] P10 Mobile pass
 [x] P11 Polish pass
-[ ] P12 Delivery
+[x] P12 Delivery
 ```
 
 ## Current phase
 
-P12 · Delivery.
+Complete. Waiting for the Partner refinement round.
 
 ## Session log
 
@@ -100,6 +100,11 @@ Performance: build/index.html 1,954.88 kB (gzip 887.43 kB), a single file with f
 Gates: verify green. The a11y gate writes one report file per audit atomically (parallel workers had raced on one JSON file); five consecutive passes.
 Next: P12 Delivery.
 
+### 2026-11-08 12:00 · P12 Delivery
+Done: README.md per 21 (73 lines). vercel.json present. scripts/package.mjs updated for archiver 8 (named ZipArchive export) and run: zip built, unzipped to a temp directory, exclusions confirmed, reference/faithful present, build/index.html from the zip rendered over file:// in Chromium and WebKit (10 build checks).
+Gates: verify green twice in a row (once inside npm run package, once after).
+Next: none. The Partner session takes over.
+
 ## Notes for future sessions
 
 Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
@@ -116,6 +121,42 @@ Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
 - Performance numbers are only meaningful serially: gate:motion uses --workers=1. Gate reports written by parallel tests must be per-test files (see the a11y gate).
 - Faker surnames replaced by a curated list (D-2). Re-run `npm run seed`; it fails loudly if any count drifts.
 
-## Completion report
+## Completion report · 2026-11-08
 
-(written in P12, format in `21-delivery.md`)
+Status: complete. All phases checked. `npm run verify` green on 2026-11-08 (2 consecutive runs).
+
+Build: build/index.html, 1.95 MB (one self-contained file, fonts and images inlined). Opens over file:// in Chromium and WebKit.
+Zip: ../brandon-church-rf-ui.zip, 2.9 MB, 275 files. Verified by unzip and render.
+
+Gates:
+- Faithful pixel gate: 1447 0.000% · 1024 0.000% · 768 0.000% · 390 0.000% · 320 0.000% (1447 dark 0.000%)
+- A11y gate: 0 serious, 0 critical, 0 moderate across 87 audits (both modes, both themes, 1447 and 390, with sheets, modals, menus, the palette, the drawer and the floor map open). Scoped exceptions are D-6 (faithful contrast) and D-24 (controls straddling the mobile tab bar edge).
+- Motion gate: longest task 0 ms (run serially, D-27), transition into Brandon's Mode 1950 ms, back 1732 ms at 1447 (1953 ms and 1670 ms at 390), reduced motion crossfade 269 ms. Seek at 650 ms: outgoing 0.30, incoming 0.71.
+- E2E: 146 tests passing (Chromium), 1 smoke (WebKit), plus 10 build checks over file:// (Chromium and WebKit).
+
+What to look at first:
+1. Open build/index.html: the faithful page, then the pill at the bottom right and the "Pull back · rise" transition into Brandon's Mode and back.
+2. The Guide view: the hero (rename inline, change the logo), the Step 1 setting sheets, dragging and editing registration workflows, the template picker.
+3. Attendees: search, filter chips, sorting, bulk selection, the detail sheet with its Edit mode, CSV export, and Cmd or Ctrl+K for the command palette.
+4. Content: drag a session in the agenda (a refused overlap names the session it hit), or focus a block and move it with Space and the arrow keys.
+5. Exhibitors: the floor map. Hover a booth, click an empty one to assign an exhibitor, then Undo from the toast.
+6. Switch to dark from the account menu, then narrow the window to 390: bottom tabs, bottom sheets, card lists.
+
+Decisions the owner may want to revisit (from decisions.md):
+- D-2: seed surnames come from a curated list instead of Faker's.
+- D-10: the light `--muted` value was darkened slightly to pass AA on field backgrounds.
+- D-16: the circular theme reveal plays only for a user's own switch; OS changes crossfade.
+- D-20: agenda keyboard moves use a dedicated mode instead of dnd-kit's keyboard sensor.
+- D-22: on the floor map each booth shows its tier name, and filters dim booths rather than hiding them.
+- D-24: the mobile a11y audit skips controls straddling the tab bar edge.
+- D-25: form sheets autofocus their first field on desktop only, and leaving a field flags errors only after the form has been edited.
+- D-26: below 380 px a sheet footer's destructive action shows only its icon.
+- D-27: the motion gate runs on one worker.
+
+Known limitations: none in the product. By design and stated in the UI or README: data lives in this browser only (localStorage, resettable from the account menu); sign-in and sign-out are a local demo with no account; "Resend confirmation" records the action in the attendee's activity instead of sending email; the visual suite is a review catalog, not a pixel diff (only faithful mode is diffed).
+
+Owner's next steps: refinement round via /partner, then create the GitHub repo and push (`git remote add origin ...`, local commits P0 to P12 are on main), connect Vercel (vercel.json is in place: build `npm run build`, output `build`), upload the zip to a sandbox, email Elizabeth Cuadra the links and the zip.
+
+Sandbox options:
+- Upload the zip to CodeSandbox ("Import from zip") or StackBlitz, set the start command to `npm run dev`, and set sharing to "anyone with the link".
+- Or import the GitHub repository once it exists.

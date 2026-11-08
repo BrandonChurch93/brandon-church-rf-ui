@@ -1,6 +1,6 @@
 // Builds ../brandon-church-rf-ui.zip for delivery (run through `npm run package`, which verifies first).
 // Contents and exclusions follow docs/21-delivery.md.
-import archiver from 'archiver';
+import { ZipArchive } from 'archiver';
 import { createWriteStream, existsSync, mkdtempSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve, relative, sep } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -40,7 +40,7 @@ for (const entry of INCLUDE) {
 
 await new Promise((res, rej) => {
   const output = createWriteStream(ZIP);
-  const archive = archiver('zip', { zlib: { level: 9 } });
+  const archive = new ZipArchive({ zlib: { level: 9 } });
   output.on('close', res);
   archive.on('error', rej);
   archive.pipe(output);
