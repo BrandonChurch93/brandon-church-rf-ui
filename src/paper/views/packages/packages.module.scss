@@ -1,0 +1,97 @@
+@use '@/styles/mixins' as m;
+
+.card {
+  min-height: 200px;
+  padding: 20px 24px;
+  gap: 10px;
+  @include m.sm {
+    padding: 16px;
+  }
+}
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 26px;
+}
+.name {
+  flex: 1;
+  min-width: 0;
+  @include m.type(h3);
+  color: var(--text);
+  @include m.truncate;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  strong {
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  span {
+    @include m.type(caption);
+    color: var(--muted);
+  }
+}
+.desc {
+  @include m.type(body-sm);
+  color: var(--muted);
+  @include m.clamp(2);
+}
+.includes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.more {
+  cursor: default;
+  border-radius: var(--r-pill);
+}
+.capacity {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  > :first-child {
+    flex: 1;
+  }
+}
+.capText {
+  flex: none;
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.mobileAdd {
+  display: none;
+  margin-bottom: 16px;
+  @include m.md {
+    display: block;
+  }
+}
+.addCard {
+  min-height: 200px;
+  @include m.md {
+    display: none !important;
+  }
+}
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  @include m.md {
+    flex-wrap: wrap;
+    width: 100%;
+    > :global(.primary-action) {
+      flex: 1 1 100%;
+      order: 10;
+    }
+  }
+}

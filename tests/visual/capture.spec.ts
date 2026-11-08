@@ -172,3 +172,24 @@ for (const theme of ['light', 'dark'] as const) {
     await shot(page, `states/${theme}/attendees-filters-390.png`);
   });
 }
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`P7 states ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'attendee-types', reducedMotion: true });
+    const main = page.locator('#paper-main');
+    await main.getByRole('button', { name: /^Speaker\./ }).click();
+    await shot(page, `states/${theme}/types-editor-1447.png`);
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => (window.location.hash = 'packages'));
+    await main.getByRole('button', { name: /^Full Conference,/ }).click();
+    await shot(page, `states/${theme}/package-editor-1447.png`);
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => (window.location.hash = 'reg-codes'));
+    await main.getByRole('button', { name: 'Bulk generate' }).click();
+    await shot(page, `states/${theme}/bulk-generate-1447.png`);
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => (window.location.hash = 'discounts'));
+    await main.getByRole('button', { name: /^Early bird\./ }).click();
+    await shot(page, `states/${theme}/discount-editor-1447.png`);
+  });
+}

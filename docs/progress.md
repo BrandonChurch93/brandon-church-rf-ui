@@ -12,7 +12,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P4 Store and data
 [x] P5 Guide view
 [x] P6 Attendees view
-[ ] P7 Attendee types, Packages, Reg codes, Discounts
+[x] P7 Attendee types, Packages, Reg codes, Discounts
 [ ] P8 Content view
 [ ] P9 Exhibitors view
 [ ] P10 Mobile pass
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P7 · Attendee types, Packages, Reg codes, Discounts.
+P8 · Content view.
 
 ## Session log
 
@@ -71,6 +71,11 @@ Next: P6 Attendees.
 Done: table (sortable columns with aria-sort, selection with indeterminate header, keyboard row focus, Cmd or Ctrl+A, row hover kebab with View, Change type popover, Resend, Cancel or Reinstate, Remove), toolbar (debounced search, Type, Status and Package filter chips with counts, Clear filters, live count), pagination with page size, bulk bar (change type and status with undo, select all, export selected, remove with confirm and undo at original positions), detail sheet (inline name, explicit Edit with validation, activity timeline), add sheet (duplicate email with View link, flash, sorted insert), CSV export (named file, toast), empty states, mobile card list with Load more, filters bottom sheet with sort and live count, long-press and Select mode with the pill stepping aside. Palette Attendees group live.
 Gates: verify green. attendees.spec 16 tests stable (x2). a11y clean incl. detail, edit, bulk, confirm. CSV download verified over file://.
 Next: P7.
+
+### 2026-11-08 05:00 · P7 Attendee types, Packages, Reg codes, Discounts
+Done: Attendee types (sortable, inline editor with swatch radio group, default with Flip chip, duplicate, remove unused with undo, remove in use through the reassign modal moving attendees, workflows, package limits and access codes, undo restores everything). Packages (card grid with sold bars and warning or danger, includes chips with "+N more" tooltip, Active and Archived filter, editor with CurrencyField, NumberField, TagInput and type checklist, archive and unarchive with undo, remove blocked when sold). Reg codes (table and mobile cards, copy with check morph, derived status, switch rules with reasons, generate and edit sheet with regenerate and validation, bulk generate with streamed rows and one undo, remove nulls attendee links with activity, missing-discount warning). Discounts (sentence rows, windows, scheduled chip, ended rules, editor with integer minor-unit preview, fixed-amount bound, remove warns about codes).
+Gates: verify green. Specs: attendee-types 8, packages 6, reg-codes 7, discounts 6, all stable (x2). a11y clean on all four editors and the bulk modal, both themes.
+Next: P8 Content.
 
 ## Notes for future sessions
 

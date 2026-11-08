@@ -131,3 +131,29 @@ test.describe('a11y gate · attendees layers', () => {
     });
   }
 });
+
+test.describe('a11y gate · P7 editors', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`types, packages, codes, discounts editors · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, hash: 'attendee-types', reducedMotion: true });
+      const main = page.locator('#paper-main');
+      await main.getByRole('button', { name: /^Speaker\./ }).click();
+      await audit(page, `types-editor-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.evaluate(() => (window.location.hash = 'packages'));
+      await main.getByRole('button', { name: /^Full Conference,/ }).click();
+      await audit(page, `package-editor-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.evaluate(() => (window.location.hash = 'reg-codes'));
+      await main.getByRole('button', { name: 'Generate code' }).click();
+      await audit(page, `code-editor-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: 'Bulk generate' }).click();
+      await audit(page, `bulk-generate-${theme}`);
+      await page.keyboard.press('Escape');
+      await page.evaluate(() => (window.location.hash = 'discounts'));
+      await main.getByRole('button', { name: /^Early bird\./ }).click();
+      await audit(page, `discount-editor-${theme}`);
+    });
+  }
+});

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import { useDraft } from '../../hooks/useDraft';
 import { useStore, selectActive } from '@/store/store';
 import { Sheet, useCloseGuard } from '../../ui/Sheet';
 import { Button } from '../../ui/Button';
@@ -24,27 +25,7 @@ interface SheetProps {
   onClose: () => void;
 }
 
-/** Shared form-sheet plumbing: a draft taken on open, dirty tracking, touched fields, save choreography. */
-function useDraft<T>(open: boolean, initial: () => T) {
-  const [draft, setDraft] = useState<T>(initial);
-  const [base, setBase] = useState<T>(initial);
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [submitted, setSubmitted] = useState(false);
-  useEffect(() => {
-    if (!open) return;
-    const v = initial();
-    setDraft(v);
-    setBase(v);
-    setTouched({});
-    setSubmitted(false);
-    // The draft is taken once each time the sheet opens.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-  const dirty = JSON.stringify(draft) !== JSON.stringify(base);
-  return { draft, setDraft, dirty, touched, touch: (k: string) => setTouched((t) => ({ ...t, [k]: true })), submitted, setSubmitted };
-}
-
-function Footer({ onCancel, onSave, saving, success, label = 'Save' }: { onCancel: () => void; onSave: () => void; saving: boolean; success: boolean; label?: string }) {
+export function SheetFooter({ onCancel, onSave, saving, success, label = 'Save' }: { onCancel: () => void; onSave: () => void; saving: boolean; success: boolean; label?: string }) {
   return (
     <>
       <span style={{ flex: 1 }} />
@@ -91,7 +72,7 @@ export function GeneralSheet({ open, onClose }: SheetProps) {
     }, onClose);
   };
   return (
-    <Sheet open={open} onClose={onClose} title="General" subtitle="Event basics, capacity and registration window." dirty={f.dirty && flow.state === 'idle'} footer={<Footer onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
+    <Sheet open={open} onClose={onClose} title="General" subtitle="Event basics, capacity and registration window." dirty={f.dirty && flow.state === 'idle'} footer={<SheetFooter onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
       <form className={s.form} onSubmit={(e) => (e.preventDefault(), submit())} noValidate>
         <div className={s.row2}>
           <Select label="Event type" required value={d.eventType} onChange={(v) => set('eventType', v)} onBlur={() => f.touch('eventType')} error={show('eventType')} options={EVENT_TYPES.map((t) => ({ value: t, label: t }))} placeholder="Choose a type" />
@@ -183,7 +164,7 @@ export function AttributesSheet({ open, onClose }: SheetProps) {
   };
 
   return (
-    <Sheet open={open} onClose={onClose} title="Attendee attributes" subtitle="The fields attendees fill in when they register." wide dirty={f.dirty && flow.state === 'idle'} footer={<Footer onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
+    <Sheet open={open} onClose={onClose} title="Attendee attributes" subtitle="The fields attendees fill in when they register." wide dirty={f.dirty && flow.state === 'idle'} footer={<SheetFooter onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
       <div className={s.form}>
         <div className={s.attrList}>
           <SortableList
@@ -267,7 +248,7 @@ export function CommunicationsSheet({ open, onClose }: SheetProps) {
     }, onClose);
   };
   return (
-    <Sheet open={open} onClose={onClose} title="Communications" subtitle="Confirmation email and reminders." dirty={f.dirty && flow.state === 'idle'} footer={<Footer onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
+    <Sheet open={open} onClose={onClose} title="Communications" subtitle="Confirmation email and reminders." dirty={f.dirty && flow.state === 'idle'} footer={<SheetFooter onCancel={() => void cancel()} onSave={submit} saving={flow.loading} success={flow.success} />}>
       <form className={s.form} onSubmit={(e) => (e.preventDefault(), submit())} noValidate>
         <div className={s.row2}>
           <Input label="Sender name" required value={d.senderName} onChange={(e) => set('senderName', e.target.value)} onBlur={() => f.touch('senderName')} error={show('senderName')} />

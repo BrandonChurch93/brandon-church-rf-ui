@@ -1,0 +1,102 @@
+// Shared list-card language for Attendee types and Discounts: one card, rows divided by lines.
+@use '@/styles/mixins' as m;
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  overflow: clip;
+}
+.row {
+  position: relative;
+  background: var(--surface);
+  transition: background-color var(--dur-hover-out) var(--ease-out);
+  & + & {
+    border-top: 1px solid var(--line);
+  }
+  &[data-clickable] {
+    cursor: pointer;
+    @include m.hover {
+      background: var(--surface-2);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.count {
+  margin-left: auto;
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.search {
+  width: 300px;
+  @include m.md {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  @include m.sm {
+    grid-template-columns: 1fr;
+  }
+}
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.help {
+  @include m.type(caption);
+  color: var(--muted);
+}
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  > * {
+    min-height: 36px;
+    padding: 0 6px;
+    border-radius: var(--r-md);
+    @include m.md {
+      min-height: 44px;
+    }
+  }
+}
+.checkDivider {
+  height: 1px !important;
+  min-height: 0 !important;
+  margin: 4px -6px;
+  padding: 0 !important;
+  background: var(--line);
+}
+.error {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  @include m.type(caption);
+  color: var(--danger);
+}
