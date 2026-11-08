@@ -20,6 +20,8 @@ import { Flip, flash, useFlipList } from '@/motion/flip';
 import { isReducedMotion } from '@/motion/reduced';
 import { plural } from '../../lib/format';
 import { useShell, registerIntent } from '../../shellStore';
+import { useBreakpoint } from '../../hooks/useMediaQuery';
+import { setPillAside } from '@/app/layerStack';
 import l from '../shared/lists.module.scss';
 import s from './types.module.scss';
 
@@ -48,6 +50,12 @@ export function AttendeeTypesView(_props: ViewProps) {
   const consume = useShell((st) => st.consume);
   const counts = typeCounts(ev);
   const [editing, setEditing] = useState<string | null>(null);
+  const { isMobile } = useBreakpoint();
+  // On touch layouts the inline editor's Save sits wherever the row is; the pill steps aside meanwhile.
+  useEffect(() => {
+    setPillAside('type-editor', isMobile && editing !== null);
+    return () => setPillAside('type-editor', false);
+  }, [isMobile, editing]);
   const [selectName, setSelectName] = useState(false);
   const [reassign, setReassign] = useState<AttendeeType | null>(null);
   const list = useRef<HTMLDivElement>(null);
@@ -149,11 +157,18 @@ export function AttendeeTypesView(_props: ViewProps) {
                       >
                         {t.name}
                       </button>
-                      <span className={s.desc}>{t.description || 'No description'}</span>
+                      <span className={s.descLine}>
+                        {t.isDefault && (
+                          <span className={s.defaultInline} aria-hidden="true">
+                            Default ·
+                          </span>
+                        )}
+                        <span className={s.desc}>{t.description || 'No description'}</span>
+                      </span>
                     </div>
                     <div className={s.meta}>
                       {t.isDefault && (
-                        <span data-flip-id="default-chip">
+                        <span data-flip-id="default-chip" className={s.defaultChip}>
                           <Chip tone="accent">Default</Chip>
                         </span>
                       )}

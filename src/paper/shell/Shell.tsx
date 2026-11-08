@@ -14,7 +14,8 @@ import { VIEWS } from '../views';
 import { useHashRoute, normalizeHash } from '../hooks/useHashRoute';
 import { useHotkey, isTypingTarget } from '../hooks/useHotkey';
 import { useShell, getSwitcherAnchor } from '../shellStore';
-import { layerStack } from '@/app/layerStack';
+import { layerStack, setPillAside } from '@/app/layerStack';
+import { useBreakpoint } from '../hooks/useMediaQuery';
 import { undoLatest } from '../ui/toastStore';
 import s from './shell.module.scss';
 
@@ -54,6 +55,26 @@ export function Shell({ arriving, onViewOriginal, onSignOut }: ShellProps) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [shell]);
+
+  // Touch layouts: while a text field in the page has focus (the on-screen keyboard is up), the pill
+  // steps aside so it never sits over the field's own Save or Cancel (17, "the pill never covers a primary action").
+  const { isMobile } = useBreakpoint();
+  useEffect(() => {
+    const el = main.current;
+    if (!el || !isMobile) return;
+    const isText = (t: EventTarget | null) => t instanceof HTMLTextAreaElement || (t instanceof HTMLInputElement && !['checkbox', 'radio', 'range', 'button'].includes(t.type));
+    const onIn = (e: FocusEvent) => setPillAside('typing', isText(e.target));
+    const onOut = (e: FocusEvent) => {
+      if (!isText(e.relatedTarget)) setPillAside('typing', false);
+    };
+    el.addEventListener('focusin', onIn);
+    el.addEventListener('focusout', onOut);
+    return () => {
+      el.removeEventListener('focusin', onIn);
+      el.removeEventListener('focusout', onOut);
+      setPillAside('typing', false);
+    };
+  }, [isMobile]);
 
   switcherAnchor.current = getSwitcherAnchor();
 

@@ -241,3 +241,46 @@ for (const theme of ['light', 'dark'] as const) {
     await shot(page, `states/${theme}/exhibitors-assign-390.png`);
   });
 }
+
+// P10 touch catalog: every sheet, menu and picker on a touch phone, both themes, 390 and 320.
+const TOUCH_STATES: Array<[string, string, (page: Page) => Promise<void>]> = [
+  ['guide', 'palette', (p) => p.getByRole('button', { name: /^Search/ }).first().click()],
+  ['guide', 'drawer', (p) => p.getByRole('button', { name: 'Open navigation' }).click()],
+  ['guide', 'account', (p) => p.getByRole('button', { name: /Account/ }).first().click()],
+  ['guide', 'general', (p) => p.locator('#paper-main').getByRole('button', { name: /^General/ }).first().click()],
+  ['guide', 'templates', (p) => p.locator('#paper-main').getByRole('button', { name: /Add registration workflow/ }).first().click()],
+  ['attendees', 'detail', (p) => p.locator('#paper-main [data-flip-id] button').first().click()],
+  ['attendees', 'filters', (p) => p.locator('#paper-main').getByRole('button', { name: /^Filters/ }).first().click()],
+  ['attendees', 'add', (p) => p.locator('#paper-main').getByRole('button', { name: /Add attendee/ }).first().click()],
+  ['attendee-types', 'editor', (p) => p.locator('#paper-main').getByRole('button', { name: /^Speaker/ }).first().click()],
+  ['packages', 'editor', (p) => p.locator('#paper-main').getByRole('button', { name: /^Full Conference,/ }).first().click()],
+  ['reg-codes', 'editor', (p) => p.locator('#paper-main').getByRole('button', { name: /^RF-SPKR-2026,/ }).first().click()],
+  ['discounts', 'editor', (p) => p.locator('#paper-main').getByRole('button', { name: /^Early bird\./ }).first().click()],
+  ['content', 'session', (p) => p.locator('#paper-main').getByRole('button', { name: /Opening keynote/ }).first().click()],
+  ['content', 'tracks', (p) => p.locator('#paper-main').getByRole('button', { name: /Tracks/ }).first().click()],
+  ['exhibitors', 'detail', (p) => p.locator('#paper-main').getByRole('button', { name: /^Lumen AV,/ }).first().click()],
+  ['exhibitors', 'add', (p) => p.locator('#paper-main').getByRole('button', { name: 'Add exhibitor' }).first().click()],
+  ['exhibitors', 'menu', (p) => p.locator('#paper-main').getByRole('button', { name: 'More actions for Lumen AV' }).click()],
+];
+test.describe('touch catalog', () => {
+  test.use({ hasTouch: true, isMobile: true });
+  for (const theme of ['light', 'dark'] as const)
+    for (const w of [390, 320])
+      test(`touch states ${theme} ${w}`, async ({ page }) => {
+        test.setTimeout(120_000);
+        await boot(page, { mode: 'paper', theme, width: w, height: 844, reducedMotion: true });
+        for (const [view, label, open] of TOUCH_STATES) {
+          await page.evaluate((h) => (window.location.hash = h), view === 'guide' ? 'attendees' : 'guide');
+          await settle(page, 300);
+          await page.evaluate((h) => (window.location.hash = h), view);
+          await expect(page.locator('#view-title')).toBeVisible();
+          await settle(page, 500);
+          await open(page);
+          await shot(page, `touch/${theme}/${w}/${view}-${label}.png`);
+          for (let i = 0; i < 3 && (await page.getByRole('dialog').or(page.getByRole('menu')).count()); i++) {
+            await page.keyboard.press('Escape');
+            await page.waitForTimeout(250);
+          }
+        }
+      });
+});

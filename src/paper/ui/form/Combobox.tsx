@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus -- options use aria-activedescendant; keyboard handling lives on the combobox (WAI-ARIA APG listbox pattern) */
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { Field, describedBy } from './Field';
+import { useAutoFocus } from '@/paper/hooks/useAutoFocus';
+import { mergeRefs } from '@/paper/lib/refs';
 import { InputBox } from './Input';
 import { Popover } from '../overlay/Popover';
 import { Icon } from '../Icon';
@@ -35,6 +37,7 @@ export function Combobox<T extends string>({ label, value, onChange, options, pl
   const listId = `${id}-list`;
   const box = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
+  const focusRef = useAutoFocus<HTMLInputElement>(autoFocus);
   const selected = options.find((o) => o.value === value) ?? null;
   const [text, setText] = useState(selected?.label ?? '');
   const [open, setOpen] = useState(false);
@@ -122,7 +125,7 @@ export function Combobox<T extends string>({ label, value, onChange, options, pl
       <div ref={box}>
         <InputBox invalid={Boolean(error)} mono={mono} prefix={<Icon name="search" size={16} />}>
           <input
-            ref={input}
+            ref={mergeRefs(input, focusRef)}
             id={id}
             className={f.input}
             role="combobox"
@@ -133,7 +136,6 @@ export function Combobox<T extends string>({ label, value, onChange, options, pl
             aria-invalid={error ? true : undefined}
             aria-describedby={describedBy(id, { help, error })}
             autoComplete="off"
-            autoFocus={autoFocus}
             placeholder={placeholder}
             value={text}
             onChange={(e) => {

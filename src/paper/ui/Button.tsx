@@ -28,6 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       ref={ref}
       type={type}
       className={[s.button, s[variant], s[size], fullWidth ? s.full : '', busy ? s.busy : '', className ?? ''].join(' ')}
+      data-variant={variant}
       disabled={disabled}
       aria-busy={loading || undefined}
       aria-disabled={busy || undefined}
@@ -42,7 +43,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     >
       <span className={s.content} data-hidden={success ? 'true' : undefined}>
         {loading ? <Spinner size={iconSize - 2} /> : icon ? <Icon name={icon} size={iconSize} /> : null}
-        {children !== undefined && <span className={s.label}>{children}</span>}
+        {children !== undefined && (
+          <span className={s.label} data-label>
+            {children}
+          </span>
+        )}
         {trailingIcon && !loading && <Icon name={trailingIcon} size={iconSize} />}
       </span>
       <span className={s.check} data-shown={success ? 'true' : undefined} aria-hidden={!success}>
@@ -60,7 +65,11 @@ export function ButtonLink({ variant = 'secondary', size = 'md', icon, trailingI
     <a className={[s.button, s[variant], s[size], className ?? ''].join(' ')} {...rest}>
       <span className={s.content}>
         {icon && <Icon name={icon} size={iconSize} />}
-        {children !== undefined && <span className={s.label}>{children}</span>}
+        {children !== undefined && (
+          <span className={s.label} data-label>
+            {children}
+          </span>
+        )}
         {trailingIcon && <Icon name={trailingIcon} size={iconSize} />}
       </span>
     </a>

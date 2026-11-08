@@ -97,6 +97,7 @@
   }
   @include m.md {
     height: 40px;
+    @include m.touch-target;
   }
 }
 .filterGroup {
@@ -128,6 +129,7 @@
   @include m.md {
     height: 40px;
     width: 36px;
+    @include m.touch-target;
   }
 }
 .removable {

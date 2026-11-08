@@ -7,6 +7,10 @@
   gap: 12px;
   min-height: 64px;
   padding: 0 12px 0 8px;
+  @include m.sm {
+    gap: 8px;
+    padding-right: 8px;
+  }
 }
 .handle {
   position: relative;
@@ -56,10 +60,32 @@
     }
   }
 }
+.descLine {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+}
 .desc {
   @include m.type(caption);
   color: var(--muted);
   @include m.truncate;
+}
+// Narrow phones: the Default chip moves onto the description line so the name keeps its room.
+.defaultInline {
+  display: none;
+  flex: none;
+  @include m.type(caption);
+  font-weight: 600;
+  color: var(--accent-ink);
+  @include m.sm {
+    display: inline;
+  }
+}
+.defaultChip {
+  @include m.sm {
+    display: none;
+  }
 }
 .meta {
   position: relative;

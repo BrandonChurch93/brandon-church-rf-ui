@@ -1,5 +1,7 @@
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from 'react';
 import { Field, describedBy } from './Field';
+import { useAutoFocus } from '@/paper/hooks/useAutoFocus';
+import { mergeRefs } from '@/paper/lib/refs';
 import s from './form.module.scss';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
@@ -16,9 +18,10 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, help, error, prefix, suffix, size = 'md', mono, required, labelHidden, fieldClassName, id: idProp, disabled, maxCount, value, ...rest },
+  { label, help, error, prefix, suffix, size = 'md', mono, required, labelHidden, fieldClassName, id: idProp, disabled, maxCount, value, autoFocus, ...rest },
   ref,
 ) {
+  const focusRef = useAutoFocus<HTMLInputElement>(autoFocus);
   const auto = useId();
   const id = idProp ?? auto;
   const count = maxCount !== undefined ? String(value ?? '').length : undefined;
@@ -35,7 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     >
       <InputBox invalid={Boolean(error)} disabled={disabled} size={size} mono={mono} prefix={prefix} suffix={suffix}>
         <input
-          ref={ref}
+          ref={mergeRefs(ref, focusRef)}
           id={id}
           className={s.input}
           aria-invalid={error ? true : undefined}
@@ -85,9 +88,10 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
-  { label, help, error, maxCount, required, id: idProp, value, fieldClassName, rows = 4, ...rest },
+  { label, help, error, maxCount, required, id: idProp, value, fieldClassName, rows = 4, autoFocus, ...rest },
   ref,
 ) {
+  const focusRef = useAutoFocus<HTMLTextAreaElement>(autoFocus);
   const auto = useId();
   const id = idProp ?? auto;
   return (
@@ -101,7 +105,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
       counter={maxCount !== undefined ? { value: String(value ?? '').length, max: maxCount } : undefined}
     >
       <textarea
-        ref={ref}
+        ref={mergeRefs(ref, focusRef)}
         id={id}
         rows={rows}
         className={s.textarea}

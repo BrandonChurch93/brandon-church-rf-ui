@@ -24,7 +24,11 @@ export function useDraft<T>(open: boolean, initial: () => T) {
     set,
     dirty,
     touched,
-    touch: (k: string) => setTouched((t) => ({ ...t, [k]: true })),
+    // Leaving a field flags it only once the form has been edited: tabbing or clicking through a
+    // pristine form shows no errors, so nothing shifts under the pointer mid-click. Submit shows all.
+    touch: (k: string) => {
+      if (dirty) setTouched((t) => ({ ...t, [k]: true }));
+    },
     submitted,
     setSubmitted,
     /** The error for a field, once it has been touched or the form submitted. */

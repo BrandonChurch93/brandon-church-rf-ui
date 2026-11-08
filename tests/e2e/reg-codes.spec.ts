@@ -33,7 +33,7 @@ test.describe('reg codes', () => {
     const first = await code.inputValue();
     expect(first).toMatch(/^RF-[A-HJ-KM-NP-Z2-9]{4}-[A-HJ-KM-NP-Z2-9]{4}$/);
     await sheet.getByRole('button', { name: 'Regenerate code' }).click();
-    expect(await code.inputValue()).not.toBe(first);
+    await expect(code).not.toHaveValue(first);
     await sheet.getByLabel('Label').fill('Board comp');
     await code.fill('rf-vip-gold');
     await expect(code).toHaveValue('RF-VIP-GOLD');

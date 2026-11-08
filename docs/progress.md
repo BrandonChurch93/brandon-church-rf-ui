@@ -15,14 +15,14 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P7 Attendee types, Packages, Reg codes, Discounts
 [x] P8 Content view
 [x] P9 Exhibitors view
-[ ] P10 Mobile pass
+[x] P10 Mobile pass
 [ ] P11 Polish pass
 [ ] P12 Delivery
 ```
 
 ## Current phase
 
-P10 · Mobile pass.
+P11 · Polish pass.
 
 ## Session log
 
@@ -87,6 +87,12 @@ Done: card grid sorted by tier then name (monogram tile in the tier swatch, tier
 Shared fix: overlays whose content autofocuses now return focus to the real trigger (D-23).
 Gates: verify green; exhibitors.spec 11 stable (x2); a11y clean on map, assign, detail, edit and add errors in both themes. The mobile audit skips controls straddling the tab bar edge (D-24).
 Next: P10 Mobile pass.
+
+### 2026-11-08 09:30 · P10 Mobile pass
+Done: touch-target survey of every view and 19 sheet, menu and picker states at 390 and 320 with touch emulation; fixes for segmented controls, filter chips, disabled-reason wrappers, skip link, inline-edit display, search and form fields (44 px on md and sm, compact size included), number steppers, tag input, inline links, the exhibitor Assign link. Form sheets: autofocus only on pointer layouts and without scrolling, layers keep focus a child already took, blur validation only after an edit (D-25). Narrow phones: footer destructive actions collapse to their icon below 380 px, the attendee type row moves Default to the description line, the pill steps aside while a page text field has focus and while the type editor is open (D-26). Landscape 844 x 390 checked: bars fit, body scrolls, no overflow.
+Tests: tests/e2e/mobile.spec.ts (targets at 390 and 320 at rest, targets in overlay states, no horizontal page scroll in any view at all 14 test widths, landscape, sheet focus desktop and touch). Visual catalog adds touch states for both themes at 390 and 320 (tests/visual/__captures__/touch), reviewed.
+Gates: verify green (e2e 146 + mobile).
+Next: P11 Polish pass.
 
 ## Notes for future sessions
 

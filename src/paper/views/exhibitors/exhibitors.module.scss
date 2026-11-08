@@ -93,6 +93,7 @@
   letter-spacing: 0.02em;
 }
 .assign {
+  @include m.touch-target;
   color: var(--accent-ink);
   font-weight: 600;
   padding: 2px 4px;
@@ -137,6 +138,9 @@
   overflow-wrap: anywhere;
   @include m.hover {
     text-decoration-color: currentColor;
+  }
+  @include m.md {
+    @include m.touch-target;
   }
 }
 

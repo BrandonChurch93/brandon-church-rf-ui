@@ -63,6 +63,8 @@ export function useOverlay(o: OverlayOptions) {
       if (!el) return false;
       const f = opts.current.initialFocus ?? 'first';
       if (f === 'none') return true;
+      // A field inside the layer already took focus as it mounted (autoFocus): keep it there.
+      if (document.activeElement && document.activeElement !== el && el.contains(document.activeElement)) return true;
       if (f === 'container') el.focus({ preventScroll: true });
       else if (f === 'first') (focusables(el)[0] ?? el).focus({ preventScroll: true });
       else (f.current ?? el).focus({ preventScroll: true });

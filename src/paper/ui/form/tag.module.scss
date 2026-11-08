@@ -33,6 +33,10 @@
   height: 26px;
   border: 0;
   padding: 0 4px;
+  @include m.md {
+    height: 44px;
+    margin-block: -5px;
+  }
   background: transparent;
   color: var(--text);
   font-size: 14px;
