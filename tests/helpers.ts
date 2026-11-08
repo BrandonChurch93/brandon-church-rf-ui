@@ -53,3 +53,6 @@ export async function hasHorizontalOverflow(page: Page, layer: 'faithful' | 'pap
     return layerOverflow || doc.scrollWidth > doc.clientWidth + 1;
   }, layer);
 }
+
+/** A toast's text inside the notifications region (the live region repeats it for screen readers). */
+export const toastText = (page: Page, text: string | RegExp) => page.getByRole('region', { name: 'Notifications' }).getByText(text);

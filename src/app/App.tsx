@@ -10,6 +10,7 @@ export function App() {
     registerHook('setTheme', (t) => useStore.getState().setTheme(t));
     registerHook('setReduceMotion', (v) => useStore.getState().setReduceMotion(v));
     registerHook('getState', () => JSON.parse(JSON.stringify(useStore.getState())));
+    registerHook('resetData', () => useStore.getState().resetDemoData());
   }, []);
   return <ModeStage />;
 }

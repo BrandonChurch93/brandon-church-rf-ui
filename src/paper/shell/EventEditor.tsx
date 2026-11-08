@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Sheet } from '../ui/Sheet';
+import { Sheet, useCloseGuard } from '../ui/Sheet';
 import { Button } from '../ui/Button';
 import { Input, Textarea } from '../ui/form/Input';
 import { DateField } from '../ui/form/DateField';
@@ -82,6 +82,7 @@ export function EventEditor({ onCreated }: { onCreated?: (id: string) => void })
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => setDraft((cur) => (cur ? { ...cur, [k]: v } : cur));
   const blur = (k: keyof Draft) => setTouched((t) => ({ ...t, [k]: true }));
   const close = () => setMode(null);
+  const cancel = useCloseGuard(dirty && save.state === 'idle', close);
 
   const submit = () => {
     setSubmitted(true);
@@ -115,7 +116,7 @@ export function EventEditor({ onCreated }: { onCreated?: (id: string) => void })
           <>
             <span className={s.footerHint}>{mode === 'edit' && !dirty ? 'No changes yet' : ''}</span>
             <span style={{ flex: 1 }} />
-            <Button variant="secondary" onClick={close}>
+            <Button variant="secondary" onClick={() => void cancel()}>
               Cancel
             </Button>
             <Button variant="primary" onClick={submit} disabled={!dirty || (submitted && !valid)} loading={save.loading} success={save.success}>

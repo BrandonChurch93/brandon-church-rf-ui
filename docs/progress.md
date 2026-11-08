@@ -9,7 +9,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P1 Faithful mode
 [x] P2 Pill and mode transition
 [x] P3 Design system, primitives and shell
-[ ] P4 Store and data
+[x] P4 Store and data
 [ ] P5 Guide view
 [ ] P6 Attendees view
 [ ] P7 Attendee types, Packages, Reg codes, Discounts
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P4 · Store and data.
+P5 · Guide view.
 
 ## Session log
 
@@ -56,6 +56,11 @@ Next: P3 primitives, gallery, shell.
 Done: every 05 primitive in src/paper/ui (Button, IconButton, Field/Input/Textarea, NumberField, CurrencyField, Select, Combobox, DateField with Calendar, TimeField, Switch, Checkbox, Radio, SegmentedControl, TagInput, Chip/FilterChip/RemovableChip, Badge, Avatar, StatusDot, ProgressBar, EmptyState, Divider, SectionLabel, DragHandle, Kbd, Tooltip host, Popover, BottomSheet, Menu, Sheet, Modal, Confirm host with a promise API, Toast host with undo and pause, Tabs, Table SortHeader, Pagination, SearchField). Dev-only gallery at #dev-gallery (excluded from the build). Shell: rail, sidebar with one sliding indicator and GSAP expand and collapse, lg icon rail with the Attendees flyout, top bar, drawer with swipe, bottom tabs, attendee sub-nav strip, view switch choreography, command palette (fuzzy, recents, pages, actions, attendees and codes groups, gated by intents views register), account popover, event switcher (switching wired), About sheet, sign-in screen with fade, Event editor and Logo editor (create event wired). Full store with all slices, undo tokens, persistence, version check and validation (exercised in P4).
 Gates: verify green. a11y 0 serious/critical/moderate on all eight view shells both themes 1447 and 390, plus palette, account, confirm, drawer, About. e2e shell, theme, keyboard, pill step-aside. Visual catalog and primitives gallery captured and reviewed.
 Next: P4 store and data tests (persistence, reset, version, fallback, create event).
+
+### 2026-11-07 23:55 · P4 Store and data
+Done: store proven end to end: persistence across reload (mode never persisted), reset with confirm and toast, version mismatch reseeds with "Demo data was updated", invalid records restored from seed with a console warning, storage failure runs in memory with a one-time toast, create event with the 16 defaults (monogram on the next free swatch, one type, one track, 24 booths) and the switch to it, unsaved-changes guard on the event editor (Cancel, Escape, scrim, close). window.__rf.resetData wired. Overlay focus now inherits the trigger of a layer that opened it (menu item to confirm).
+Gates: verify green; e2e 56 in Chromium plus WebKit smoke.
+Next: P5 Guide view.
 
 ## Notes for future sessions
 

@@ -19,6 +19,9 @@ export interface OverlayOptions {
 }
 
 let scrollLocks = 0;
+// The layer that closed most recently. A layer opened from inside it (a menu item that opens a
+// confirm) returns focus to that layer's trigger, since the menu item itself is going away.
+let recentlyClosed: { container: HTMLElement; returnTo: HTMLElement | null } | null = null;
 function setScrollLock(on: boolean) {
   scrollLocks = Math.max(0, scrollLocks + (on ? 1 : -1));
   const layer = document.querySelector<HTMLElement>('[data-layer="paper"]');
@@ -34,7 +37,8 @@ export function useOverlay(o: OverlayOptions) {
 
   useLayoutEffect(() => {
     if (!o.open) return;
-    returnTo.current = document.activeElement as HTMLElement | null;
+    const active = document.activeElement as HTMLElement | null;
+    returnTo.current = recentlyClosed && active && recentlyClosed.container.contains(active) ? recentlyClosed.returnTo : active;
     layerStack.push({ id, close: (c) => opts.current.onClose(c), stepAside: Boolean(o.stepAside) });
     if (o.lockScroll) setScrollLock(true);
 
@@ -59,11 +63,14 @@ export function useOverlay(o: OverlayOptions) {
       const active = document.activeElement;
       const focusWasInside = !active || active === document.body || (el && el.contains(active));
       const target = returnTo.current;
+      if (el) recentlyClosed = { container: el, returnTo: target };
       // After the commit: React restores its own saved focus at the end of the commit, so a focus
-      // call made during this cleanup would be undone.
+      // call made during this cleanup would be undone. Skip if focus has moved into another layer.
       if ((opts.current.returnFocus ?? true) && focusWasInside && target)
         queueMicrotask(() => {
-          if (target.isConnected) target.focus({ preventScroll: true });
+          const now = document.activeElement;
+          const free = !now || now === document.body || (el && el.contains(now));
+          if (free && target.isConnected) target.focus({ preventScroll: true });
         });
     };
     // Registration follows the open flag only; the latest options are read through the ref.
