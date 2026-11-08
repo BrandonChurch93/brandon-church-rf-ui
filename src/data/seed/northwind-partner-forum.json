@@ -1,0 +1,4007 @@
+{
+ "id": "evt-northwind-partner-forum",
+ "slug": "northwind-partner-forum",
+ "name": "Northwind Partner Forum",
+ "startDate": "2027-04-22",
+ "endDate": null,
+ "location": "Chicago, Illinois",
+ "timezone": "America/Chicago",
+ "currency": "USD",
+ "description": "An invitation-only forum for Northwind's channel partners.",
+ "logo": {
+  "kind": "monogram",
+  "letters": "NP",
+  "swatch": "plum"
+ },
+ "agenda": {
+  "startMinutes": 480,
+  "endMinutes": 1080
+ },
+ "guide": {
+  "settings": {
+   "general": {
+    "eventType": "Summit",
+    "capacity": 150,
+    "registrationOpens": "2026-10-01",
+    "registrationCloses": "2027-04-15",
+    "supportEmail": "forum@northwind.example"
+   },
+   "attributes": {
+    "fields": [
+     {
+      "id": "npf-attr-1",
+      "label": "Full name",
+      "type": "text",
+      "required": true
+     },
+     {
+      "id": "npf-attr-2",
+      "label": "Email",
+      "type": "email",
+      "required": true
+     },
+     {
+      "id": "npf-attr-3",
+      "label": "Company",
+      "type": "text",
+      "required": false
+     },
+     {
+      "id": "npf-attr-4",
+      "label": "Job title",
+      "type": "text",
+      "required": false
+     },
+     {
+      "id": "npf-attr-5",
+      "label": "Dietary needs",
+      "type": "select",
+      "required": false
+     },
+     {
+      "id": "npf-attr-6",
+      "label": "Accessibility needs",
+      "type": "text",
+      "required": false
+     }
+    ]
+   },
+   "communications": {
+    "senderName": "Northwind Partner Forum",
+    "replyTo": "forum@northwind.example",
+    "subject": "You're registered for {event}",
+    "body": "Hi {first_name},\n\nThanks for registering for {event}. We will send your agenda two weeks before the forum.\n\nThe Northwind partner team",
+    "reminder": true
+   }
+  },
+  "workflows": [
+   {
+    "id": "npf-wf-partner",
+    "name": "Partner Registration",
+    "description": "Invited partners confirm their seat.",
+    "attendeeTypeId": "npf-type-partner",
+    "status": "live",
+    "steps": [
+     {
+      "id": "npf-wf-partner-step-1",
+      "kind": "details",
+      "name": "Details"
+     },
+     {
+      "id": "npf-wf-partner-step-2",
+      "kind": "sessions",
+      "name": "Sessions"
+     },
+     {
+      "id": "npf-wf-partner-step-3",
+      "kind": "confirmation",
+      "name": "Confirmation"
+     }
+    ],
+    "template": null,
+    "updatedAt": "2026-10-21T16:00:00.000Z"
+   },
+   {
+    "id": "npf-wf-sponsor",
+    "name": "Sponsor Registration",
+    "description": "Sponsors register their table and guests.",
+    "attendeeTypeId": "npf-type-sponsor",
+    "status": "live",
+    "steps": [
+     {
+      "id": "npf-wf-sponsor-step-1",
+      "kind": "details",
+      "name": "Details"
+     },
+     {
+      "id": "npf-wf-sponsor-step-2",
+      "kind": "package",
+      "name": "Package selection"
+     },
+     {
+      "id": "npf-wf-sponsor-step-3",
+      "kind": "payment",
+      "name": "Payment"
+     },
+     {
+      "id": "npf-wf-sponsor-step-4",
+      "kind": "confirmation",
+      "name": "Confirmation"
+     }
+    ],
+    "template": null,
+    "updatedAt": "2026-10-18T16:00:00.000Z"
+   },
+   {
+    "id": "npf-wf-press",
+    "name": "Press Registration",
+    "description": "Credentialed media, approval required.",
+    "attendeeTypeId": "npf-type-press",
+    "status": "draft",
+    "steps": [
+     {
+      "id": "npf-wf-press-step-1",
+      "kind": "details",
+      "name": "Details"
+     },
+     {
+      "id": "npf-wf-press-step-2",
+      "kind": "confirmation",
+      "name": "Confirmation"
+     }
+    ],
+    "template": "Press",
+    "updatedAt": "2026-11-02T16:00:00.000Z"
+   }
+  ],
+  "experiences": {
+   "portal": {
+    "showAgenda": true,
+    "showNetworking": true,
+    "accent": "berry"
+   },
+   "calendar": {
+    "allowAdd": true,
+    "showRooms": true,
+    "firstDay": "sunday"
+   }
+  }
+ },
+ "attendeeTypes": [
+  {
+   "id": "npf-type-partner",
+   "name": "Partner",
+   "description": "Channel partners attending the forum",
+   "swatch": "plum",
+   "isDefault": true
+  },
+  {
+   "id": "npf-type-sponsor",
+   "name": "Sponsor",
+   "description": "Forum sponsors and their guests",
+   "swatch": "amber",
+   "isDefault": false
+  },
+  {
+   "id": "npf-type-press",
+   "name": "Press",
+   "description": "Media and analysts",
+   "swatch": "slate",
+   "isDefault": false
+  },
+  {
+   "id": "npf-type-staff",
+   "name": "Staff",
+   "description": "Northwind event staff",
+   "swatch": "teal",
+   "isDefault": false
+  }
+ ],
+ "attendees": [
+  {
+   "id": "npf-att-021",
+   "firstName": "Shyann",
+   "lastName": "Carroll",
+   "email": "shyann.carroll@quarryrobotics.example",
+   "phone": null,
+   "company": "Quarry Robotics",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-07T10:45:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-021-act-1",
+     "at": "2026-11-07T12:50:13.208Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-021-act-2",
+     "at": "2026-11-07T10:47:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-021-act-3",
+     "at": "2026-11-07T10:46:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-021-act-4",
+     "at": "2026-11-07T10:45:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-067",
+   "firstName": "Brad",
+   "lastName": "Muller",
+   "email": "brad.muller@yellowstoneoutfitters.example",
+   "phone": "(662) 777-3851",
+   "company": "Yellowstone Outfitters",
+   "jobTitle": "Director of Events",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-07T08:17:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-067-act-1",
+     "at": "2026-11-07T11:20:44.469Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-067-act-2",
+     "at": "2026-11-07T08:26:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-067-act-3",
+     "at": "2026-11-07T08:18:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-067-act-4",
+     "at": "2026-11-07T08:17:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-036",
+   "firstName": "Erich",
+   "lastName": "Young",
+   "email": "erich.young@brightlinelabs.example",
+   "phone": "(866) 576-3715",
+   "company": "Brightline Labs",
+   "jobTitle": "Account Executive",
+   "attendeeTypeId": "npf-type-press",
+   "packageId": "npf-pkg-press",
+   "regCodeId": "npf-code-press",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-07T03:32:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-036-act-1",
+     "at": "2026-11-07T03:40:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-036-act-2",
+     "at": "2026-11-07T03:33:00.000Z",
+     "text": "Reg code NW-PRESS-27 applied"
+    },
+    {
+     "id": "npf-att-036-act-3",
+     "at": "2026-11-07T03:32:00.000Z",
+     "text": "Registered via Press Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-057",
+   "firstName": "Jakob",
+   "lastName": "Turner",
+   "email": "jakob.turner@keystonelogistics.example",
+   "phone": "(497) 490-6937",
+   "company": "Keystone Logistics",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-06T20:38:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-057-act-1",
+     "at": "2026-11-06T20:44:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-057-act-2",
+     "at": "2026-11-06T20:39:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-057-act-3",
+     "at": "2026-11-06T20:38:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-056",
+   "firstName": "Tyrese",
+   "lastName": "Reyes",
+   "email": "tyrese.reyes@foxglovestudios.example",
+   "phone": "(568) 731-9036",
+   "company": "Foxglove Studios",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-06T19:20:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-056-act-1",
+     "at": "2026-11-07T13:30:09.494Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-056-act-2",
+     "at": "2026-11-06T19:21:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-056-act-3",
+     "at": "2026-11-06T19:20:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-004",
+   "firstName": "Emmie",
+   "lastName": "Ivanova",
+   "email": "emmie.ivanova@northwindmedia.example",
+   "phone": "(608) 279-2534",
+   "company": "Northwind Media",
+   "jobTitle": "Sales Director",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-06T18:26:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-004-act-1",
+     "at": "2026-11-07T04:01:08.353Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-004-act-2",
+     "at": "2026-11-06T18:34:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-004-act-3",
+     "at": "2026-11-06T18:27:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-004-act-4",
+     "at": "2026-11-06T18:26:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-081",
+   "firstName": "Candice",
+   "lastName": "Gutierrez",
+   "email": "candice.gutierrez@juniperlearning.example",
+   "phone": "(385) 971-5018",
+   "company": "Juniper Learning",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-06T13:40:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-081-act-1",
+     "at": "2026-11-07T04:18:23.311Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-081-act-2",
+     "at": "2026-11-06T13:41:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-081-act-3",
+     "at": "2026-11-06T13:40:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-007",
+   "firstName": "Sedrick",
+   "lastName": "Kowalski",
+   "email": "sedrick.kowalski@pinecresteducation.example",
+   "phone": null,
+   "company": "Pinecrest Education",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-06T10:45:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-007-act-1",
+     "at": "2026-11-07T07:50:51.450Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-007-act-2",
+     "at": "2026-11-06T10:47:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-007-act-3",
+     "at": "2026-11-06T10:46:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-007-act-4",
+     "at": "2026-11-06T10:45:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-085",
+   "firstName": "Beatrice",
+   "lastName": "Singh",
+   "email": "beatrice.singh@horizonevents.example",
+   "phone": "(910) 544-4785",
+   "company": "Horizon Events",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "cancelled",
+   "registeredAt": "2026-11-06T09:19:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-085-act-1",
+     "at": "2026-11-07T09:47:31.927Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-085-act-2",
+     "at": "2026-11-06T09:25:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-085-act-3",
+     "at": "2026-11-06T09:20:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-085-act-4",
+     "at": "2026-11-06T09:19:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-092",
+   "firstName": "Emanuel",
+   "lastName": "Snyder",
+   "email": "emanuel.snyder@vantagepointresearch.example",
+   "phone": "(209) 860-1255",
+   "company": "Vantage Point Research",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-05T21:21:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-092-act-1",
+     "at": "2026-11-06T11:35:43.132Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-092-act-2",
+     "at": "2026-11-05T21:24:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-092-act-3",
+     "at": "2026-11-05T21:21:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-090",
+   "firstName": "Rogelio",
+   "lastName": "Woods",
+   "email": "rogelio.woods@larkspurretail.example",
+   "phone": "(503) 677-9187",
+   "company": "Larkspur Retail",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "npf-type-press",
+   "packageId": "npf-pkg-press",
+   "regCodeId": "npf-code-press",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-05T20:53:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-090-act-1",
+     "at": "2026-11-05T21:00:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-090-act-2",
+     "at": "2026-11-05T20:54:00.000Z",
+     "text": "Reg code NW-PRESS-27 applied"
+    },
+    {
+     "id": "npf-att-090-act-3",
+     "at": "2026-11-05T20:53:00.000Z",
+     "text": "Registered via Press Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-049",
+   "firstName": "Leopoldo",
+   "lastName": "Ray",
+   "email": "leopoldo.ray@harborhealth.example",
+   "phone": "(472) 922-9417",
+   "company": "Harbor Health",
+   "jobTitle": "Experience Designer",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-05T09:52:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-049-act-1",
+     "at": "2026-11-05T09:59:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-049-act-2",
+     "at": "2026-11-05T09:53:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-049-act-3",
+     "at": "2026-11-05T09:52:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-050",
+   "firstName": "Eusebio",
+   "lastName": "Adams",
+   "email": "eusebio.adams@foxglovestudios.example",
+   "phone": "(668) 679-3902",
+   "company": "Foxglove Studios",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-05T05:13:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-050-act-1",
+     "at": "2026-11-07T00:59:33.036Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-050-act-2",
+     "at": "2026-11-05T05:19:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-050-act-3",
+     "at": "2026-11-05T05:14:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-050-act-4",
+     "at": "2026-11-05T05:13:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-063",
+   "firstName": "Debbie",
+   "lastName": "Lopez",
+   "email": "debbie.lopez@northwindmedia.example",
+   "phone": null,
+   "company": "Northwind Media",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-05T00:24:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-063-act-1",
+     "at": "2026-11-06T03:29:00.602Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-063-act-2",
+     "at": "2026-11-05T00:29:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-063-act-3",
+     "at": "2026-11-05T00:25:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-063-act-4",
+     "at": "2026-11-05T00:24:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-030",
+   "firstName": "Clement",
+   "lastName": "Levy",
+   "email": "clement.levy@tidewaterenergy.example",
+   "phone": null,
+   "company": "Tidewater Energy",
+   "jobTitle": "IT Director",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-04T10:00:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-030-act-1",
+     "at": "2026-11-06T15:39:59.748Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-030-act-2",
+     "at": "2026-11-04T10:04:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-030-act-3",
+     "at": "2026-11-04T10:01:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-030-act-4",
+     "at": "2026-11-04T10:00:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-073",
+   "firstName": "Christine",
+   "lastName": "Reyes",
+   "email": "christine.reyes@monarchbiotech.example",
+   "phone": "(750) 592-6066",
+   "company": "Monarch Biotech",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-04T09:40:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-073-act-1",
+     "at": "2026-11-06T12:41:41.610Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-073-act-2",
+     "at": "2026-11-04T09:43:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-073-act-3",
+     "at": "2026-11-04T09:41:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-073-act-4",
+     "at": "2026-11-04T09:40:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-078",
+   "firstName": "Jackson",
+   "lastName": "Smith",
+   "email": "jackson.smith@northwind.example",
+   "phone": null,
+   "company": "Northwind",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "waitlisted",
+   "registeredAt": "2026-11-04T07:33:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-078-act-1",
+     "at": "2026-11-04T07:38:00.000Z",
+     "text": "Added to the waitlist"
+    },
+    {
+     "id": "npf-att-078-act-2",
+     "at": "2026-11-04T07:34:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-078-act-3",
+     "at": "2026-11-04T07:33:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-068",
+   "firstName": "Benton",
+   "lastName": "Gibson",
+   "email": "benton.gibson@monarchbiotech.example",
+   "phone": "(802) 634-7181",
+   "company": "Monarch Biotech",
+   "jobTitle": "Solutions Architect",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T21:43:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-068-act-1",
+     "at": "2026-11-06T08:18:24.178Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-068-act-2",
+     "at": "2026-11-03T21:52:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-068-act-3",
+     "at": "2026-11-03T21:44:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-068-act-4",
+     "at": "2026-11-03T21:43:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-014",
+   "firstName": "Cielo",
+   "lastName": "Boateng",
+   "email": "cielo.boateng@yellowstoneoutfitters.example",
+   "phone": null,
+   "company": "Yellowstone Outfitters",
+   "jobTitle": "Event Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-03T19:22:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-014-act-1",
+     "at": "2026-11-06T01:44:38.286Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-014-act-2",
+     "at": "2026-11-03T19:23:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-014-act-3",
+     "at": "2026-11-03T19:22:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-037",
+   "firstName": "Kole",
+   "lastName": "Cook",
+   "email": "kole.cook@summitpartners.example",
+   "phone": "(580) 261-5743",
+   "company": "Summit Partners",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T16:06:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-037-act-1",
+     "at": "2026-11-06T07:58:54.479Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-037-act-2",
+     "at": "2026-11-03T16:08:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-037-act-3",
+     "at": "2026-11-03T16:07:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-037-act-4",
+     "at": "2026-11-03T16:06:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-074",
+   "firstName": "Tressie",
+   "lastName": "Bailey",
+   "email": "tressie.bailey@zephyrmobility.example",
+   "phone": "(678) 607-2458",
+   "company": "Zephyr Mobility",
+   "jobTitle": "Senior Software Engineer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T14:36:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-074-act-1",
+     "at": "2026-11-05T16:12:54.163Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-074-act-2",
+     "at": "2026-11-03T14:43:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-074-act-3",
+     "at": "2026-11-03T14:36:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-001",
+   "firstName": "Claudie",
+   "lastName": "Olson",
+   "email": "claudie.olson@northwind.example",
+   "phone": "(563) 986-6794",
+   "company": "Northwind",
+   "jobTitle": "Senior Software Engineer",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T12:58:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-001-act-1",
+     "at": "2026-11-03T13:00:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-001-act-2",
+     "at": "2026-11-03T12:59:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-001-act-3",
+     "at": "2026-11-03T12:58:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-020",
+   "firstName": "Kirk",
+   "lastName": "Ford",
+   "email": "kirk.ford@fieldstonemanufacturing.example",
+   "phone": "(364) 792-3273",
+   "company": "Fieldstone Manufacturing",
+   "jobTitle": "Event Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "waitlisted",
+   "registeredAt": "2026-11-03T07:49:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-020-act-1",
+     "at": "2026-11-05T13:25:23.725Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-020-act-2",
+     "at": "2026-11-03T07:54:00.000Z",
+     "text": "Added to the waitlist"
+    },
+    {
+     "id": "npf-att-020-act-3",
+     "at": "2026-11-03T07:50:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-020-act-4",
+     "at": "2026-11-03T07:49:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-053",
+   "firstName": "Orlando",
+   "lastName": "Carpenter",
+   "email": "orlando.carpenter@northwind.example",
+   "phone": "(772) 762-4702",
+   "company": "Northwind",
+   "jobTitle": "Content Strategist",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T00:06:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-053-act-1",
+     "at": "2026-11-03T00:10:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-053-act-2",
+     "at": "2026-11-03T00:07:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-053-act-3",
+     "at": "2026-11-03T00:06:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-062",
+   "firstName": "May",
+   "lastName": "Byrne",
+   "email": "may.byrne@pinecresteducation.example",
+   "phone": "(576) 646-7289",
+   "company": "Pinecrest Education",
+   "jobTitle": "IT Director",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T23:24:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-062-act-1",
+     "at": "2026-11-06T07:03:36.859Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-062-act-2",
+     "at": "2026-11-02T23:33:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-062-act-3",
+     "at": "2026-11-02T23:25:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-062-act-4",
+     "at": "2026-11-02T23:24:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-018",
+   "firstName": "Dejuan",
+   "lastName": "Cole",
+   "email": "dejuan.cole@cascadeanalytics.example",
+   "phone": "(935) 521-7014",
+   "company": "Cascade Analytics",
+   "jobTitle": "Sales Director",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T21:21:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-018-act-1",
+     "at": "2026-11-02T21:25:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-018-act-2",
+     "at": "2026-11-02T21:22:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-018-act-3",
+     "at": "2026-11-02T21:21:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-016",
+   "firstName": "Amaya",
+   "lastName": "Ali",
+   "email": "amaya.ali@foxglovestudios.example",
+   "phone": "(888) 751-6547",
+   "company": "Foxglove Studios",
+   "jobTitle": "Training Coordinator",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T10:48:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-016-act-1",
+     "at": "2026-11-02T10:52:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-016-act-2",
+     "at": "2026-11-02T10:49:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-016-act-3",
+     "at": "2026-11-02T10:48:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-045",
+   "firstName": "Monte",
+   "lastName": "Ray",
+   "email": "monte.ray@dovetailassociations.example",
+   "phone": null,
+   "company": "Dovetail Associations",
+   "jobTitle": "Brand Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T10:25:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-045-act-1",
+     "at": "2026-11-06T16:49:59.694Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-045-act-2",
+     "at": "2026-11-02T10:33:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-045-act-3",
+     "at": "2026-11-02T10:25:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-076",
+   "firstName": "Ethan",
+   "lastName": "Chavez",
+   "email": "ethan.chavez@meridianconferences.example",
+   "phone": null,
+   "company": "Meridian Conferences",
+   "jobTitle": "Brand Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T07:26:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-076-act-1",
+     "at": "2026-11-06T11:52:43.941Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-076-act-2",
+     "at": "2026-11-02T07:33:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-076-act-3",
+     "at": "2026-11-02T07:27:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-076-act-4",
+     "at": "2026-11-02T07:26:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-070",
+   "firstName": "Karelle",
+   "lastName": "Alvarez",
+   "email": "karelle.alvarez@cascadeanalytics.example",
+   "phone": "(775) 716-1065",
+   "company": "Cascade Analytics",
+   "jobTitle": "Registration Lead",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T03:13:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-070-act-1",
+     "at": "2026-11-06T07:00:45.953Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-070-act-2",
+     "at": "2026-11-02T03:22:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-070-act-3",
+     "at": "2026-11-02T03:14:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-070-act-4",
+     "at": "2026-11-02T03:13:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-033",
+   "firstName": "Brad",
+   "lastName": "Fox",
+   "email": "brad.fox@beaconsecurity.example",
+   "phone": null,
+   "company": "Beacon Security",
+   "jobTitle": "Senior Event Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T02:28:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-033-act-1",
+     "at": "2026-11-04T01:51:10.207Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-033-act-2",
+     "at": "2026-11-02T02:33:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-033-act-3",
+     "at": "2026-11-02T02:29:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-033-act-4",
+     "at": "2026-11-02T02:28:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-044",
+   "firstName": "Virginie",
+   "lastName": "Cole",
+   "email": "virginie.cole@saltwatertravel.example",
+   "phone": "(887) 890-3430",
+   "company": "Saltwater Travel",
+   "jobTitle": "Sales Director",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-02T00:44:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-044-act-1",
+     "at": "2026-11-04T14:41:57.943Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-044-act-2",
+     "at": "2026-11-02T00:47:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-044-act-3",
+     "at": "2026-11-02T00:45:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-044-act-4",
+     "at": "2026-11-02T00:44:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-008",
+   "firstName": "Gregorio",
+   "lastName": "Yamamoto",
+   "email": "gregorio.yamamoto@glaciertelecom.example",
+   "phone": null,
+   "company": "Glacier Telecom",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-01T15:57:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-008-act-1",
+     "at": "2026-11-05T02:18:34.337Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-008-act-2",
+     "at": "2026-11-01T16:06:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-008-act-3",
+     "at": "2026-11-01T15:58:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-008-act-4",
+     "at": "2026-11-01T15:57:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-066",
+   "firstName": "Darnell",
+   "lastName": "Tran",
+   "email": "darnell.tran@juniperlearning.example",
+   "phone": "(898) 763-1176",
+   "company": "Juniper Learning",
+   "jobTitle": "Content Strategist",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-01T04:08:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-066-act-1",
+     "at": "2026-11-04T15:58:09.979Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-066-act-2",
+     "at": "2026-11-01T04:13:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-066-act-3",
+     "at": "2026-11-01T04:09:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-066-act-4",
+     "at": "2026-11-01T04:08:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-048",
+   "firstName": "Marcus",
+   "lastName": "Bradley",
+   "email": "marcus.bradley@saltwatertravel.example",
+   "phone": null,
+   "company": "Saltwater Travel",
+   "jobTitle": "Senior Event Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-01T01:30:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-048-act-1",
+     "at": "2026-11-01T01:34:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-048-act-2",
+     "at": "2026-11-01T01:31:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-048-act-3",
+     "at": "2026-11-01T01:30:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-009",
+   "firstName": "Lelah",
+   "lastName": "Daniels",
+   "email": "lelah.daniels@bluefinsoftware.example",
+   "phone": null,
+   "company": "Bluefin Software",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-31T18:05:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-009-act-1",
+     "at": "2026-11-04T12:21:28.111Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-009-act-2",
+     "at": "2026-10-31T18:11:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-009-act-3",
+     "at": "2026-10-31T18:06:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-009-act-4",
+     "at": "2026-10-31T18:05:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-069",
+   "firstName": "Ubaldo",
+   "lastName": "Larsen",
+   "email": "ubaldo.larsen@quarryrobotics.example",
+   "phone": null,
+   "company": "Quarry Robotics",
+   "jobTitle": "Procurement Specialist",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-31T00:45:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-069-act-1",
+     "at": "2026-11-03T19:32:48.098Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-069-act-2",
+     "at": "2026-10-31T00:47:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-069-act-3",
+     "at": "2026-10-31T00:46:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-069-act-4",
+     "at": "2026-10-31T00:45:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-059",
+   "firstName": "Maryann",
+   "lastName": "Hoffman",
+   "email": "maryann.hoffman@elevatemarketing.example",
+   "phone": null,
+   "company": "Elevate Marketing",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-30T22:05:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-059-act-1",
+     "at": "2026-11-04T15:31:54.251Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-059-act-2",
+     "at": "2026-10-30T22:06:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-059-act-3",
+     "at": "2026-10-30T22:05:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-082",
+   "firstName": "Aliyah",
+   "lastName": "Scott",
+   "email": "aliyah.scott@arcadiapublishing.example",
+   "phone": null,
+   "company": "Arcadia Publishing",
+   "jobTitle": "Chief Marketing Officer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-30T17:20:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-082-act-1",
+     "at": "2026-11-03T04:55:59.018Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-082-act-2",
+     "at": "2026-10-30T17:28:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-082-act-3",
+     "at": "2026-10-30T17:21:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-082-act-4",
+     "at": "2026-10-30T17:20:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-071",
+   "firstName": "Louise",
+   "lastName": "Thomas",
+   "email": "louise.thomas@monarchbiotech.example",
+   "phone": "(895) 372-1098",
+   "company": "Monarch Biotech",
+   "jobTitle": "Brand Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-30T04:58:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-071-act-1",
+     "at": "2026-11-05T12:19:12.949Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-071-act-2",
+     "at": "2026-10-30T05:05:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-071-act-3",
+     "at": "2026-10-30T04:58:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-034",
+   "firstName": "Keira",
+   "lastName": "Spencer",
+   "email": "keira.spencer@zephyrmobility.example",
+   "phone": "(925) 970-8859",
+   "company": "Zephyr Mobility",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "npf-type-press",
+   "packageId": "npf-pkg-press",
+   "regCodeId": "npf-code-press",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-29T19:31:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-034-act-1",
+     "at": "2026-10-29T19:32:00.000Z",
+     "text": "Reg code NW-PRESS-27 applied"
+    },
+    {
+     "id": "npf-att-034-act-2",
+     "at": "2026-10-29T19:31:00.000Z",
+     "text": "Registered via Press Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-089",
+   "firstName": "Tami",
+   "lastName": "Hunter",
+   "email": "tami.hunter@arcadiapublishing.example",
+   "phone": null,
+   "company": "Arcadia Publishing",
+   "jobTitle": "Product Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-29T13:55:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-089-act-1",
+     "at": "2026-10-29T13:56:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-089-act-2",
+     "at": "2026-10-29T13:55:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-029",
+   "firstName": "Chris",
+   "lastName": "Weber",
+   "email": "chris.weber@meridianconferences.example",
+   "phone": "(435) 714-9339",
+   "company": "Meridian Conferences",
+   "jobTitle": "Software Engineer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-29T13:37:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-029-act-1",
+     "at": "2026-10-29T13:41:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-029-act-2",
+     "at": "2026-10-29T13:38:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-029-act-3",
+     "at": "2026-10-29T13:37:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-054",
+   "firstName": "Gage",
+   "lastName": "Payne",
+   "email": "gage.payne@pinecresteducation.example",
+   "phone": "(671) 263-0225",
+   "company": "Pinecrest Education",
+   "jobTitle": "Procurement Specialist",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "waitlisted",
+   "registeredAt": "2026-10-29T08:17:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-054-act-1",
+     "at": "2026-11-06T06:21:11.227Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-054-act-2",
+     "at": "2026-10-29T08:22:00.000Z",
+     "text": "Added to the waitlist"
+    },
+    {
+     "id": "npf-att-054-act-3",
+     "at": "2026-10-29T08:18:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-054-act-4",
+     "at": "2026-10-29T08:17:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-047",
+   "firstName": "Jessika",
+   "lastName": "Simpson",
+   "email": "jessika.simpson@highlineventures.example",
+   "phone": "(505) 405-4940",
+   "company": "Highline Ventures",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-28T16:49:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-047-act-1",
+     "at": "2026-11-06T15:51:26.488Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-047-act-2",
+     "at": "2026-10-28T16:57:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-047-act-3",
+     "at": "2026-10-28T16:50:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-047-act-4",
+     "at": "2026-10-28T16:49:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-023",
+   "firstName": "Rafaela",
+   "lastName": "Collins",
+   "email": "rafaela.collins@dovetailassociations.example",
+   "phone": "(848) 505-6673",
+   "company": "Dovetail Associations",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-28T05:48:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-023-act-1",
+     "at": "2026-11-03T17:13:38.933Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-023-act-2",
+     "at": "2026-10-28T05:50:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-023-act-3",
+     "at": "2026-10-28T05:49:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-023-act-4",
+     "at": "2026-10-28T05:48:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-002",
+   "firstName": "Niko",
+   "lastName": "Cole",
+   "email": "niko.cole@brightlinelabs.example",
+   "phone": "(614) 265-3311",
+   "company": "Brightline Labs",
+   "jobTitle": "Registration Lead",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-28T05:44:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-002-act-1",
+     "at": "2026-10-28T05:49:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-002-act-2",
+     "at": "2026-10-28T05:45:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-002-act-3",
+     "at": "2026-10-28T05:44:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-084",
+   "firstName": "Harley",
+   "lastName": "Sandoval",
+   "email": "harley.sandoval@zephyrmobility.example",
+   "phone": "(950) 830-7961",
+   "company": "Zephyr Mobility",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-28T00:49:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-084-act-1",
+     "at": "2026-11-01T22:39:45.506Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-084-act-2",
+     "at": "2026-10-28T00:52:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-084-act-3",
+     "at": "2026-10-28T00:50:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-084-act-4",
+     "at": "2026-10-28T00:49:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-015",
+   "firstName": "Demarcus",
+   "lastName": "Black",
+   "email": "demarcus.black@brightlinelabs.example",
+   "phone": "(763) 231-1690",
+   "company": "Brightline Labs",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-27T23:24:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-015-act-1",
+     "at": "2026-10-27T23:33:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-015-act-2",
+     "at": "2026-10-27T23:25:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-015-act-3",
+     "at": "2026-10-27T23:24:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-026",
+   "firstName": "Bailey",
+   "lastName": "Ruiz",
+   "email": "bailey.ruiz@northwindmedia.example",
+   "phone": "(472) 241-6252",
+   "company": "Northwind Media",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-27T22:35:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-026-act-1",
+     "at": "2026-10-27T22:39:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-026-act-2",
+     "at": "2026-10-27T22:36:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-026-act-3",
+     "at": "2026-10-27T22:35:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-017",
+   "firstName": "Abbey",
+   "lastName": "Black",
+   "email": "abbey.black@glaciertelecom.example",
+   "phone": "(817) 576-1849",
+   "company": "Glacier Telecom",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-27T14:12:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-017-act-1",
+     "at": "2026-11-01T07:03:43.317Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-017-act-2",
+     "at": "2026-10-27T14:18:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-017-act-3",
+     "at": "2026-10-27T14:13:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-017-act-4",
+     "at": "2026-10-27T14:12:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-058",
+   "firstName": "Milton",
+   "lastName": "Moore",
+   "email": "milton.moore@northwind.example",
+   "phone": "(353) 441-7037",
+   "company": "Northwind",
+   "jobTitle": "VP of Marketing",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-27T12:53:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-058-act-1",
+     "at": "2026-10-27T12:58:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-058-act-2",
+     "at": "2026-10-27T12:54:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-058-act-3",
+     "at": "2026-10-27T12:53:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-083",
+   "firstName": "Ambrose",
+   "lastName": "Pham",
+   "email": "ambrose.pham@foxglovestudios.example",
+   "phone": null,
+   "company": "Foxglove Studios",
+   "jobTitle": "Account Executive",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-27T02:17:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-083-act-1",
+     "at": "2026-10-31T01:34:33.807Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-083-act-2",
+     "at": "2026-10-27T02:20:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-083-act-3",
+     "at": "2026-10-27T02:18:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-083-act-4",
+     "at": "2026-10-27T02:17:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-079",
+   "firstName": "Roberto",
+   "lastName": "Soto",
+   "email": "roberto.soto@cobaltsystems.example",
+   "phone": null,
+   "company": "Cobalt Systems",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-27T00:58:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-079-act-1",
+     "at": "2026-11-03T02:17:05.843Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-079-act-2",
+     "at": "2026-10-27T00:59:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-079-act-3",
+     "at": "2026-10-27T00:58:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-019",
+   "firstName": "Augustine",
+   "lastName": "Hawkins",
+   "email": "augustine.hawkins@uplandagency.example",
+   "phone": null,
+   "company": "Upland Agency",
+   "jobTitle": "Account Executive",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-25T12:52:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-019-act-1",
+     "at": "2026-10-25T13:00:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-019-act-2",
+     "at": "2026-10-25T12:53:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-019-act-3",
+     "at": "2026-10-25T12:52:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-022",
+   "firstName": "Josiah",
+   "lastName": "Rahman",
+   "email": "josiah.rahman@keystonelogistics.example",
+   "phone": "(924) 324-6239",
+   "company": "Keystone Logistics",
+   "jobTitle": "Procurement Specialist",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-25T11:47:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-022-act-1",
+     "at": "2026-10-30T09:45:16.915Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-022-act-2",
+     "at": "2026-10-25T11:55:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-022-act-3",
+     "at": "2026-10-25T11:48:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-022-act-4",
+     "at": "2026-10-25T11:47:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-060",
+   "firstName": "Mildred",
+   "lastName": "Tran",
+   "email": "mildred.tran@vantagepointresearch.example",
+   "phone": "(384) 823-2511",
+   "company": "Vantage Point Research",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-25T07:28:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-060-act-1",
+     "at": "2026-11-06T00:11:32.213Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-060-act-2",
+     "at": "2026-10-25T07:29:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-060-act-3",
+     "at": "2026-10-25T07:28:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-013",
+   "firstName": "Nels",
+   "lastName": "Chen",
+   "email": "nels.chen@foxglovestudios.example",
+   "phone": null,
+   "company": "Foxglove Studios",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-24T21:32:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-013-act-1",
+     "at": "2026-11-04T16:22:44.052Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-013-act-2",
+     "at": "2026-10-24T21:40:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-013-act-3",
+     "at": "2026-10-24T21:32:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-031",
+   "firstName": "Gary",
+   "lastName": "Graham",
+   "email": "gary.graham@meridianconferences.example",
+   "phone": "(415) 748-8418",
+   "company": "Meridian Conferences",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-24T19:02:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-031-act-1",
+     "at": "2026-10-24T19:03:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-031-act-2",
+     "at": "2026-10-24T19:02:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-003",
+   "firstName": "Barton",
+   "lastName": "Dunn",
+   "email": "barton.dunn@elevatemarketing.example",
+   "phone": "(850) 389-6960",
+   "company": "Elevate Marketing",
+   "jobTitle": "Procurement Specialist",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-24T10:23:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-003-act-1",
+     "at": "2026-11-02T02:06:10.596Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-003-act-2",
+     "at": "2026-10-24T10:30:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-003-act-3",
+     "at": "2026-10-24T10:24:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-003-act-4",
+     "at": "2026-10-24T10:23:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-032",
+   "firstName": "Blair",
+   "lastName": "Alexander",
+   "email": "blair.alexander@driftwoodhospitality.example",
+   "phone": null,
+   "company": "Driftwood Hospitality",
+   "jobTitle": "Marketing Manager",
+   "attendeeTypeId": "npf-type-press",
+   "packageId": "npf-pkg-press",
+   "regCodeId": "npf-code-press",
+   "exhibitorId": null,
+   "status": "cancelled",
+   "registeredAt": "2026-10-24T09:18:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-032-act-1",
+     "at": "2026-10-28T23:14:56.504Z",
+     "text": "Package changed to Press Pass"
+    },
+    {
+     "id": "npf-att-032-act-2",
+     "at": "2026-10-24T09:23:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-032-act-3",
+     "at": "2026-10-24T09:19:00.000Z",
+     "text": "Reg code NW-PRESS-27 applied"
+    },
+    {
+     "id": "npf-att-032-act-4",
+     "at": "2026-10-24T09:18:00.000Z",
+     "text": "Registered via Press Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-064",
+   "firstName": "Orpha",
+   "lastName": "Watson",
+   "email": "orpha.watson@evergreennonprofitalliance.example",
+   "phone": "(711) 491-9842",
+   "company": "Evergreen Nonprofit Alliance",
+   "jobTitle": "Solutions Architect",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "waitlisted",
+   "registeredAt": "2026-10-24T06:42:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-064-act-1",
+     "at": "2026-10-24T06:47:00.000Z",
+     "text": "Added to the waitlist"
+    },
+    {
+     "id": "npf-att-064-act-2",
+     "at": "2026-10-24T06:43:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-064-act-3",
+     "at": "2026-10-24T06:42:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-006",
+   "firstName": "Norene",
+   "lastName": "Bennett",
+   "email": "norene.bennett@uplandagency.example",
+   "phone": "(333) 323-7097",
+   "company": "Upland Agency",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-22T20:40:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-006-act-1",
+     "at": "2026-10-22T20:45:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-006-act-2",
+     "at": "2026-10-22T20:41:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-006-act-3",
+     "at": "2026-10-22T20:40:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-055",
+   "firstName": "Maryann",
+   "lastName": "Washington",
+   "email": "maryann.washington@beaconsecurity.example",
+   "phone": "(424) 359-3712",
+   "company": "Beacon Security",
+   "jobTitle": "Director of Events",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-22T12:17:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-055-act-1",
+     "at": "2026-10-22T12:19:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-055-act-2",
+     "at": "2026-10-22T12:18:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-055-act-3",
+     "at": "2026-10-22T12:17:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-051",
+   "firstName": "Jane",
+   "lastName": "Bell",
+   "email": "jane.bell@oaklinepartners.example",
+   "phone": "(281) 937-4105",
+   "company": "Oakline Partners",
+   "jobTitle": "Experience Designer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-22T12:08:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-051-act-1",
+     "at": "2026-11-02T19:31:36.695Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-051-act-2",
+     "at": "2026-10-22T12:17:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-051-act-3",
+     "at": "2026-10-22T12:09:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-051-act-4",
+     "at": "2026-10-22T12:08:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-065",
+   "firstName": "Joey",
+   "lastName": "Riley",
+   "email": "joey.riley@harborhealth.example",
+   "phone": "(598) 741-5805",
+   "company": "Harbor Health",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-22T11:21:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-065-act-1",
+     "at": "2026-10-22T11:22:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-065-act-2",
+     "at": "2026-10-22T11:21:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-028",
+   "firstName": "Tavares",
+   "lastName": "Nguyen",
+   "email": "tavares.nguyen@cobaltsystems.example",
+   "phone": "(356) 341-3163",
+   "company": "Cobalt Systems",
+   "jobTitle": "Program Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-21T14:50:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-028-act-1",
+     "at": "2026-11-01T03:59:54.180Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-028-act-2",
+     "at": "2026-10-21T14:58:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-028-act-3",
+     "at": "2026-10-21T14:51:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-028-act-4",
+     "at": "2026-10-21T14:50:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-080",
+   "firstName": "Valentin",
+   "lastName": "Burns",
+   "email": "valentin.burns@redwoodinsurance.example",
+   "phone": "(809) 332-7118",
+   "company": "Redwood Insurance",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-20T14:24:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-080-act-1",
+     "at": "2026-11-01T07:38:08.523Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-080-act-2",
+     "at": "2026-10-20T14:26:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-080-act-3",
+     "at": "2026-10-20T14:25:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-080-act-4",
+     "at": "2026-10-20T14:24:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-075",
+   "firstName": "Caterina",
+   "lastName": "Webb",
+   "email": "caterina.webb@beaconsecurity.example",
+   "phone": null,
+   "company": "Beacon Security",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-20T12:27:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-075-act-1",
+     "at": "2026-11-01T12:49:44.702Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-075-act-2",
+     "at": "2026-10-20T12:36:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-075-act-3",
+     "at": "2026-10-20T12:28:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-075-act-4",
+     "at": "2026-10-20T12:27:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-040",
+   "firstName": "Antonia",
+   "lastName": "Tran",
+   "email": "antonia.tran@cascadeanalytics.example",
+   "phone": "(228) 666-3241",
+   "company": "Cascade Analytics",
+   "jobTitle": "Registration Lead",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-20T11:37:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-040-act-1",
+     "at": "2026-11-05T06:03:50.009Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-040-act-2",
+     "at": "2026-10-20T11:44:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-040-act-3",
+     "at": "2026-10-20T11:38:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-040-act-4",
+     "at": "2026-10-20T11:37:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-025",
+   "firstName": "Garrison",
+   "lastName": "Graham",
+   "email": "garrison.graham@summitpartners.example",
+   "phone": null,
+   "company": "Summit Partners",
+   "jobTitle": "Brand Manager",
+   "attendeeTypeId": "npf-type-press",
+   "packageId": "npf-pkg-press",
+   "regCodeId": "npf-code-press",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-20T11:15:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-025-act-1",
+     "at": "2026-10-28T05:38:58.580Z",
+     "text": "Package changed to Press Pass"
+    },
+    {
+     "id": "npf-att-025-act-2",
+     "at": "2026-10-20T11:16:00.000Z",
+     "text": "Reg code NW-PRESS-27 applied"
+    },
+    {
+     "id": "npf-att-025-act-3",
+     "at": "2026-10-20T11:15:00.000Z",
+     "text": "Registered via Press Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-010",
+   "firstName": "Amira",
+   "lastName": "Daniels",
+   "email": "amira.daniels@northwind.example",
+   "phone": null,
+   "company": "Northwind",
+   "jobTitle": "Product Manager",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-20T03:49:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-010-act-1",
+     "at": "2026-10-20T03:50:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-010-act-2",
+     "at": "2026-10-20T03:49:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-005",
+   "firstName": "Martin",
+   "lastName": "Wagner",
+   "email": "martin.wagner@summitpartners.example",
+   "phone": null,
+   "company": "Summit Partners",
+   "jobTitle": "Software Engineer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-19T23:38:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-005-act-1",
+     "at": "2026-10-26T01:29:45.287Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-005-act-2",
+     "at": "2026-10-19T23:39:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-005-act-3",
+     "at": "2026-10-19T23:38:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-088",
+   "firstName": "Michel",
+   "lastName": "Hansen",
+   "email": "michel.hansen@northwind.example",
+   "phone": "(351) 953-8036",
+   "company": "Northwind",
+   "jobTitle": "Marketing Manager",
+   "attendeeTypeId": "npf-type-staff",
+   "packageId": null,
+   "regCodeId": "npf-code-staff",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-19T10:35:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-088-act-1",
+     "at": "2026-10-19T10:37:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-088-act-2",
+     "at": "2026-10-19T10:36:00.000Z",
+     "text": "Reg code NW-STAFF applied"
+    },
+    {
+     "id": "npf-att-088-act-3",
+     "at": "2026-10-19T10:35:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-091",
+   "firstName": "Skylar",
+   "lastName": "Daniels",
+   "email": "skylar.daniels@willowcreative.example",
+   "phone": null,
+   "company": "Willow Creative",
+   "jobTitle": "Director of Events",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-18T23:59:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-091-act-1",
+     "at": "2026-11-03T13:17:04.917Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-091-act-2",
+     "at": "2026-10-19T00:04:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-091-act-3",
+     "at": "2026-10-19T00:00:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-091-act-4",
+     "at": "2026-10-18T23:59:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-041",
+   "firstName": "Jeremy",
+   "lastName": "Kumar",
+   "email": "jeremy.kumar@atlasvenues.example",
+   "phone": null,
+   "company": "Atlas Venues",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-18T21:47:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-041-act-1",
+     "at": "2026-10-27T13:55:00.027Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-041-act-2",
+     "at": "2026-10-18T21:54:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-041-act-3",
+     "at": "2026-10-18T21:48:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-041-act-4",
+     "at": "2026-10-18T21:47:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-012",
+   "firstName": "Cole",
+   "lastName": "Lee",
+   "email": "cole.lee@cascadeanalytics.example",
+   "phone": "(795) 868-2343",
+   "company": "Cascade Analytics",
+   "jobTitle": "Product Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-18T18:53:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-012-act-1",
+     "at": "2026-10-18T19:01:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-012-act-2",
+     "at": "2026-10-18T18:54:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-012-act-3",
+     "at": "2026-10-18T18:53:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-043",
+   "firstName": "Wayne",
+   "lastName": "Hall",
+   "email": "wayne.hall@granitepeakconsulting.example",
+   "phone": "(305) 783-5132",
+   "company": "Granite Peak Consulting",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-18T05:41:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-043-act-1",
+     "at": "2026-10-25T22:57:56.815Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-043-act-2",
+     "at": "2026-10-18T05:42:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-043-act-3",
+     "at": "2026-10-18T05:41:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-024",
+   "firstName": "Ewell",
+   "lastName": "Harrison",
+   "email": "ewell.harrison@elevatemarketing.example",
+   "phone": "(558) 673-0093",
+   "company": "Elevate Marketing",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-18T05:03:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-024-act-1",
+     "at": "2026-10-18T05:09:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-024-act-2",
+     "at": "2026-10-18T05:04:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-024-act-3",
+     "at": "2026-10-18T05:03:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-011",
+   "firstName": "Hudson",
+   "lastName": "Anderson",
+   "email": "hudson.anderson@beaconsecurity.example",
+   "phone": "(270) 705-7058",
+   "company": "Beacon Security",
+   "jobTitle": "Senior Event Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-18T00:53:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-011-act-1",
+     "at": "2026-11-04T01:01:34.575Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-011-act-2",
+     "at": "2026-10-18T00:58:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-011-act-3",
+     "at": "2026-10-18T00:54:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-011-act-4",
+     "at": "2026-10-18T00:53:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-052",
+   "firstName": "Ellie",
+   "lastName": "Farah",
+   "email": "ellie.farah@uplandagency.example",
+   "phone": null,
+   "company": "Upland Agency",
+   "jobTitle": "Software Engineer",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "cancelled",
+   "registeredAt": "2026-10-17T21:19:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-052-act-1",
+     "at": "2026-10-28T22:37:48.148Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-052-act-2",
+     "at": "2026-10-17T21:24:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-052-act-3",
+     "at": "2026-10-17T21:20:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-052-act-4",
+     "at": "2026-10-17T21:19:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-046",
+   "firstName": "Mitchell",
+   "lastName": "Ray",
+   "email": "mitchell.ray@evergreennonprofitalliance.example",
+   "phone": "(910) 841-1179",
+   "company": "Evergreen Nonprofit Alliance",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-17T21:10:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-046-act-1",
+     "at": "2026-10-17T21:17:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-046-act-2",
+     "at": "2026-10-17T21:11:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-046-act-3",
+     "at": "2026-10-17T21:10:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-038",
+   "firstName": "Marjolaine",
+   "lastName": "Chowdhury",
+   "email": "marjolaine.chowdhury@yellowstoneoutfitters.example",
+   "phone": null,
+   "company": "Yellowstone Outfitters",
+   "jobTitle": "Exhibit Coordinator",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "waitlisted",
+   "registeredAt": "2026-10-17T10:09:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-038-act-1",
+     "at": "2026-10-17T10:14:00.000Z",
+     "text": "Added to the waitlist"
+    },
+    {
+     "id": "npf-att-038-act-2",
+     "at": "2026-10-17T10:10:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-038-act-3",
+     "at": "2026-10-17T10:09:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-039",
+   "firstName": "Sidney",
+   "lastName": "Adams",
+   "email": "sidney.adams@bluefinsoftware.example",
+   "phone": "(989) 340-1230",
+   "company": "Bluefin Software",
+   "jobTitle": "Hospitality Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-16T14:44:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-039-act-1",
+     "at": "2026-10-27T01:31:00.582Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-039-act-2",
+     "at": "2026-10-16T14:46:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-039-act-3",
+     "at": "2026-10-16T14:45:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-039-act-4",
+     "at": "2026-10-16T14:44:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-086",
+   "firstName": "Willie",
+   "lastName": "Park",
+   "email": "willie.park@atlasvenues.example",
+   "phone": "(595) 607-6439",
+   "company": "Atlas Venues",
+   "jobTitle": "Event Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-15T06:06:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-086-act-1",
+     "at": "2026-11-02T13:47:03.798Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-086-act-2",
+     "at": "2026-10-15T06:14:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-086-act-3",
+     "at": "2026-10-15T06:07:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-086-act-4",
+     "at": "2026-10-15T06:06:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-042",
+   "firstName": "America",
+   "lastName": "Mills",
+   "email": "america.mills@evergreennonprofitalliance.example",
+   "phone": null,
+   "company": "Evergreen Nonprofit Alliance",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-13T13:46:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-042-act-1",
+     "at": "2026-10-13T13:51:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-042-act-2",
+     "at": "2026-10-13T13:47:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-042-act-3",
+     "at": "2026-10-13T13:46:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-061",
+   "firstName": "Mariela",
+   "lastName": "Dang",
+   "email": "mariela.dang@zephyrmobility.example",
+   "phone": "(893) 820-2016",
+   "company": "Zephyr Mobility",
+   "jobTitle": "IT Director",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-12T21:49:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-061-act-1",
+     "at": "2026-10-12T21:52:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-061-act-2",
+     "at": "2026-10-12T21:50:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-061-act-3",
+     "at": "2026-10-12T21:49:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-027",
+   "firstName": "Maynard",
+   "lastName": "Iyer",
+   "email": "maynard.iyer@uplandagency.example",
+   "phone": "(405) 558-0730",
+   "company": "Upland Agency",
+   "jobTitle": "Operations Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-12T20:34:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-027-act-1",
+     "at": "2026-10-12T20:43:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-027-act-2",
+     "at": "2026-10-12T20:35:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-027-act-3",
+     "at": "2026-10-12T20:34:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-035",
+   "firstName": "Lonny",
+   "lastName": "Schulz",
+   "email": "lonny.schulz@pinecresteducation.example",
+   "phone": null,
+   "company": "Pinecrest Education",
+   "jobTitle": "Director of Events",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-12T10:45:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-035-act-1",
+     "at": "2026-10-22T23:06:48.766Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-035-act-2",
+     "at": "2026-10-12T10:54:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-035-act-3",
+     "at": "2026-10-12T10:46:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-035-act-4",
+     "at": "2026-10-12T10:45:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-077",
+   "firstName": "Kennedi",
+   "lastName": "Dang",
+   "email": "kennedi.dang@monarchbiotech.example",
+   "phone": "(234) 580-5601",
+   "company": "Monarch Biotech",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-11T13:32:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-077-act-1",
+     "at": "2026-10-11T13:40:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-077-act-2",
+     "at": "2026-10-11T13:32:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-087",
+   "firstName": "Delfina",
+   "lastName": "Becker",
+   "email": "delfina.becker@bluefinsoftware.example",
+   "phone": null,
+   "company": "Bluefin Software",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "npf-type-sponsor",
+   "packageId": "npf-pkg-sponsor",
+   "regCodeId": "npf-code-sponsor",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-09T20:41:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-087-act-1",
+     "at": "2026-11-02T14:42:41.130Z",
+     "text": "Package changed to Sponsor Pass"
+    },
+    {
+     "id": "npf-att-087-act-2",
+     "at": "2026-10-09T20:45:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-087-act-3",
+     "at": "2026-10-09T20:42:00.000Z",
+     "text": "Reg code NW-SPONSOR applied"
+    },
+    {
+     "id": "npf-att-087-act-4",
+     "at": "2026-10-09T20:41:00.000Z",
+     "text": "Registered via Sponsor Registration"
+    }
+   ]
+  },
+  {
+   "id": "npf-att-072",
+   "firstName": "Anthony",
+   "lastName": "Smith",
+   "email": "anthony.smith@summitpartners.example",
+   "phone": "(892) 688-5409",
+   "company": "Summit Partners",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "npf-type-partner",
+   "packageId": "npf-pkg-partner",
+   "regCodeId": "npf-code-vip",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-09T04:07:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "npf-att-072-act-1",
+     "at": "2026-10-21T20:35:40.393Z",
+     "text": "Package changed to Partner Pass"
+    },
+    {
+     "id": "npf-att-072-act-2",
+     "at": "2026-10-09T04:12:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "npf-att-072-act-3",
+     "at": "2026-10-09T04:08:00.000Z",
+     "text": "Reg code NW-INVITE-2027 applied"
+    },
+    {
+     "id": "npf-att-072-act-4",
+     "at": "2026-10-09T04:07:00.000Z",
+     "text": "Registered via Partner Registration"
+    }
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "id": "npf-pkg-partner",
+   "name": "Partner Pass",
+   "priceMinor": 0,
+   "capacity": 150,
+   "status": "active",
+   "description": "Complimentary access for invited partners.",
+   "includes": [
+    "All sessions",
+    "Lunch",
+    "Partner awards dinner"
+   ],
+   "attendeeTypeIds": [
+    "npf-type-partner"
+   ]
+  },
+  {
+   "id": "npf-pkg-sponsor",
+   "name": "Sponsor Pass",
+   "priceMinor": 250000,
+   "capacity": 20,
+   "status": "active",
+   "description": "Sponsor access with a reserved table and logo placement.",
+   "includes": [
+    "All sessions",
+    "Reserved table",
+    "Logo placement",
+    "Partner awards dinner"
+   ],
+   "attendeeTypeIds": [
+    "npf-type-sponsor"
+   ]
+  },
+  {
+   "id": "npf-pkg-press",
+   "name": "Press Pass",
+   "priceMinor": 0,
+   "capacity": null,
+   "status": "active",
+   "description": "Credentialed media.",
+   "includes": [
+    "All sessions",
+    "Press room"
+   ],
+   "attendeeTypeIds": [
+    "npf-type-press"
+   ]
+  }
+ ],
+ "regCodes": [
+  {
+   "id": "npf-code-vip",
+   "code": "NW-INVITE-2027",
+   "label": "Partner invitation",
+   "type": "access",
+   "discountId": null,
+   "grantsTypeId": "npf-type-partner",
+   "maxUses": 150,
+   "uses": 61,
+   "expiresOn": "2027-04-15",
+   "active": true,
+   "createdAt": "2026-10-20T15:00:00.000Z"
+  },
+  {
+   "id": "npf-code-sponsor",
+   "code": "NW-SPONSOR",
+   "label": "Sponsor guests",
+   "type": "access",
+   "discountId": null,
+   "grantsTypeId": "npf-type-sponsor",
+   "maxUses": 30,
+   "uses": 14,
+   "expiresOn": null,
+   "active": true,
+   "createdAt": "2026-10-12T15:00:00.000Z"
+  },
+  {
+   "id": "npf-code-press",
+   "code": "NW-PRESS-27",
+   "label": "Press access",
+   "type": "access",
+   "discountId": null,
+   "grantsTypeId": "npf-type-press",
+   "maxUses": 10,
+   "uses": 5,
+   "expiresOn": "2027-04-21",
+   "active": true,
+   "createdAt": "2026-10-08T15:00:00.000Z"
+  },
+  {
+   "id": "npf-code-staff",
+   "code": "NW-STAFF",
+   "label": "Staff comp",
+   "type": "comp",
+   "discountId": null,
+   "grantsTypeId": null,
+   "maxUses": 10,
+   "uses": 6,
+   "expiresOn": null,
+   "active": true,
+   "createdAt": "2026-10-01T15:00:00.000Z"
+  }
+ ],
+ "discounts": [],
+ "tracks": [
+  {
+   "id": "npf-track-plen",
+   "name": "Plenary",
+   "swatch": "plum"
+  },
+  {
+   "id": "npf-track-brk",
+   "name": "Breakouts",
+   "swatch": "amber"
+  }
+ ],
+ "sessions": [
+  {
+   "id": "npf-session-01",
+   "title": "Welcome to the forum",
+   "trackId": "npf-track-plen",
+   "date": "2027-04-22",
+   "startMinutes": 540,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Helen Carver",
+    "title": "Chief Partner Officer, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Grand Hall",
+   "tags": [
+    "Keynote"
+   ]
+  },
+  {
+   "id": "npf-session-02",
+   "title": "Partner program roadmap",
+   "trackId": "npf-track-plen",
+   "date": "2027-04-22",
+   "startMinutes": 600,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Andre Silva",
+    "title": "VP Channels, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Grand Hall",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "npf-session-03",
+   "title": "Lunch",
+   "trackId": "npf-track-plen",
+   "date": "2027-04-22",
+   "startMinutes": 720,
+   "durationMinutes": 60,
+   "speaker": null,
+   "description": "",
+   "capacity": null,
+   "room": "Atrium",
+   "tags": [
+    "Networking"
+   ]
+  },
+  {
+   "id": "npf-session-04",
+   "title": "Partner awards",
+   "trackId": "npf-track-plen",
+   "date": "2027-04-22",
+   "startMinutes": 960,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Helen Carver",
+    "title": "Chief Partner Officer, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Grand Hall",
+   "tags": [
+    "Networking"
+   ]
+  },
+  {
+   "id": "npf-session-05",
+   "title": "Co-selling playbook",
+   "trackId": "npf-track-brk",
+   "date": "2027-04-22",
+   "startMinutes": 600,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Wen Zhao",
+    "title": "Director of Alliances, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room B",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "npf-session-06",
+   "title": "Pricing and margins",
+   "trackId": "npf-track-brk",
+   "date": "2027-04-22",
+   "startMinutes": 675,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Andre Silva",
+    "title": "VP Channels, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room B",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "npf-session-07",
+   "title": "Joint marketing that works",
+   "trackId": "npf-track-brk",
+   "date": "2027-04-22",
+   "startMinutes": 795,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Zoe Abernathy",
+    "title": "Partner Marketing Lead, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room B",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "npf-session-08",
+   "title": "Services attach",
+   "trackId": "npf-track-brk",
+   "date": "2027-04-22",
+   "startMinutes": 870,
+   "durationMinutes": 45,
+   "speaker": null,
+   "description": "",
+   "capacity": null,
+   "room": "Room B",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "npf-session-09",
+   "title": "Partner portal walkthrough",
+   "trackId": "npf-track-brk",
+   "date": "2027-04-22",
+   "startMinutes": 930,
+   "durationMinutes": 30,
+   "speaker": {
+    "name": "Wen Zhao",
+    "title": "Director of Alliances, Northwind"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room B",
+   "tags": [
+    "Product"
+   ]
+  }
+ ],
+ "exhibitors": [
+  {
+   "id": "npf-ex-01",
+   "name": "Ledgerline",
+   "tier": "platinum",
+   "status": "confirmed",
+   "tagline": "Partner billing and payouts",
+   "website": "https://ledgerline.example",
+   "boothId": "npf-booth-D3",
+   "contact": {
+    "name": "Clara Jensen",
+    "email": "clara.jensen@ledgerline.example",
+    "phone": "(580) 375-9402"
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-02",
+   "name": "Routewise",
+   "tier": "platinum",
+   "status": "confirmed",
+   "tagline": "Deal registration software",
+   "website": "https://routewise.example",
+   "boothId": "npf-booth-D4",
+   "contact": {
+    "name": "Felix Romero",
+    "email": "felix.romero@routewise.example",
+    "phone": "(974) 577-3120"
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-03",
+   "name": "Quotient CPQ",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Configure, price and quote",
+   "website": "https://quotientcpq.example",
+   "boothId": "npf-booth-C1",
+   "contact": {
+    "name": "Ana Petrova",
+    "email": "ana.petrova@quotientcpq.example",
+    "phone": "(444) 790-1518"
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-04",
+   "name": "Partnerpath",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Partner relationship management",
+   "website": "https://partnerpath.example",
+   "boothId": "npf-booth-C3",
+   "contact": {
+    "name": "James Whitaker",
+    "email": "james.whitaker@partnerpath.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-05",
+   "name": "Fieldkit",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Sales enablement content",
+   "website": "https://fieldkit.example",
+   "boothId": "npf-booth-C4",
+   "contact": {
+    "name": "Yara Haddad",
+    "email": "yara.haddad@fieldkit.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-06",
+   "name": "Cobalt Systems",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Integration services",
+   "website": "https://cobaltsystems.example",
+   "boothId": "npf-booth-C6",
+   "contact": {
+    "name": "Noah Becker",
+    "email": "noah.becker@cobaltsystems.example",
+    "phone": "(247) 636-2401"
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-07",
+   "name": "Brightline Labs",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Implementation partners",
+   "website": "https://brightlinelabs.example",
+   "boothId": "npf-booth-D1",
+   "contact": {
+    "name": "Lucia Moreno",
+    "email": "lucia.moreno@brightlinelabs.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-08",
+   "name": "Signal Insights",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Channel analytics",
+   "website": "https://signalinsights.example",
+   "boothId": "npf-booth-D6",
+   "contact": {
+    "name": "Ravi Kapoor",
+    "email": "ravi.kapoor@signalinsights.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-09",
+   "name": "Copperleaf Group",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Managed services",
+   "website": "https://copperleafgroup.example",
+   "boothId": "npf-booth-B2",
+   "contact": {
+    "name": "Ethan Park",
+    "email": "ethan.park@copperleafgroup.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "npf-ex-10",
+   "name": "Juniper Learning",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Partner certification",
+   "website": "https://juniperlearning.example",
+   "boothId": "npf-booth-B5",
+   "contact": {
+    "name": "Mei Tanaka",
+    "email": "mei.tanaka@juniperlearning.example",
+    "phone": "(445) 808-6700"
+   },
+   "notes": ""
+  }
+ ],
+ "booths": [
+  {
+   "id": "npf-booth-A1",
+   "label": "A1",
+   "row": "A",
+   "col": 1
+  },
+  {
+   "id": "npf-booth-A2",
+   "label": "A2",
+   "row": "A",
+   "col": 2
+  },
+  {
+   "id": "npf-booth-A3",
+   "label": "A3",
+   "row": "A",
+   "col": 3
+  },
+  {
+   "id": "npf-booth-A4",
+   "label": "A4",
+   "row": "A",
+   "col": 4
+  },
+  {
+   "id": "npf-booth-A5",
+   "label": "A5",
+   "row": "A",
+   "col": 5
+  },
+  {
+   "id": "npf-booth-A6",
+   "label": "A6",
+   "row": "A",
+   "col": 6
+  },
+  {
+   "id": "npf-booth-B1",
+   "label": "B1",
+   "row": "B",
+   "col": 1
+  },
+  {
+   "id": "npf-booth-B2",
+   "label": "B2",
+   "row": "B",
+   "col": 2
+  },
+  {
+   "id": "npf-booth-B3",
+   "label": "B3",
+   "row": "B",
+   "col": 3
+  },
+  {
+   "id": "npf-booth-B4",
+   "label": "B4",
+   "row": "B",
+   "col": 4
+  },
+  {
+   "id": "npf-booth-B5",
+   "label": "B5",
+   "row": "B",
+   "col": 5
+  },
+  {
+   "id": "npf-booth-B6",
+   "label": "B6",
+   "row": "B",
+   "col": 6
+  },
+  {
+   "id": "npf-booth-C1",
+   "label": "C1",
+   "row": "C",
+   "col": 1
+  },
+  {
+   "id": "npf-booth-C2",
+   "label": "C2",
+   "row": "C",
+   "col": 2
+  },
+  {
+   "id": "npf-booth-C3",
+   "label": "C3",
+   "row": "C",
+   "col": 3
+  },
+  {
+   "id": "npf-booth-C4",
+   "label": "C4",
+   "row": "C",
+   "col": 4
+  },
+  {
+   "id": "npf-booth-C5",
+   "label": "C5",
+   "row": "C",
+   "col": 5
+  },
+  {
+   "id": "npf-booth-C6",
+   "label": "C6",
+   "row": "C",
+   "col": 6
+  },
+  {
+   "id": "npf-booth-D1",
+   "label": "D1",
+   "row": "D",
+   "col": 1
+  },
+  {
+   "id": "npf-booth-D2",
+   "label": "D2",
+   "row": "D",
+   "col": 2
+  },
+  {
+   "id": "npf-booth-D3",
+   "label": "D3",
+   "row": "D",
+   "col": 3
+  },
+  {
+   "id": "npf-booth-D4",
+   "label": "D4",
+   "row": "D",
+   "col": 4
+  },
+  {
+   "id": "npf-booth-D5",
+   "label": "D5",
+   "row": "D",
+   "col": 5
+  },
+  {
+   "id": "npf-booth-D6",
+   "label": "D6",
+   "row": "D",
+   "col": 6
+  }
+ ],
+ "moduleCollapsed": false
+}

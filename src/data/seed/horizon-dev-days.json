@@ -1,0 +1,1621 @@
+{
+ "id": "evt-horizon-dev-days",
+ "slug": "horizon-dev-days",
+ "name": "Horizon Developer Days",
+ "startDate": "2027-02-03",
+ "endDate": "2027-02-04",
+ "location": "Austin, Texas",
+ "timezone": "America/Chicago",
+ "currency": "USD",
+ "description": "A two-day developer conference for the Horizon platform.",
+ "logo": {
+  "kind": "monogram",
+  "letters": "HD",
+  "swatch": "teal"
+ },
+ "agenda": {
+  "startMinutes": 480,
+  "endMinutes": 1080
+ },
+ "guide": {
+  "settings": {
+   "general": null,
+   "attributes": null,
+   "communications": null
+  },
+  "workflows": [
+   {
+    "id": "hdd-wf-attendee",
+    "name": "Attendee Registration",
+    "description": "General registration for developers.",
+    "attendeeTypeId": "hdd-type-attendee",
+    "status": "draft",
+    "steps": [
+     {
+      "id": "hdd-wf-attendee-step-1",
+      "kind": "details",
+      "name": "Details"
+     },
+     {
+      "id": "hdd-wf-attendee-step-2",
+      "kind": "package",
+      "name": "Package selection"
+     },
+     {
+      "id": "hdd-wf-attendee-step-3",
+      "kind": "confirmation",
+      "name": "Confirmation"
+     }
+    ],
+    "template": "Attendee",
+    "updatedAt": "2026-10-30T16:20:00.000Z"
+   }
+  ],
+  "experiences": {
+   "portal": null,
+   "calendar": null
+  }
+ },
+ "attendeeTypes": [
+  {
+   "id": "hdd-type-attendee",
+   "name": "Attendee",
+   "description": "Developers attending both days",
+   "swatch": "grape",
+   "isDefault": true
+  },
+  {
+   "id": "hdd-type-speaker",
+   "name": "Speaker",
+   "description": "Presenting talks or labs",
+   "swatch": "berry",
+   "isDefault": false
+  },
+  {
+   "id": "hdd-type-staff",
+   "name": "Staff",
+   "description": "Horizon event staff",
+   "swatch": "teal",
+   "isDefault": false
+  }
+ ],
+ "attendees": [
+  {
+   "id": "hdd-att-021",
+   "firstName": "Raymundo",
+   "lastName": "Willis",
+   "email": "raymundo.willis@willowcreative.example",
+   "phone": "(692) 828-6407",
+   "company": "Willow Creative",
+   "jobTitle": "Account Executive",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-06T23:29:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-021-act-1",
+     "at": "2026-11-07T08:22:58.874Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-021-act-2",
+     "at": "2026-11-06T23:34:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-021-act-3",
+     "at": "2026-11-06T23:29:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-032",
+   "firstName": "Lorenzo",
+   "lastName": "Bell",
+   "email": "lorenzo.bell@yellowstoneoutfitters.example",
+   "phone": null,
+   "company": "Yellowstone Outfitters",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-05T23:47:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-032-act-1",
+     "at": "2026-11-05T23:47:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-017",
+   "firstName": "Nathaniel",
+   "lastName": "Tucker",
+   "email": "nathaniel.tucker@beaconsecurity.example",
+   "phone": "(797) 855-4979",
+   "company": "Beacon Security",
+   "jobTitle": "Senior Event Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-04T20:38:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-017-act-1",
+     "at": "2026-11-07T06:19:43.431Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-017-act-2",
+     "at": "2026-11-04T20:38:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-036",
+   "firstName": "Laron",
+   "lastName": "Moreno",
+   "email": "laron.moreno@redwoodinsurance.example",
+   "phone": "(439) 357-6494",
+   "company": "Redwood Insurance",
+   "jobTitle": "Registration Lead",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-04T14:55:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-036-act-1",
+     "at": "2026-11-07T04:36:21.502Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-036-act-2",
+     "at": "2026-11-04T14:55:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-006",
+   "firstName": "Jarret",
+   "lastName": "Li",
+   "email": "jarret.li@oaklinepartners.example",
+   "phone": "(630) 502-5903",
+   "company": "Oakline Partners",
+   "jobTitle": "Field Marketing Manager",
+   "attendeeTypeId": "hdd-type-speaker",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": "hdd-code-spkr",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-04T08:04:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-006-act-1",
+     "at": "2026-11-04T08:11:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-006-act-2",
+     "at": "2026-11-04T08:05:00.000Z",
+     "text": "Reg code HD-SPEAKER-27 applied"
+    },
+    {
+     "id": "hdd-att-006-act-3",
+     "at": "2026-11-04T08:04:00.000Z",
+     "text": "Imported from the speaker list"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-029",
+   "firstName": "Mitchel",
+   "lastName": "Kim",
+   "email": "mitchel.kim@highlineventures.example",
+   "phone": "(359) 484-6005",
+   "company": "Highline Ventures",
+   "jobTitle": "Product Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-04T05:57:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-029-act-1",
+     "at": "2026-11-04T06:02:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-029-act-2",
+     "at": "2026-11-04T05:57:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-009",
+   "firstName": "Jordyn",
+   "lastName": "Cruz",
+   "email": "jordyn.cruz@harborhealth.example",
+   "phone": "(802) 274-2286",
+   "company": "Harbor Health",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-03T21:51:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-009-act-1",
+     "at": "2026-11-03T21:51:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-027",
+   "firstName": "Fatima",
+   "lastName": "Berry",
+   "email": "fatima.berry@lumenav.example",
+   "phone": null,
+   "company": "Lumen AV",
+   "jobTitle": "Sales Director",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T01:27:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-027-act-1",
+     "at": "2026-11-03T01:31:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-027-act-2",
+     "at": "2026-11-03T01:27:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-015",
+   "firstName": "Addison",
+   "lastName": "Dubois",
+   "email": "addison.dubois@summitpartners.example",
+   "phone": "(832) 714-4654",
+   "company": "Summit Partners",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-03T00:37:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-015-act-1",
+     "at": "2026-11-04T19:48:40.504Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-015-act-2",
+     "at": "2026-11-03T00:43:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-015-act-3",
+     "at": "2026-11-03T00:37:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-028",
+   "firstName": "Augustine",
+   "lastName": "Russell",
+   "email": "augustine.russell@ironbridgefinancial.example",
+   "phone": "(412) 204-4090",
+   "company": "Ironbridge Financial",
+   "jobTitle": "Marketing Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-02T00:10:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-028-act-1",
+     "at": "2026-11-03T23:01:59.217Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-028-act-2",
+     "at": "2026-11-02T00:10:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-020",
+   "firstName": "Ernest",
+   "lastName": "Peterson",
+   "email": "ernest.peterson@juniperlearning.example",
+   "phone": "(221) 903-9534",
+   "company": "Juniper Learning",
+   "jobTitle": "Partner Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-01T21:03:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-020-act-1",
+     "at": "2026-11-04T15:58:30.395Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-020-act-2",
+     "at": "2026-11-01T21:03:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-022",
+   "firstName": "Leone",
+   "lastName": "Ortiz",
+   "email": "leone.ortiz@copperleafgroup.example",
+   "phone": "(326) 460-7762",
+   "company": "Copperleaf Group",
+   "jobTitle": "Software Engineer",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-01T15:10:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-022-act-1",
+     "at": "2026-11-03T16:36:32.089Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-022-act-2",
+     "at": "2026-11-01T15:10:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-003",
+   "firstName": "Zackary",
+   "lastName": "Mills",
+   "email": "zackary.mills@fieldstonemanufacturing.example",
+   "phone": null,
+   "company": "Fieldstone Manufacturing",
+   "jobTitle": "Content Strategist",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-01T09:55:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-003-act-1",
+     "at": "2026-11-06T12:47:44.520Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-003-act-2",
+     "at": "2026-11-01T09:55:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-010",
+   "firstName": "Judd",
+   "lastName": "Chavez",
+   "email": "judd.chavez@northwindmedia.example",
+   "phone": "(935) 514-6421",
+   "company": "Northwind Media",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "hdd-type-speaker",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": "hdd-code-spkr",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-11-01T03:23:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-010-act-1",
+     "at": "2026-11-04T13:04:54.457Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-010-act-2",
+     "at": "2026-11-01T03:28:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-010-act-3",
+     "at": "2026-11-01T03:24:00.000Z",
+     "text": "Reg code HD-SPEAKER-27 applied"
+    },
+    {
+     "id": "hdd-att-010-act-4",
+     "at": "2026-11-01T03:23:00.000Z",
+     "text": "Imported from the speaker list"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-014",
+   "firstName": "Alyson",
+   "lastName": "Novak",
+   "email": "alyson.novak@lumenav.example",
+   "phone": "(647) 458-8047",
+   "company": "Lumen AV",
+   "jobTitle": "Marketing Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-11-01T01:40:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-014-act-1",
+     "at": "2026-11-05T23:45:08.233Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-014-act-2",
+     "at": "2026-11-01T01:40:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-026",
+   "firstName": "Margot",
+   "lastName": "Williams",
+   "email": "margot.williams@arcadiapublishing.example",
+   "phone": null,
+   "company": "Arcadia Publishing",
+   "jobTitle": "Experience Designer",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-31T23:32:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-026-act-1",
+     "at": "2026-10-31T23:32:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-033",
+   "firstName": "Marcel",
+   "lastName": "Hunt",
+   "email": "marcel.hunt@northwindmedia.example",
+   "phone": "(475) 906-3187",
+   "company": "Northwind Media",
+   "jobTitle": "Solutions Architect",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-31T11:03:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-033-act-1",
+     "at": "2026-11-06T02:29:18.777Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-033-act-2",
+     "at": "2026-10-31T11:03:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-007",
+   "firstName": "Boris",
+   "lastName": "Boyd",
+   "email": "boris.boyd@dovetailassociations.example",
+   "phone": null,
+   "company": "Dovetail Associations",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-31T05:56:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-007-act-1",
+     "at": "2026-11-03T12:01:06.222Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-007-act-2",
+     "at": "2026-10-31T05:56:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-018",
+   "firstName": "Peggie",
+   "lastName": "Johnson",
+   "email": "peggie.johnson@beaconsecurity.example",
+   "phone": "(245) 538-1922",
+   "company": "Beacon Security",
+   "jobTitle": "Head of Partnerships",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-31T03:59:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-018-act-1",
+     "at": "2026-11-03T04:46:11.550Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-018-act-2",
+     "at": "2026-10-31T04:05:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-018-act-3",
+     "at": "2026-10-31T03:59:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-001",
+   "firstName": "Shanon",
+   "lastName": "Campbell",
+   "email": "shanon.campbell@uplandagency.example",
+   "phone": null,
+   "company": "Upland Agency",
+   "jobTitle": "Software Engineer",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-31T02:18:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-001-act-1",
+     "at": "2026-10-31T02:18:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-030",
+   "firstName": "Leo",
+   "lastName": "Novak",
+   "email": "leo.novak@beaconsecurity.example",
+   "phone": "(443) 849-5166",
+   "company": "Beacon Security",
+   "jobTitle": "Sales Director",
+   "attendeeTypeId": "hdd-type-speaker",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": "hdd-code-spkr",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-30T19:26:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-030-act-1",
+     "at": "2026-11-06T17:10:06.055Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-030-act-2",
+     "at": "2026-10-30T19:31:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-030-act-3",
+     "at": "2026-10-30T19:27:00.000Z",
+     "text": "Reg code HD-SPEAKER-27 applied"
+    },
+    {
+     "id": "hdd-att-030-act-4",
+     "at": "2026-10-30T19:26:00.000Z",
+     "text": "Imported from the speaker list"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-011",
+   "firstName": "Benjamin",
+   "lastName": "Medina",
+   "email": "benjamin.medina@horizon.example",
+   "phone": "(300) 535-5319",
+   "company": "Horizon",
+   "jobTitle": "Event Manager",
+   "attendeeTypeId": "hdd-type-staff",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-30T09:37:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-011-act-1",
+     "at": "2026-10-30T09:37:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-031",
+   "firstName": "Jaclyn",
+   "lastName": "Washington",
+   "email": "jaclyn.washington@evergreennonprofitalliance.example",
+   "phone": null,
+   "company": "Evergreen Nonprofit Alliance",
+   "jobTitle": "Community Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-30T03:58:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-031-act-1",
+     "at": "2026-10-30T04:01:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-031-act-2",
+     "at": "2026-10-30T03:58:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-016",
+   "firstName": "Saul",
+   "lastName": "Lopez",
+   "email": "saul.lopez@brightlinelabs.example",
+   "phone": null,
+   "company": "Brightline Labs",
+   "jobTitle": "Training Coordinator",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-29T20:08:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-016-act-1",
+     "at": "2026-10-29T20:08:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-023",
+   "firstName": "Boyd",
+   "lastName": "Robinson",
+   "email": "boyd.robinson@elevatemarketing.example",
+   "phone": null,
+   "company": "Elevate Marketing",
+   "jobTitle": "Solutions Architect",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-29T16:19:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-023-act-1",
+     "at": "2026-11-03T22:32:15.114Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-023-act-2",
+     "at": "2026-10-29T16:25:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-023-act-3",
+     "at": "2026-10-29T16:19:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-002",
+   "firstName": "Ira",
+   "lastName": "Le",
+   "email": "ira.le@northwindmedia.example",
+   "phone": "(833) 314-6125",
+   "company": "Northwind Media",
+   "jobTitle": "Procurement Specialist",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-29T13:29:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-002-act-1",
+     "at": "2026-11-03T17:52:46.519Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-002-act-2",
+     "at": "2026-10-29T13:29:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-025",
+   "firstName": "Rodrigo",
+   "lastName": "Rodriguez",
+   "email": "rodrigo.rodriguez@brightlinelabs.example",
+   "phone": "(870) 447-9631",
+   "company": "Brightline Labs",
+   "jobTitle": "Communications Director",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-28T17:20:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-025-act-1",
+     "at": "2026-10-28T17:20:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-013",
+   "firstName": "Arvilla",
+   "lastName": "Rao",
+   "email": "arvilla.rao@uplandagency.example",
+   "phone": "(794) 221-0606",
+   "company": "Upland Agency",
+   "jobTitle": "Customer Success Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-28T08:47:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-013-act-1",
+     "at": "2026-10-28T08:52:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-013-act-2",
+     "at": "2026-10-28T08:47:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-034",
+   "firstName": "Alejandrin",
+   "lastName": "Weaver",
+   "email": "alejandrin.weaver@bluefinsoftware.example",
+   "phone": "(574) 334-8326",
+   "company": "Bluefin Software",
+   "jobTitle": "Exhibit Coordinator",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-27T19:10:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-034-act-1",
+     "at": "2026-11-03T04:20:53.281Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-034-act-2",
+     "at": "2026-10-27T19:10:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-004",
+   "firstName": "Jammie",
+   "lastName": "Salazar",
+   "email": "jammie.salazar@horizon.example",
+   "phone": "(388) 629-4754",
+   "company": "Horizon",
+   "jobTitle": "Brand Manager",
+   "attendeeTypeId": "hdd-type-staff",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-27T10:42:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-004-act-1",
+     "at": "2026-10-27T10:42:00.000Z",
+     "text": "Added by an admin"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-012",
+   "firstName": "Kaylin",
+   "lastName": "Warren",
+   "email": "kaylin.warren@atlasvenues.example",
+   "phone": "(734) 398-0892",
+   "company": "Atlas Venues",
+   "jobTitle": "Communications Director",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-26T12:30:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-012-act-1",
+     "at": "2026-11-03T00:55:55.532Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-012-act-2",
+     "at": "2026-10-26T12:34:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-012-act-3",
+     "at": "2026-10-26T12:30:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-019",
+   "firstName": "Ressie",
+   "lastName": "Palmer",
+   "email": "ressie.palmer@meridianconferences.example",
+   "phone": "(744) 255-7752",
+   "company": "Meridian Conferences",
+   "jobTitle": "Senior Event Manager",
+   "attendeeTypeId": "hdd-type-speaker",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": "hdd-code-spkr",
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-25T03:46:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-019-act-1",
+     "at": "2026-11-05T22:10:44.941Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-019-act-2",
+     "at": "2026-10-25T03:50:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-019-act-3",
+     "at": "2026-10-25T03:47:00.000Z",
+     "text": "Reg code HD-SPEAKER-27 applied"
+    },
+    {
+     "id": "hdd-att-019-act-4",
+     "at": "2026-10-25T03:46:00.000Z",
+     "text": "Imported from the speaker list"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-005",
+   "firstName": "Remington",
+   "lastName": "Rogers",
+   "email": "remington.rogers@bluefinsoftware.example",
+   "phone": "(215) 600-8178",
+   "company": "Bluefin Software",
+   "jobTitle": "Event Manager",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "registered",
+   "registeredAt": "2026-10-24T08:40:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-005-act-1",
+     "at": "2026-11-05T11:44:12.671Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-005-act-2",
+     "at": "2026-10-24T08:45:00.000Z",
+     "text": "Confirmation email sent"
+    },
+    {
+     "id": "hdd-att-005-act-3",
+     "at": "2026-10-24T08:40:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-024",
+   "firstName": "Shane",
+   "lastName": "Henry",
+   "email": "shane.henry@meridianconferences.example",
+   "phone": "(576) 271-4506",
+   "company": "Meridian Conferences",
+   "jobTitle": "Data Analyst",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": null,
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-22T20:42:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-024-act-1",
+     "at": "2026-10-22T20:42:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-008",
+   "firstName": "Jayne",
+   "lastName": "Russo",
+   "email": "jayne.russo@pinecresteducation.example",
+   "phone": null,
+   "company": "Pinecrest Education",
+   "jobTitle": "Registration Lead",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-20T15:37:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-008-act-1",
+     "at": "2026-11-04T20:41:44.849Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-008-act-2",
+     "at": "2026-10-20T15:37:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  },
+  {
+   "id": "hdd-att-035",
+   "firstName": "Friedrich",
+   "lastName": "Henry",
+   "email": "friedrich.henry@ironbridgefinancial.example",
+   "phone": "(201) 355-1791",
+   "company": "Ironbridge Financial",
+   "jobTitle": "VP of Marketing",
+   "attendeeTypeId": "hdd-type-attendee",
+   "packageId": "hdd-pkg-dev",
+   "regCodeId": null,
+   "exhibitorId": null,
+   "status": "pending",
+   "registeredAt": "2026-10-18T16:13:00.000Z",
+   "notes": "",
+   "activity": [
+    {
+     "id": "hdd-att-035-act-1",
+     "at": "2026-10-26T07:54:45.341Z",
+     "text": "Package changed to Developer Pass"
+    },
+    {
+     "id": "hdd-att-035-act-2",
+     "at": "2026-10-18T16:13:00.000Z",
+     "text": "Registered via Attendee Registration"
+    }
+   ]
+  }
+ ],
+ "packages": [
+  {
+   "id": "hdd-pkg-dev",
+   "name": "Developer Pass",
+   "priceMinor": 29900,
+   "capacity": 300,
+   "status": "active",
+   "description": "Both days of talks and labs, lunch included.",
+   "includes": [
+    "All sessions",
+    "Labs",
+    "Lunch both days"
+   ],
+   "attendeeTypeIds": []
+  },
+  {
+   "id": "hdd-pkg-workshop",
+   "name": "Workshop Add-on",
+   "priceMinor": 9900,
+   "capacity": 60,
+   "status": "draft",
+   "description": "A reserved seat in one hands-on lab.",
+   "includes": [
+    "Reserved lab seat"
+   ],
+   "attendeeTypeIds": [
+    "hdd-type-attendee"
+   ]
+  }
+ ],
+ "regCodes": [
+  {
+   "id": "hdd-code-test",
+   "code": "HD-TEST-0001",
+   "label": "QA test code",
+   "type": "comp",
+   "discountId": null,
+   "grantsTypeId": null,
+   "maxUses": 1,
+   "uses": 0,
+   "expiresOn": null,
+   "active": false,
+   "createdAt": "2026-10-22T16:00:00.000Z"
+  },
+  {
+   "id": "hdd-code-spkr",
+   "code": "HD-SPEAKER-27",
+   "label": "Speaker comp",
+   "type": "comp",
+   "discountId": null,
+   "grantsTypeId": null,
+   "maxUses": 20,
+   "uses": 4,
+   "expiresOn": "2027-02-02",
+   "active": true,
+   "createdAt": "2026-10-14T18:30:00.000Z"
+  }
+ ],
+ "discounts": [
+  {
+   "id": "hdd-disc-early",
+   "name": "Early access",
+   "kind": "percent",
+   "amount": 20,
+   "packageIds": [
+    "hdd-pkg-dev"
+   ],
+   "startsOn": "2027-01-01",
+   "endsOn": "2027-01-31",
+   "limit": 200,
+   "uses": 0,
+   "active": true
+  }
+ ],
+ "tracks": [
+  {
+   "id": "hdd-track-key",
+   "name": "Keynotes",
+   "swatch": "grape"
+  },
+  {
+   "id": "hdd-track-ses",
+   "name": "Sessions",
+   "swatch": "sky"
+  },
+  {
+   "id": "hdd-track-lab",
+   "name": "Labs",
+   "swatch": "lime"
+  }
+ ],
+ "sessions": [
+  {
+   "id": "hdd-session-01",
+   "title": "Welcome and platform keynote",
+   "trackId": "hdd-track-key",
+   "date": "2027-02-03",
+   "startMinutes": 540,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Renata Alves",
+    "title": "CTO, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Hall 1",
+   "tags": [
+    "Keynote"
+   ]
+  },
+  {
+   "id": "hdd-session-02",
+   "title": "What's new in the Horizon API",
+   "trackId": "hdd-track-ses",
+   "date": "2027-02-03",
+   "startMinutes": 615,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Kenji Watanabe",
+    "title": "API Lead, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room 201",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "hdd-session-03",
+   "title": "Building with webhooks",
+   "trackId": "hdd-track-ses",
+   "date": "2027-02-03",
+   "startMinutes": 675,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Maya Lindgren",
+    "title": "Developer Advocate, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room 201",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "hdd-session-04",
+   "title": "Lab: your first Horizon app",
+   "trackId": "hdd-track-lab",
+   "date": "2027-02-03",
+   "startMinutes": 780,
+   "durationMinutes": 90,
+   "speaker": {
+    "name": "Omar Haddad",
+    "title": "Solutions Engineer, Horizon"
+   },
+   "description": "",
+   "capacity": 30,
+   "room": "Lab A",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "hdd-session-05",
+   "title": "Performance at scale",
+   "trackId": "hdd-track-ses",
+   "date": "2027-02-03",
+   "startMinutes": 840,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Kenji Watanabe",
+    "title": "API Lead, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room 201",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "hdd-session-06",
+   "title": "Community panel",
+   "trackId": "hdd-track-key",
+   "date": "2027-02-03",
+   "startMinutes": 900,
+   "durationMinutes": 60,
+   "speaker": null,
+   "description": "",
+   "capacity": null,
+   "room": "Hall 1",
+   "tags": [
+    "Networking"
+   ]
+  },
+  {
+   "id": "hdd-session-07",
+   "title": "Day two opening",
+   "trackId": "hdd-track-key",
+   "date": "2027-02-04",
+   "startMinutes": 540,
+   "durationMinutes": 45,
+   "speaker": {
+    "name": "Renata Alves",
+    "title": "CTO, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Hall 1",
+   "tags": [
+    "Keynote"
+   ]
+  },
+  {
+   "id": "hdd-session-08",
+   "title": "Auth patterns for integrations",
+   "trackId": "hdd-track-ses",
+   "date": "2027-02-04",
+   "startMinutes": 600,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Maya Lindgren",
+    "title": "Developer Advocate, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Room 201",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "hdd-session-09",
+   "title": "Lab: migrating to v3",
+   "trackId": "hdd-track-lab",
+   "date": "2027-02-04",
+   "startMinutes": 600,
+   "durationMinutes": 120,
+   "speaker": {
+    "name": "Omar Haddad",
+    "title": "Solutions Engineer, Horizon"
+   },
+   "description": "",
+   "capacity": 30,
+   "room": "Lab A",
+   "tags": [
+    "Workshop"
+   ]
+  },
+  {
+   "id": "hdd-session-10",
+   "title": "Observability for integrations",
+   "trackId": "hdd-track-ses",
+   "date": "2027-02-04",
+   "startMinutes": 780,
+   "durationMinutes": 45,
+   "speaker": null,
+   "description": "",
+   "capacity": null,
+   "room": "Room 201",
+   "tags": [
+    "Product"
+   ]
+  },
+  {
+   "id": "hdd-session-11",
+   "title": "Closing and roadmap",
+   "trackId": "hdd-track-key",
+   "date": "2027-02-04",
+   "startMinutes": 960,
+   "durationMinutes": 60,
+   "speaker": {
+    "name": "Renata Alves",
+    "title": "CTO, Horizon"
+   },
+   "description": "",
+   "capacity": null,
+   "room": "Hall 1",
+   "tags": [
+    "Keynote"
+   ]
+  }
+ ],
+ "exhibitors": [
+  {
+   "id": "hdd-ex-01",
+   "name": "Cloudnest Hosting",
+   "tier": "platinum",
+   "status": "confirmed",
+   "tagline": "Managed hosting for Horizon apps",
+   "website": "https://cloudnesthosting.example",
+   "boothId": "hdd-booth-D3",
+   "contact": {
+    "name": "Lena Fischer",
+    "email": "lena.fischer@cloudnesthosting.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "hdd-ex-02",
+   "name": "Bitforge Tools",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Developer tooling and CI",
+   "website": "https://bitforgetools.example",
+   "boothId": "hdd-booth-C2",
+   "contact": {
+    "name": "Sam Okoro",
+    "email": "sam.okoro@bitforgetools.example",
+    "phone": null
+   },
+   "notes": ""
+  },
+  {
+   "id": "hdd-ex-03",
+   "name": "Querylane",
+   "tier": "gold",
+   "status": "confirmed",
+   "tagline": "Hosted databases",
+   "website": "https://querylane.example",
+   "boothId": "hdd-booth-C5",
+   "contact": {
+    "name": "Amira Saleh",
+    "email": "amira.saleh@querylane.example",
+    "phone": "(800) 884-6730"
+   },
+   "notes": ""
+  },
+  {
+   "id": "hdd-ex-04",
+   "name": "Stickerdrop",
+   "tier": "silver",
+   "status": "confirmed",
+   "tagline": "Developer swag",
+   "website": "https://stickerdrop.example",
+   "boothId": "hdd-booth-A1",
+   "contact": {
+    "name": "Jules Moreau",
+    "email": "jules.moreau@stickerdrop.example",
+    "phone": "(690) 289-3224"
+   },
+   "notes": ""
+  },
+  {
+   "id": "hdd-ex-05",
+   "name": "Pagerly",
+   "tier": "silver",
+   "status": "pending",
+   "tagline": "On-call alerting",
+   "website": "https://pagerly.example",
+   "boothId": null,
+   "contact": {
+    "name": "Victor Chen",
+    "email": "victor.chen@pagerly.example",
+    "phone": null
+   },
+   "notes": ""
+  }
+ ],
+ "booths": [
+  {
+   "id": "hdd-booth-A1",
+   "label": "A1",
+   "row": "A",
+   "col": 1
+  },
+  {
+   "id": "hdd-booth-A2",
+   "label": "A2",
+   "row": "A",
+   "col": 2
+  },
+  {
+   "id": "hdd-booth-A3",
+   "label": "A3",
+   "row": "A",
+   "col": 3
+  },
+  {
+   "id": "hdd-booth-A4",
+   "label": "A4",
+   "row": "A",
+   "col": 4
+  },
+  {
+   "id": "hdd-booth-A5",
+   "label": "A5",
+   "row": "A",
+   "col": 5
+  },
+  {
+   "id": "hdd-booth-A6",
+   "label": "A6",
+   "row": "A",
+   "col": 6
+  },
+  {
+   "id": "hdd-booth-B1",
+   "label": "B1",
+   "row": "B",
+   "col": 1
+  },
+  {
+   "id": "hdd-booth-B2",
+   "label": "B2",
+   "row": "B",
+   "col": 2
+  },
+  {
+   "id": "hdd-booth-B3",
+   "label": "B3",
+   "row": "B",
+   "col": 3
+  },
+  {
+   "id": "hdd-booth-B4",
+   "label": "B4",
+   "row": "B",
+   "col": 4
+  },
+  {
+   "id": "hdd-booth-B5",
+   "label": "B5",
+   "row": "B",
+   "col": 5
+  },
+  {
+   "id": "hdd-booth-B6",
+   "label": "B6",
+   "row": "B",
+   "col": 6
+  },
+  {
+   "id": "hdd-booth-C1",
+   "label": "C1",
+   "row": "C",
+   "col": 1
+  },
+  {
+   "id": "hdd-booth-C2",
+   "label": "C2",
+   "row": "C",
+   "col": 2
+  },
+  {
+   "id": "hdd-booth-C3",
+   "label": "C3",
+   "row": "C",
+   "col": 3
+  },
+  {
+   "id": "hdd-booth-C4",
+   "label": "C4",
+   "row": "C",
+   "col": 4
+  },
+  {
+   "id": "hdd-booth-C5",
+   "label": "C5",
+   "row": "C",
+   "col": 5
+  },
+  {
+   "id": "hdd-booth-C6",
+   "label": "C6",
+   "row": "C",
+   "col": 6
+  },
+  {
+   "id": "hdd-booth-D1",
+   "label": "D1",
+   "row": "D",
+   "col": 1
+  },
+  {
+   "id": "hdd-booth-D2",
+   "label": "D2",
+   "row": "D",
+   "col": 2
+  },
+  {
+   "id": "hdd-booth-D3",
+   "label": "D3",
+   "row": "D",
+   "col": 3
+  },
+  {
+   "id": "hdd-booth-D4",
+   "label": "D4",
+   "row": "D",
+   "col": 4
+  },
+  {
+   "id": "hdd-booth-D5",
+   "label": "D5",
+   "row": "D",
+   "col": 5
+  },
+  {
+   "id": "hdd-booth-D6",
+   "label": "D6",
+   "row": "D",
+   "col": 6
+  }
+ ],
+ "moduleCollapsed": false
+}

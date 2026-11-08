@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "seedNow": "2026-11-07T18:00:00.000Z",
+  "activeEventId": "evt-rainfocus-summit",
+  "events": [
+    {
+      "id": "evt-rainfocus-summit",
+      "slug": "rainfocus-summit"
+    },
+    {
+      "id": "evt-horizon-dev-days",
+      "slug": "horizon-dev-days"
+    },
+    {
+      "id": "evt-northwind-partner-forum",
+      "slug": "northwind-partner-forum"
+    }
+  ]
+}

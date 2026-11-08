@@ -1,0 +1,10 @@
+node_modules/
+build/
+dist/
+tests/report/
+tests/gates/__out__/
+test-results/
+.DS_Store
+*.log
+.vite/
+node_modules/.tmp/

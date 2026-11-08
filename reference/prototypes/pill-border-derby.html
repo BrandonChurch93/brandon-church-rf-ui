@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon's Mode · Pill Border Derby</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@property --h { syntax: '<number>'; inherits: false; initial-value: 0; }
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#141317;color:#ECE9E4;padding:36px 32px 60px}
+h1{font-weight:300;font-size:26px;margin:0 0 4px}
+.sub{color:#9A96A3;font-size:13px;margin:0 0 28px}
+.row{display:grid;grid-template-columns:260px 1fr 1fr;gap:14px;align-items:stretch;margin-bottom:14px}
+.desc h2{font-size:15px;margin:6px 0 6px}
+.desc p{font-size:12px;color:#9A96A3;line-height:1.5;margin:0}
+.stage{border-radius:14px;height:150px;display:grid;place-items:center;position:relative;overflow:hidden}
+.stage.light{background:#F6F3EE}
+.stage.dark{background:#1B1A1F}
+.stage::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(transparent 0 0) ;}
+.stage .card{position:absolute;left:18px;top:18px;width:170px;height:56px;border-radius:10px;background:var(--s);box-shadow:var(--sh);border:1px solid var(--l)}
+.stage .card i{position:absolute;left:14px;top:16px;width:70px;height:7px;border-radius:4px;background:var(--t);opacity:.5}
+.stage .card b{position:absolute;left:14px;top:32px;width:110px;height:6px;border-radius:4px;background:var(--t);opacity:.2}
+.light{--s:#fff;--sh:0 6px 16px rgba(40,30,20,.06);--l:#E6E1D8;--t:#26242B}
+.dark{--s:#242229;--sh:0 8px 20px rgba(0,0,0,.3);--l:#312F37;--t:#ECE9E4}
+
+/* base pill */
+.pill{position:absolute;right:22px;bottom:22px;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:999px;border:0;cursor:pointer;font:600 13px/1 Inter,sans-serif;color:#fff;letter-spacing:.01em;background:linear-gradient(135deg,#5C00DC,#8A3FFF);box-shadow:0 10px 30px rgba(92,0,220,.35);isolation:isolate}
+.pill svg{width:14px;height:14px;fill:#fff}
+.pill:hover{transform:translateY(-1px)}
+.pill{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+
+/* 1. Spectrum ring: full RGB conic, rotating, 2px */
+.p1{background:#2A0B5E}
+.p1::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--a),#ff3b6b,#ffb02e,#3dffa0,#2ec5ff,#8a3fff,#ff3b6b);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 3.2s linear infinite;z-index:-1}
+.p1::after{content:"";position:absolute;inset:-2px;border-radius:inherit;background:conic-gradient(from var(--a),#ff3b6b,#ffb02e,#3dffa0,#2ec5ff,#8a3fff,#ff3b6b);filter:blur(14px);opacity:.45;animation:spin 3.2s linear infinite;z-index:-2}
+@keyframes spin{to{--a:360deg}}
+
+/* 2. Aurora: brand-adjacent hues, soft, slow drift, thicker glow than line */
+.p2{background:linear-gradient(135deg,#4a00b8,#6d1be6)}
+.p2::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--a),#E71356,#FF8A3D,#A878FF,#5C00DC,#2EC5FF,#E71356);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 7s linear infinite;z-index:-1}
+.p2::after{content:"";position:absolute;inset:-6px;border-radius:inherit;background:conic-gradient(from var(--a),#E71356,#FF8A3D,#A878FF,#5C00DC,#2EC5FF,#E71356);filter:blur(22px);opacity:.55;animation:spin 7s linear infinite,breathe 3.5s ease-in-out infinite;z-index:-2}
+@keyframes breathe{50%{opacity:.25}}
+
+/* 3. Comet: a single bright arc orbits the edge; rest of border is a quiet dark line */
+.p3{background:linear-gradient(135deg,#5C00DC,#7a2cf5)}
+.p3::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--a),transparent 0 62%,#ff3b6b 74%,#ffd36b 80%,#fff 84%,transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 2.6s cubic-bezier(.4,0,.6,1) infinite;z-index:-1}
+.p3::after{content:"";position:absolute;inset:-3px;border-radius:inherit;background:conic-gradient(from var(--a),transparent 0 66%,rgba(255,80,120,.9) 78%,rgba(255,220,120,.9) 84%,transparent 90%);filter:blur(8px);opacity:.8;animation:spin 2.6s cubic-bezier(.4,0,.6,1) infinite;z-index:-2}
+
+/* 4. Dual chase: two grape/berry arcs chase each other; brand only, no spectrum */
+.p4{background:#1e0a3f}
+.p4::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--a),#5C00DC 0 20%,transparent 30% 50%,#E71356 50% 70%,transparent 80%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 3.4s linear infinite;z-index:-1}
+.p4::after{content:"";position:absolute;inset:-4px;border-radius:inherit;background:conic-gradient(from var(--a),#5C00DC 0 20%,transparent 30% 50%,#E71356 50% 70%,transparent 80%);filter:blur(12px);opacity:.6;animation:spin 3.4s linear infinite;z-index:-2}
+
+/* 5. Hue shift: whole pill + border cycle hue slowly (true "RGB" feel), border is a lighter rim of the same hue */
+.p5{background:linear-gradient(135deg,hsl(calc(var(--h)*1deg) 90% 45%),hsl(calc(var(--h)*1deg + 40deg) 90% 58%));animation:hue 8s linear infinite;box-shadow:0 10px 30px hsl(calc(var(--h)*1deg) 90% 50% / .45)}
+.p5::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--a),hsl(calc(var(--h)*1deg + 60deg) 100% 75%),hsl(calc(var(--h)*1deg - 30deg) 100% 65%),hsl(calc(var(--h)*1deg + 60deg) 100% 75%));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 4s linear infinite;z-index:-1}
+@keyframes hue{from{--h:270}to{--h:630}}
+</style>
+</head>
+<body>
+<h1>Pill border derby</h1>
+<p class="sub">Same pill, same label, five border treatments. Shown on Paper light and dark with a card nearby so you can judge how loud it is next to the app.</p>
+
+<div class="row">
+  <div class="desc"><h2>1 · Spectrum ring</h2><p>Full RGB conic gradient spinning at 3s with a soft matching glow behind. The classic "RGB" look. Loudest of the set; reads gamer-hardware if the speed is wrong.</p></div>
+  <div class="stage light"><div class="card"><i></i><b></b></div><button class="pill p1"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+  <div class="stage dark"><div class="card"><i></i><b></b></div><button class="pill p1"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+</div>
+
+<div class="row">
+  <div class="desc"><h2>2 · Aurora</h2><p>Brand-adjacent hues (berry, amber, lavender, grape, sky) on a thin 1.5px rim with a wide blurred halo that breathes. Slow 7s drift. Premium rather than gamer; the glow does the talking.</p></div>
+  <div class="stage light"><div class="card"><i></i><b></b></div><button class="pill p2"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+  <div class="stage dark"><div class="card"><i></i><b></b></div><button class="pill p2"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+</div>
+
+<div class="row">
+  <div class="desc"><h2>3 · Comet</h2><p>One bright berry-to-white arc orbits the edge with an eased speed (faster on the long sides, slower on the ends), leaving a quiet border the rest of the way. Attention without a rainbow.</p></div>
+  <div class="stage light"><div class="card"><i></i><b></b></div><button class="pill p3"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+  <div class="stage dark"><div class="card"><i></i><b></b></div><button class="pill p3"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+</div>
+
+<div class="row">
+  <div class="desc"><h2>4 · Dual chase</h2><p>Two arcs, grape and berry, chase each other around a near-black pill. Strictly the brand palette, so it ties to RainFocus while still clearly being "the special button."</p></div>
+  <div class="stage light"><div class="card"><i></i><b></b></div><button class="pill p4"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+  <div class="stage dark"><div class="card"><i></i><b></b></div><button class="pill p4"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+</div>
+
+<div class="row">
+  <div class="desc"><h2>5 · Hue shift</h2><p>The whole pill slowly cycles through the spectrum (8s per revolution) with a lighter rim of the same hue spinning on top and a shadow that follows the color. The most literally "RGB." Mesmerizing or distracting depending on taste.</p></div>
+  <div class="stage light"><div class="card"><i></i><b></b></div><button class="pill p5"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+  <div class="stage dark"><div class="card"><i></i><b></b></div><button class="pill p5"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg>Brandon's Mode</button></div>
+</div>
+</body>
+</html>

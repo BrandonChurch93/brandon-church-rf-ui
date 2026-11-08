@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon's Mode · Color Derby</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#141317;color:#ECE9E4;padding:40px 32px 80px}
+h1{font-weight:300;font-size:28px;margin:0 0 6px}
+.sub{color:#9A96A3;font-size:14px;margin:0 0 40px}
+.option{margin-bottom:56px}
+.option h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.option p{color:#9A96A3;font-size:13px;margin:0 0 16px;max-width:760px;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+.swatches{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.sw{display:flex;align-items:center;gap:6px;font-size:11px;color:#9A96A3}
+.sw i{width:16px;height:16px;border-radius:4px;display:inline-block;border:1px solid rgba(255,255,255,.12)}
+
+/* mock */
+.mock{--accent:#5C00DC;--berry:#E71356;border-radius:14px;overflow:hidden;display:flex;height:360px;background:var(--canvas);color:var(--text);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.side{width:170px;padding:16px 10px;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.side .ev{font-size:12px;font-weight:600;padding:6px 8px 10px}
+.side .search{height:26px;border-radius:7px;background:var(--field);margin:0 8px 10px;display:flex;align-items:center;padding:0 8px;font-size:10px;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:500;color:var(--muted)}
+.nav i{width:14px;height:14px;border-radius:4px;background:currentColor;opacity:.55}
+.nav.on{background:var(--accent-soft);color:var(--accent)}
+.nav.on i{opacity:1}
+.subn{padding:4px 10px 4px 32px;font-size:11px;color:var(--muted)}
+.main{flex:1;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.hdr{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#E8392C,#F0A020 55%,#2C3E55 56%)}
+.hdr h3{margin:0;font-size:17px;font-weight:300}
+.hdr small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.btn{margin-left:auto;background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:7px 12px;border-radius:7px;box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 35%,transparent)}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--berry);background:color-mix(in srgb,var(--berry) 12%,transparent);padding:3px 8px;border-radius:99px}
+.lbl{font-size:11px;color:var(--muted)}
+.lbl b{color:var(--text);font-weight:600}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);position:relative}
+.card.hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--line-hover)}
+.card .t{font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px}
+.card .t i{width:12px;height:12px;border-radius:3px;background:var(--accent)}
+.card .d{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}
+.card .acts{position:absolute;right:10px;top:10px;display:flex;gap:4px}
+.card .acts span{font-size:9px;font-weight:600;padding:3px 7px;border-radius:5px;background:var(--field);color:var(--text)}
+.card .acts span.p{background:var(--accent);color:#fff}
+.prog{height:4px;border-radius:2px;background:var(--field);overflow:hidden}
+.prog i{display:block;height:100%;width:42%;background:linear-gradient(90deg,var(--accent),var(--berry))}
+.pill{position:absolute;right:14px;bottom:14px;font-size:10px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--accent),#8A3FFF);padding:7px 12px;border-radius:99px;box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 45%,transparent)}
+.mock{position:relative}
+</style>
+</head>
+<body>
+<h1>Brandon's Mode · canvas derby</h1>
+<p class="sub">Grape #5C00DC and Berry #E71356 are held constant in all six. You're choosing the canvas, surface and text system.</p>
+
+<!-- A -->
+<div class="option">
+  <h2>A · Paper</h2>
+  <p>Warm off-white canvas, white raised surfaces, charcoal text. Calm and readable, the one that feels most like a tool you'd use all day. Dark mode is a warm charcoal rather than black, so the warmth carries across both themes.</p>
+  <div class="swatches">
+    <span class="sw"><i style="background:#F6F3EE"></i>canvas #F6F3EE</span><span class="sw"><i style="background:#FFFFFF"></i>surface #FFFFFF</span><span class="sw"><i style="background:#26242B"></i>text #26242B</span><span class="sw"><i style="background:#E6E1D8"></i>line #E6E1D8</span>
+    <span class="sw" style="margin-left:12px"><i style="background:#1B1A1F"></i>dark canvas #1B1A1F</span><span class="sw"><i style="background:#242229"></i>dark surface #242229</span><span class="sw"><i style="background:#ECE9E4"></i>dark text #ECE9E4</span>
+  </div>
+  <div class="pair">
+    <div class="mock" style="--canvas:#F6F3EE;--side:#FBF9F6;--surface:#FFFFFF;--text:#26242B;--muted:#7A7580;--line:#E6E1D8;--line-hover:#CFC8BC;--field:#EFEBE4;--accent-soft:rgba(92,0,220,.08);--shadow:0 1px 2px rgba(40,30,20,.06),0 6px 16px rgba(40,30,20,.05);--shadow-hover:0 2px 4px rgba(40,30,20,.08),0 14px 30px rgba(40,30,20,.10)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+    <div class="mock" style="--canvas:#1B1A1F;--side:#1F1E24;--surface:#242229;--text:#ECE9E4;--muted:#9A96A3;--line:#312F37;--line-hover:#4A4752;--field:#2C2A32;--accent-soft:rgba(154,102,255,.14);--accent:#9A66FF;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 20px rgba(0,0,0,.25);--shadow-hover:0 2px 4px rgba(0,0,0,.4),0 18px 40px rgba(0,0,0,.45)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip" style="--berry:#FF4D7D">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- B -->
+<div class="option">
+  <h2>B · Slate</h2>
+  <p>Cool neutral canvas with slate text. The grape reads most electric against cool grays, and this is the closest to the Linear / Vercel register. Dark mode is a deep blue-black with cool surfaces, the classic premium dark.</p>
+  <div class="swatches">
+    <span class="sw"><i style="background:#F3F4F8"></i>canvas #F3F4F8</span><span class="sw"><i style="background:#FFFFFF"></i>surface #FFFFFF</span><span class="sw"><i style="background:#1F2333"></i>text #1F2333</span><span class="sw"><i style="background:#E1E4EC"></i>line #E1E4EC</span>
+    <span class="sw" style="margin-left:12px"><i style="background:#0F1117"></i>dark canvas #0F1117</span><span class="sw"><i style="background:#171A23"></i>dark surface #171A23</span><span class="sw"><i style="background:#E6E8F0"></i>dark text #E6E8F0</span>
+  </div>
+  <div class="pair">
+    <div class="mock" style="--canvas:#F3F4F8;--side:#F8F9FC;--surface:#FFFFFF;--text:#1F2333;--muted:#6B7085;--line:#E1E4EC;--line-hover:#C6CBD9;--field:#EAECF2;--accent-soft:rgba(92,0,220,.08);--shadow:0 1px 2px rgba(20,25,50,.06),0 6px 16px rgba(20,25,50,.06);--shadow-hover:0 2px 4px rgba(20,25,50,.08),0 14px 30px rgba(20,25,50,.12)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+    <div class="mock" style="--canvas:#0F1117;--side:#12141B;--surface:#171A23;--text:#E6E8F0;--muted:#8A90A6;--line:#242836;--line-hover:#3A4054;--field:#1F2330;--accent-soft:rgba(154,102,255,.14);--accent:#9A66FF;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.35);--shadow-hover:0 2px 4px rgba(0,0,0,.5),0 18px 40px rgba(0,0,0,.55)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip" style="--berry:#FF4D7D">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- C -->
+<div class="option">
+  <h2>C · Lavender</h2>
+  <p>The canvas carries a faint grape tint so the whole app feels branded, with lavender lines instead of gray. Dark mode is a deep violet-black where glows and light sweeps look their best. The most "RainFocus" of the three and the most cinematic in dark; the risk is that purple-on-purple gets heavy if the Builder isn't disciplined about where accent goes.</p>
+  <div class="swatches">
+    <span class="sw"><i style="background:#F4F1FB"></i>canvas #F4F1FB</span><span class="sw"><i style="background:#FFFFFF"></i>surface #FFFFFF</span><span class="sw"><i style="background:#241E36"></i>text #241E36</span><span class="sw"><i style="background:#E2DBF2"></i>line #E2DBF2</span>
+    <span class="sw" style="margin-left:12px"><i style="background:#120C1F"></i>dark canvas #120C1F</span><span class="sw"><i style="background:#1B1430"></i>dark surface #1B1430</span><span class="sw"><i style="background:#EFEAFA"></i>dark text #EFEAFA</span>
+  </div>
+  <div class="pair">
+    <div class="mock" style="--canvas:#F4F1FB;--side:#F8F6FD;--surface:#FFFFFF;--text:#241E36;--muted:#7A6F93;--line:#E2DBF2;--line-hover:#C9BCE8;--field:#ECE7F7;--accent-soft:rgba(92,0,220,.09);--shadow:0 1px 2px rgba(60,20,120,.06),0 6px 16px rgba(60,20,120,.07);--shadow-hover:0 2px 4px rgba(60,20,120,.08),0 14px 30px rgba(60,20,120,.14)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+    <div class="mock" style="--canvas:#120C1F;--side:#160F26;--surface:#1B1430;--text:#EFEAFA;--muted:#9A8EB8;--line:#2B2245;--line-hover:#43366A;--field:#241B3D;--accent-soft:rgba(168,120,255,.16);--accent:#A878FF;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(60,0,140,.25);--shadow-hover:0 2px 4px rgba(0,0,0,.5),0 18px 44px rgba(92,0,220,.35)">
+      <div class="side"><div class="ev">RainFocus Summit</div><div class="search">Search · ⌘K</div><div class="nav"><i></i>Guide</div><div class="nav on"><i></i>Attendees</div><div class="subn">Attendee types</div><div class="subn">Packages</div><div class="nav"><i></i>Content</div><div class="nav"><i></i>Exhibitors</div></div>
+      <div class="main"><div class="hdr"><div class="logo"></div><div><h3>RainFocus Summit</h3><small>December 15th · Lehi, Utah</small></div><span class="chip" style="--berry:#FF4D7D">38 days out</span><span class="btn">Edit event</span></div>
+      <div class="prog"><i></i></div><div class="lbl"><b>Step 2:</b> Build registration workflows · 3 of 7 configured</div>
+      <div class="cards"><div class="card hover"><div class="acts"><span>Edit</span><span class="p">Use template</span></div><div class="t"><i></i>Attendee Registration</div><div class="d">Start by creating a general registration workflow</div></div><div class="card"><div class="t"><i></i>Staff Registration</div><div class="d">Create a registration workflow for staff attending your event</div></div></div>
+      <span class="pill">View original</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+// Faithful mode tokens: the exact values from the Figma file "RainFocus UI Challenge- Updated".
+// Live edit tip: every color, size, radius and width on the original page is named here
+// and used by name in src/faithful/faithful.module.scss.
+
+// ---------- Brand ----------
+$rf-grape: #5c00dc; // Brand/Secondary Grape: primary button, active nav, card icons
+$rf-berry: #e71356; // Brand/Primary Berry: Person Portal icon, rf mark
+$rf-grape-3: #ab99ff; // Complimentary/Grape 3: Person Portal icon
+
+// ---------- Text ----------
+$rf-text-header: #222222; // Text/G1 Header: titles
+$rf-text-body: #393551; // body and description text
+$rf-text-g3: #444444; // Text/G3: step labels, avatar, plus icon
+$rf-text-muted: #777777; // inactive nav, search placeholder
+$rf-black: #000000; // sidebar header text
+
+// ---------- Surfaces and lines ----------
+$rf-white: #ffffff; // canvas, cards
+$rf-border: #cbc6de; // every 1 px border on the page
+$rf-search-bg: #f5f5f5; // search field
+$rf-active-tint: rgba(92, 0, 220, 0.08); // active nav background (Grape at 8%)
+$rf-scrim: rgba(34, 34, 34, 0.4); // mobile drawer scrim ($rf-text-header at 40%)
+
+// ---------- Type ----------
+$rf-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+// ---------- Shape ----------
+$rf-radius-sm: 4px; // cards, search, button, badge
+$rf-radius-md: 8px; // nav items, rail items, event logo
+
+// ---------- Layout ----------
+$rf-rail-width: 63px;
+$rf-sidebar-width: 215px;
+$rf-topbar-height: 56px;
+
+// ---------- Breakpoints (shared with Brandon's Mode) ----------
+$rf-bp-lg: 1199px;
+$rf-bp-md: 899px;
+$rf-bp-sm: 599px;

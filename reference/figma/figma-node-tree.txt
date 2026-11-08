@@ -1,0 +1,89 @@
+FRAME "⭐️ RainFocus UI Challenge- Updated" @(882,-513) 1447x1024 fill=#FFFFFF layout=HORIZONTAL gap=0 pad=[0 0 0 0] align=/ sizing=/
+  FRAME "Nav Level 2" @(0,0) 278x1024 fill=#FFFFFF layout=HORIZONTAL gap=0 pad=[0 0 0 0] align=/ sizing=/
+    FRAME "Left" @(0,0) 63x1024 fill=#FFFFFF stroke=#CBC6DE w1.0 layout=VERTICAL gap=10.0 pad=[12.0 7.5 12.0 7.5] align=SPACE_EVENLY/ sizing=FIXED/ self=STRETCH
+      FRAME "Top" @(8,12) 48x108 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+        INSTANCE "Nav Logo" @(0,0) 48x64 r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[8.0 12.0 24.0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:32 overrides=1
+        INSTANCE "Nav Org" @(0,64) 48x44 fill=#FFFFFF r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[4.0 8.0 8.0 8.0] align=/CENTER sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:133 overrides=2
+      FRAME "Bottom" @(8,972) 48x40 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+        INSTANCE "Nav User" @(0,0) 48x40 fill=#FFFFFF r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[4.0 8.0 4.0 8.0] align=/CENTER sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:150 overrides=3
+    FRAME "Right" @(63,0) 215x1024 stroke=#CBC6DE w1.0 layout=VERTICAL gap=0 pad=[12.0 8.0 12.0 8.0] align=/ sizing=FIXED/ self=STRETCH
+      FRAME "Header" @(8,12) 199x39 layout=HORIZONTAL gap=0 pad=[8.0 8.0 12.0 8.0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+        TEXT "RainFocus Summit" @(8,8) 125x19 fill=#000000 text="RainFocus Summit" Inter/Semi Bold 14.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+      FRAME "Details" @(8,51) 199x31 layout=HORIZONTAL gap=0 pad=[0 8.0 12.0 8.0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+        TEXT "Location" @(8,0) 40x19 fill=#000000 text="Lehi, UT" Inter/Medium 10.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+        TEXT "Text" @(48,0) 15x19 fill=#000000 text="" Inter/Medium 10.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+        TEXT "December 15th" @(63,0) 73x19 fill=#000000 text="December 15th" Inter/Medium 10.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+      FRAME "Search" @(8,82) 199x36 layout=VERTICAL gap=10.0 pad=[0 8.0 12.0 8.0] align=/ sizing=/ self=STRETCH
+        INSTANCE "Event search" @(8,0) 183x24 fill=#F5F5F5 r4.0 r[4.0 4.0 4.0 4.0] layout=HORIZONTAL gap=4.0 pad=[4.0 4.0 4.0 4.0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:155 overrides=1
+      FRAME "Mega Nav instance wrapper" @(8,118) 200x326 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+        FRAME "Mega Nav/Default" @(0,0) 200x326 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/
+          FRAME "Guide" @(0,0) 200x40 layout=VERTICAL gap=10.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Nav Item Expanded" @(0,0) 200x40 fill=#FFFFFF r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[8.0 12.0 8.0 12.0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              INSTANCE "Icon" @(12,8) 24x24 fill=#777777 r15.0 r[15.0 15.0 15.0 15.0] inst_of=1:135 overrides=1
+              TEXT "Label" @(48,10) 40x19 fill=#777777 text="Guide" Inter/Semi Bold 14.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+          FRAME "Attendees" @(0,40) 200x206 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Nav Item Expanded" @(0,0) 200x40 fill=#5C00DC op0.08 r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[8.0 12.0 8.0 12.0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              INSTANCE "Icon" @(12,8) 24x24 fill=#5C00DC r15.0 r[15.0 15.0 15.0 15.0] inst_of=1:135 overrides=1
+              TEXT "Label" @(48,10) 71x19 fill=#5C00DC text="Attendees" Inter/Semi Bold 14.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+            FRAME "Nav Item Collapsed/Nav Level 4" @(0,40) 200x166 layout=VERTICAL gap=0 pad=[4.0 48.0 12.0 12.0] align=/ sizing=/ self=STRETCH
+              INSTANCE "Nav Item Level 3" @(48,4) 140x30 layout=HORIZONTAL gap=0 pad=[8.0 0 8.0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:197 overrides=2
+              INSTANCE "Nav Item Level 4" @(48,34) 140x30 layout=HORIZONTAL gap=0 pad=[8.0 0 8.0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:197 overrides=2
+              INSTANCE "Nav Item Level 5" @(48,64) 140x30 layout=HORIZONTAL gap=0 pad=[8.0 0 8.0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:197 overrides=2
+              INSTANCE "Nav Item Level 6" @(48,94) 140x30 layout=HORIZONTAL gap=0 pad=[8.0 0 8.0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:197 overrides=2
+              INSTANCE "Nav Item Level 7" @(48,124) 140x30 layout=HORIZONTAL gap=0 pad=[8.0 0 8.0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH inst_of=1:197 overrides=2
+          FRAME "Content" @(0,246) 200x40 layout=VERTICAL gap=10.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Nav Item Expanded" @(0,0) 200x40 fill=#FFFFFF r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[8.0 12.0 8.0 12.0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              INSTANCE "Icon" @(12,8) 24x24 fill=#777777 r15.0 r[15.0 15.0 15.0 15.0] inst_of=1:135 overrides=1
+              TEXT "Label" @(48,10) 55x19 fill=#777777 text="Content" Inter/Semi Bold 14.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+          FRAME "Exhibitors" @(0,286) 200x40 layout=VERTICAL gap=10.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Nav Item Expanded" @(0,0) 200x40 fill=#FFFFFF r8.0 r[8.0 8.0 8.0 8.0] layout=HORIZONTAL gap=12.0 pad=[8.0 12.0 8.0 12.0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              INSTANCE "Icon" @(12,8) 24x24 fill=#777777 r15.0 r[15.0 15.0 15.0 15.0] inst_of=1:135 overrides=1
+              TEXT "Label" @(48,10) 69x19 fill=#777777 text="Exhibitors" Inter/Semi Bold 14.0px lh=18.200000762939453PIXELS ls=0.0PERCENT align= auto=WIDTH_AND_HEIGHT
+  FRAME "Body" @(278,0) 1169x1024 layout=VERTICAL gap=40.0 pad=[40.0 48.0 40.0 48.0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+    FRAME "Header" @(48,40) 1073x95 layout=HORIZONTAL gap=16.0 pad=[0 0 0 0] align=/ sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+      ROUNDED_RECTANGLE "Logo" @(0,0) 95x95 fill=IMG:{'hash': {'__bytes': 20}, 'name': 'image'} r8.0 r[8.0 8.0 8.0 8.0] VECTOR
+      FRAME "Title and Date" @(111,0) 845x95 layout=VERTICAL gap=8.0 pad=[0 0 0 0] align=/ sizing=/ grow=1.0
+        TEXT "Title" @(0,0) 845x39 fill=#222222 self=STRETCH text="RainFocus Summit" Inter/Light 32.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT
+        FRAME "Date and Location" @(0,47) 845x48 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+          TEXT "Date" @(0,0) 845x24 fill=#393551 self=STRETCH text="December 15th" Inter/Regular 16.0px lh=24.0PIXELS ls=0.0PIXELS align= auto=HEIGHT
+          TEXT "Location" @(0,24) 845x24 fill=#393551 self=STRETCH text="Lehi, Utah" Inter/Regular 16.0px lh=24.0PIXELS ls=0.0PIXELS align= auto=HEIGHT
+      INSTANCE "Buttons/Admin" @(972,0) 101x33 fill=#5C00DC r4.0 r[4.0 4.0 4.0 4.0] layout=HORIZONTAL gap=10.0 pad=[8.0 16.0 8.0 16.0] align=CENTER/CENTER sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:4872 overrides=2
+    FRAME "Section 1" @(48,175) 1073x69 layout=VERTICAL gap=16.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+      TEXT "Title" @(0,0) 1073x29 fill=#222222 self=STRETCH text="Event setup guide" Inter/Semi Bold 24.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT
+      TEXT "Description" @(0,45) 1073x24 fill=#393551 self=STRETCH text="See the available list of modules below. We suggest that you start with the atte" Inter/Regular 16.0px lh=24.0PIXELS ls=0.0PIXELS align= auto=HEIGHT
+    FRAME "Accordion/Attendee" @(48,284) 1073x702 layout=VERTICAL gap=24.0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+      FRAME "Section Accordion" @(0,0) 1073x702 layout=VERTICAL gap=24.0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+        FRAME "Group Sections" @(0,0) 1073x702 stroke=#CBC6DE w1.0 layout=VERTICAL gap=24.0 pad=[24.0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+          FRAME "Header" @(0,24) 1073x35 layout=HORIZONTAL gap=24.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+            INSTANCE "Person Portal" @(0,0) 35x35 inst_of=1:226 overrides=1
+            FRAME "Title" @(59,6) 1014x24 layout=HORIZONTAL gap=10.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE grow=1.0
+              TEXT "Attendee" @(0,0) 1014x24 fill=#222222 grow=1.0 text="Attendee" Inter/Semi Bold 20.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT
+          FRAME "Step 1" @(0,83) 1073x145 layout=VERTICAL gap=8.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Header" @(0,0) 1073x17 layout=HORIZONTAL gap=16.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              TEXT "Step 1: Base settings." @(0,0) 1073x17 fill=#444444 grow=1.0 text="Step 1: Base settings." Inter/Regular 14.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT OVERRIDES
+            FRAME "Row" @(0,25) 1073x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=HORIZONTAL gap=32.0 pad=[16.0 24.0 16.0 24.0] align=/ sizing=FIXED/
+              INSTANCE "Item 1" @(24,16) 221x51 fill=#FFFFFF r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[8.0 8.0 8.0 8.0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:241 overrides=4
+              INSTANCE "Item 2" @(277,16) 221x81 fill=#FFFFFF r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[8.0 8.0 8.0 8.0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:241 overrides=4
+              INSTANCE "Item 3" @(530,16) 221x83 fill=#FFFFFF r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[8.0 8.0 8.0 8.0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:241 overrides=4
+              INSTANCE "Item 4" @(783,16) 221x54 HIDDEN fill=#FFFFFF r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[8.0 8.0 8.0 8.0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE inst_of=1:241 overrides=3
+          FRAME "Step 2" @(0,252) 1073x281 layout=VERTICAL gap=8.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Header" @(0,0) 1073x17 layout=HORIZONTAL gap=16.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              FRAME "Text" @(0,0) 1073x17 layout=HORIZONTAL gap=10.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE grow=1.0
+                TEXT "Step 2: Build registration workflows." @(0,0) 1073x17 fill=#444444 grow=1.0 text="Step 2: Build registration workflows." Inter/Regular 14.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT OVERRIDES
+              INSTANCE "Show All" @(544,0) 528x16 HIDDEN layout=HORIZONTAL gap=10.0 pad=[0 0 0 0] align=MAX/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE grow=1.0 inst_of=1:261 overrides=1
+            FRAME "Rows" @(0,25) 1073x256 layout=VERTICAL gap=16.0 pad=[0 0 0 0] align=/ sizing=/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE
+              FRAME "Row 1" @(0,0) 1073x120 layout=HORIZONTAL gap=24.0 pad=[0 0 0 0] align=/ sizing=FIXED/
+                INSTANCE "WPC Card" @(0,0) 342x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=4
+                INSTANCE "WPC Card" @(366,0) 342x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=4
+                INSTANCE "WPC Card" @(731,0) 342x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=4
+              FRAME "Row 2" @(0,136) 1073x120 layout=HORIZONTAL gap=24.0 pad=[0 0 0 0] align=/ sizing=FIXED/
+                INSTANCE "WPC Card" @(0,0) 342x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=CENTER/CENTER sizing=FIXED/ self=STRETCH inst_of=1:413 overrides=4
+                INSTANCE "Cards/Attendee" @(366,0) 342x122 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/ grow=1.0 inst_of=1:497 overrides=2
+                INSTANCE "Cards/Attendee" @(731,0) 342x122 layout=VERTICAL gap=0 pad=[0 0 0 0] align=/ sizing=/ grow=1.0 inst_of=1:497 overrides=2
+          FRAME "Step 3" @(0,557) 1073x145 layout=VERTICAL gap=8.0 pad=[0 0 0 0] align=/ sizing=/ self=STRETCH
+            FRAME "Header" @(0,0) 1073x17 layout=HORIZONTAL gap=16.0 pad=[0 0 0 0] align=/CENTER sizing=FIXED/RESIZE_TO_FIT_WITH_IMPLICIT_SIZE self=STRETCH
+              TEXT "Step 3: Design post-registration experiences." @(0,0) 1073x17 fill=#444444 grow=1.0 text="Step 3: Design post-registration experiences." Inter/Regular 14.0px lh=100.0PERCENT ls=0.0PERCENT align= auto=HEIGHT OVERRIDES
+            FRAME "Row 1" @(0,25) 1073x120 layout=HORIZONTAL gap=24.0 pad=[0 0 0 0] align=/ sizing=FIXED/ self=STRETCH
+              INSTANCE "WPC Card" @(0,0) 342x120 fill=#FFFFFF stroke=#CBC6DE w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=5
+              INSTANCE "WPC Card" @(366,0) 331x122 HIDDEN fill=#FFFFFF stroke=#CCCCCC w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=4
+              INSTANCE "WPC Card" @(366,0) 331x122 HIDDEN fill=#FFFFFF stroke=#CCCCCC w1.0 r4.0 r[4.0 4.0 4.0 4.0] layout=VERTICAL gap=4.0 pad=[24.0 32.0 24.0 32.0] align=/ sizing=FIXED/ self=STRETCH inst_of=1:380 overrides=4

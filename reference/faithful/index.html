@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RainFocus Summit · Claude</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+  <header class="topbar">
+    <img src="icons/rf-logo.svg" alt="RainFocus" width="28" height="28">
+    <img class="topbar__badge" src="assets/event-logo-178.png" alt="" width="28" height="28">
+    <span class="topbar__title">RainFocus Summit</span>
+    <label for="nav-toggle" class="topbar__menu" aria-label="Open navigation">
+      <span></span><span></span><span></span>
+    </label>
+  </header>
+  <label for="nav-toggle" class="scrim" aria-hidden="true"></label>
+  <div class="drawer">
+
+  <aside class="rail">
+    <div class="rail__top">
+      <a class="rail__logo" href="#" aria-label="RainFocus">
+        <img src="icons/rf-logo.svg" alt="" width="32" height="32">
+      </a>
+      <a class="rail__org" href="#" aria-label="Company">
+        <img src="assets/event-logo-178.png" alt="" width="32" height="32">
+      </a>
+    </div>
+    <div class="rail__bottom">
+      <a class="rail__user" href="#" aria-label="First Name Last Name">
+        <span class="avatar">FL</span>
+      </a>
+    </div>
+  </aside>
+
+  <nav class="sidebar" aria-label="Event navigation">
+    <div class="sidebar__header">
+      <h2 class="sidebar__title">RainFocus Summit</h2>
+    </div>
+    <div class="sidebar__details">
+      <span>Lehi, UT</span><span class="sidebar__dot">•</span><span>December 15th</span>
+    </div>
+    <div class="sidebar__search">
+      <button class="search" type="button">
+        <img src="icons/search.svg" alt="" width="16" height="16">
+        <span>Search</span>
+      </button>
+    </div>
+
+    <ul class="meganav">
+      <li class="meganav__group">
+        <a class="meganav__item" href="#"><span class="meganav__icon"></span><span class="meganav__label">Guide</span></a>
+      </li>
+      <li class="meganav__group">
+        <a class="meganav__item is-active" href="#" aria-current="page"><span class="meganav__icon"></span><span class="meganav__label">Attendees</span></a>
+        <ul class="subnav">
+          <li><a class="subnav__item" href="#">Attendees</a></li>
+          <li><a class="subnav__item" href="#">Attendee types</a></li>
+          <li><a class="subnav__item" href="#">Packages</a></li>
+          <li><a class="subnav__item" href="#">Reg codes</a></li>
+          <li><a class="subnav__item" href="#">Discounts</a></li>
+        </ul>
+      </li>
+      <li class="meganav__group">
+        <a class="meganav__item" href="#"><span class="meganav__icon"></span><span class="meganav__label">Content</span></a>
+      </li>
+      <li class="meganav__group">
+        <a class="meganav__item" href="#"><span class="meganav__icon"></span><span class="meganav__label">Exhibitors</span></a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+
+  <main class="body">
+    <header class="event">
+      <img class="event__logo" src="assets/event-logo.png" alt="RainFocus Summit logo" width="95" height="95">
+      <div class="event__meta">
+        <h1 class="event__title">RainFocus Summit</h1>
+        <div class="event__details">
+          <p>December 15th</p>
+          <p>Lehi, Utah</p>
+        </div>
+      </div>
+      <button class="btn btn--primary" type="button">Edit event</button>
+    </header>
+
+    <section class="intro">
+      <h2 class="intro__title">Event setup guide</h2>
+      <p class="intro__desc">See the available list of modules below. We suggest that you start with the attendee module.</p>
+    </section>
+
+    <section class="module">
+      <header class="module__header">
+        <img src="icons/person-portal.svg" alt="" width="35" height="35">
+        <h3 class="module__title">Attendee</h3>
+      </header>
+
+      <div class="step">
+        <p class="step__label"><strong>Step 1:</strong> Base settings.</p>
+        <div class="settings">
+          <a class="setting" href="#">
+            <span class="setting__title">General</span>
+            <span class="setting__desc">Define Attendee types &amp; attributes</span>
+          </a>
+          <a class="setting" href="#">
+            <span class="setting__title">Title</span>
+            <span class="setting__desc">Description that explains the value goes here. Description that explains the value goes here. </span>
+          </a>
+          <a class="setting" href="#">
+            <span class="setting__title">Title</span>
+            <span class="setting__desc">Description that explains the value goes here. Description that explains the value goes here. </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="step">
+        <p class="step__label"><strong>Step 2:</strong> Build registration workflows.</p>
+        <div class="cards">
+          <a class="card" href="#">
+            <span class="card__header"><img src="icons/logic-arrow-primary.svg" alt="" width="24" height="24"><span class="card__title">Attendee Registration</span></span>
+            <span class="card__desc">Start by creating a general registration workflow</span>
+          </a>
+          <a class="card" href="#">
+            <span class="card__header"><img src="icons/logic-arrow-primary.svg" alt="" width="24" height="24"><span class="card__title">Attendee Registration</span></span>
+            <span class="card__desc">Start by creating a general registration workflow</span>
+          </a>
+          <a class="card" href="#">
+            <span class="card__header"><img src="icons/logic-arrow-primary.svg" alt="" width="24" height="24"><span class="card__title">Attendee Registration</span></span>
+            <span class="card__desc">Start by creating a general registration workflow</span>
+          </a>
+          <a class="card card--add" href="#">
+            <img src="icons/add-circle-outline.svg" alt="" width="24" height="24">
+            <span class="card__desc">Add Registration Workflow</span>
+          </a>
+          <span class="card card--filler" aria-hidden="true"></span>
+          <span class="card card--filler" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="step">
+        <p class="step__label"><strong>Step 3:</strong> Design post-registration experiences.</p>
+        <div class="cards">
+          <a class="card" href="#">
+            <span class="card__header"><img src="icons/computer-primary.svg" alt="" width="24" height="24"><span class="card__title">Attendee Portal</span></span>
+            <span class="card__desc">Manage the portal that attendees will see after they’ve register for your event.</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
