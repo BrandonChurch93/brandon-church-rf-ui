@@ -157,3 +157,20 @@ test.describe('a11y gate · P7 editors', () => {
     });
   }
 });
+
+test.describe('a11y gate · content', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`grid, list, session sheet, tracks · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, hash: 'content', reducedMotion: true });
+      const main = page.locator('#paper-main');
+      await main.locator('[data-block]').first().click();
+      await audit(page, `session-sheet-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: 'Manage tracks' }).click();
+      await audit(page, `manage-tracks-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.getByRole('radio', { name: 'List' }).click();
+      await audit(page, `content-list-${theme}`);
+    });
+  }
+});

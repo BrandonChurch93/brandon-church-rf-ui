@@ -13,7 +13,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P5 Guide view
 [x] P6 Attendees view
 [x] P7 Attendee types, Packages, Reg codes, Discounts
-[ ] P8 Content view
+[x] P8 Content view
 [ ] P9 Exhibitors view
 [ ] P10 Mobile pass
 [ ] P11 Polish pass
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P8 · Content view.
+P9 · Exhibitors view.
 
 ## Session log
 
@@ -77,6 +77,11 @@ Done: Attendee types (sortable, inline editor with swatch radio group, default w
 Gates: verify green. Specs: attendee-types 8, packages 6, reg-codes 7, discounts 6, all stable (x2). a11y clean on all four editors and the bulk modal, both themes.
 Next: P8 Content.
 
+### 2026-11-08 06:30 · P8 Content view
+Done: agenda grid (sticky track headers and hour gutter, 15-minute geometry, blocks with title, time and speaker by height, hover lift, now line, empty-column note and "Add session here" on free slots), pointer and touch drag with ghost and target highlight, overlap and agenda-end refusal with the named toast, keyboard move mode with announcements, undoable moves, list view grouped by hour, day tabs (Horizon has two days), track filter chips with the all-hidden banner, mobile list-only with a Tracks sheet, session sheet (inline title, track, date, start, duration, speaker with avatar preview, description, capacity, room, tags, overlap validation naming the session, remove with undo), Manage tracks modal (sortable, swatch picker, rename, add, guarded remove). Portal and calendar previews read live sessions.
+Gates: verify green; content.spec 11 stable (x2); a11y clean on grid, list, session sheet, tracks. Gate scripts now clear their report files first.
+Next: P9 Exhibitors.
+
 ## Notes for future sessions
 
 Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
@@ -85,6 +90,7 @@ Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
 - lucide-react 1.x names: Ellipsis, EllipsisVertical, TriangleAlert, CircleCheck, SquarePen exist (old aliases may not).
 - Test project emulates a Windows UA (Desktop Chrome device): shortcuts accept Cmd or Ctrl (D-12); use ControlOrMeta in tests.
 - Overlays: useOverlay in src/paper/ui/overlay; layers register in src/app/layerStack.ts. Focus return is deferred to a microtask (D-14).
+- dnd-kit's KeyboardSensor double-counts when its container scrolls; the agenda uses its own keyboard mode (D-20). Sortable lists still use dnd-kit keyboard (they do not scroll inside a container).
 - Contact sheets of captures: render an HTML grid via file:// (PIL is not installed).
 - Scratch screenshot scripts live in the session scratchpad with a node_modules symlink to the repo; tests/helpers.ts `boot()` is the standard way to open the app in tests.
 - Faker surnames replaced by a curated list (D-2). Re-run `npm run seed`; it fails loudly if any count drifts.

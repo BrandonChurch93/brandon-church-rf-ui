@@ -193,3 +193,23 @@ for (const theme of ['light', 'dark'] as const) {
     await shot(page, `states/${theme}/discount-editor-1447.png`);
   });
 }
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`content states ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'content', reducedMotion: true });
+    const main = page.locator('#paper-main');
+    const b = (await main.locator('[data-block]').filter({ hasText: 'Data hygiene' }).boundingBox())!;
+    await page.mouse.move(b.x + b.width / 2, b.y + 20);
+    await page.mouse.down();
+    await page.mouse.move(b.x + b.width / 2, b.y + 40, { steps: 3 });
+    await page.mouse.move(b.x + b.width / 2, b.y + 20 + 88 * 4, { steps: 10 });
+    await page.waitForTimeout(300);
+    await capture(page, `states/${theme}/content-drag-1447.png`, { full: false });
+    await page.mouse.up();
+    await main.locator('[data-block]').filter({ hasText: 'Opening keynote' }).click();
+    await shot(page, `states/${theme}/session-sheet-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: 'Manage tracks' }).click();
+    await shot(page, `states/${theme}/manage-tracks-1447.png`);
+  });
+}

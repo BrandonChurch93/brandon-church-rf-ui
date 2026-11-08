@@ -15,9 +15,9 @@
     "seed": "node scripts/generate-seed.mjs",
     "test:e2e": "playwright test tests/e2e",
     "test:visual": "PW_DEV_SERVER=1 playwright test tests/visual --project=chromium",
-    "gate:faithful": "playwright test tests/gates/faithful.spec.ts --project=chromium",
-    "gate:a11y": "playwright test tests/gates/a11y.spec.ts --project=chromium",
-    "gate:motion": "playwright test tests/gates/motion.spec.ts --project=chromium",
+    "gate:faithful": "node -e \"require('fs').rmSync('tests/gates/__out__/faithful-results.json',{force:true})\" && playwright test tests/gates/faithful.spec.ts --project=chromium",
+    "gate:a11y": "node -e \"require('fs').rmSync('tests/gates/__out__/a11y.json',{force:true})\" && playwright test tests/gates/a11y.spec.ts --project=chromium",
+    "gate:motion": "node -e \"require('fs').rmSync('tests/gates/__out__/motion-results.json',{force:true})\" && playwright test tests/gates/motion.spec.ts --project=chromium",
     "gate:build": "npm run build && node scripts/verify-build.mjs",
     "verify": "node scripts/verify.mjs",
     "package": "npm run verify && node scripts/package.mjs"

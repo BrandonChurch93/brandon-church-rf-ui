@@ -127,3 +127,13 @@ Why: 09's behaviors kept intact at every width without overlap or layout jumps.
 Context: points 10 to 13 leave open.
 Decision: (a) Attendee types: the inline editor opens with a 480 ms height tween and closes immediately while the rows below Flip into place (an animated close let a quick second click re-toggle it). Duplicate inserts the copy below the source and opens it with the name selected. (b) Packages: capacity cannot be set below the number sold; "Unarchive" returns a package to Active; on mobile the header's Add package button replaces the add card. (c) Reg codes: duplicating gives the copy a fresh generated code and "<label> copy"; the generated prefix follows the event's existing codes (RF for RainFocus Summit, HD and NW for the others); an access code may grant no type change. (d) Discounts: usage reads "61 of 100 uses" when a limit is set; the live preview is sticky only on mobile; "All packages" is stored as an empty list, and choosing every package individually collapses back to All.
 Why: consistent with the specs' intent and the quality bar; each choice keeps every control honest.
+
+### D-20 · 2026-11-08 · Agenda drag mechanics
+Context: 14 describes dnd-kit droppable 15-minute cells and dnd-kit's keyboard sensor. dnd-kit's keyboard sensor scrolls the grid and moves the overlay on every arrow press, so the computed time drifted (30 minutes or more per press).
+Decision: pointer and touch drags use dnd-kit (draggable blocks, DragOverlay ghost with a live time caption, drop animation with a back.out(1.6) curve for refused drops); the target slot comes from the drag delta, which is correct while the grid scrolls, instead of hundreds of droppable cells. Keyboard moves use a small dedicated mode on the focused block: Space picks up, Up and Down move 15 minutes, Left and Right change track, Space or Enter drops, Escape cancels, each step is announced, and the target slot scrolls into view. Enter on a resting block opens it.
+Why: identical results to 14's behavior with exact keyboard steps; far fewer DOM nodes.
+
+### D-21 · 2026-11-08 · Saves survive navigation
+Context: the 400 ms simulated save beat could be cut short by navigating away, which discarded the change.
+Decision: useSaveFlow applies any pending save when its component unmounts.
+Why: the beat is cosmetic; the user's change is not.
