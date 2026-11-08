@@ -1,0 +1,483 @@
+// Exhibitors: card grid, SVG floor map, assign popover, detail sheet.
+@use '@/styles/mixins' as m;
+
+.card {
+  min-height: 168px;
+  padding: 20px;
+  gap: 10px;
+  @include m.sm {
+    padding: 16px;
+  }
+}
+.top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.mono {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-md);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 16%, transparent);
+}
+.titleBlock {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.name {
+  align-self: stretch;
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--text);
+  @include m.truncate;
+}
+.chipRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.dot {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+.tagline {
+  @include m.type(body-sm);
+  color: var(--muted);
+  @include m.truncate;
+}
+.bottom {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  @include m.type(caption);
+  color: var(--muted);
+}
+.boothSlot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.booth {
+  font-weight: 700;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.assign {
+  color: var(--accent-ink);
+  font-weight: 600;
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border-radius: var(--r-xs);
+  @include m.hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+.contact {
+  @include m.truncate;
+}
+
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  @include m.md {
+    flex-wrap: wrap;
+    width: 100%;
+    > * {
+      flex: 1 1 100%;
+    }
+  }
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.viewBody {
+  animation: rf-fade-in 320ms var(--ease-out) both;
+}
+.link {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  text-underline-offset: 3px;
+  border-radius: var(--r-xs);
+  overflow-wrap: anywhere;
+  @include m.hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+// ---------- Floor map ----------
+.mapNote {
+  margin-bottom: 12px;
+  @include m.type(body-sm);
+  color: var(--muted);
+  button {
+    color: var(--accent-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+.mapCard {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.mapHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  h2 {
+    @include m.type(title);
+    color: var(--text);
+  }
+  @include m.sm {
+    padding: 14px 16px;
+  }
+}
+.mapSub {
+  @include m.type(caption);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  @include m.type(caption);
+  color: var(--text-2);
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  i {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1.5px solid transparent;
+  }
+}
+.legendEmpty {
+  border: 1.5px dashed var(--line-hover) !important;
+}
+.mapScrollWrap {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 48px;
+    pointer-events: none;
+    background: linear-gradient(to right, color-mix(in srgb, var(--surface) 0%, transparent), var(--surface));
+    transition: opacity var(--dur-md) var(--ease-out);
+  }
+  &[data-at-end]::after {
+    opacity: 0;
+  }
+}
+.mapScroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  @include m.scrollbar;
+}
+.svg {
+  display: block;
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  padding: 12px;
+  font-family: var(--font-sans);
+  overflow: visible;
+}
+.wall {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.entrance {
+  fill: none;
+  stroke: var(--line-hover);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.entranceText {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+.shape {
+  fill-opacity: 0.18;
+  stroke-width: 2;
+  transition:
+    fill-opacity var(--dur-hover-out) var(--ease-out),
+    stroke-width var(--dur-hover-out) var(--ease-out),
+    fill var(--dur-hover-out) var(--ease-out),
+    stroke var(--dur-hover-out) var(--ease-out);
+}
+.emptyShape {
+  fill: var(--accent-soft);
+  fill-opacity: 0;
+  stroke: var(--line-hover);
+  stroke-dasharray: 6 5;
+}
+.boothLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  fill: var(--muted);
+  pointer-events: none;
+}
+.boothName {
+  font-size: 15px;
+  font-weight: 600;
+  fill: var(--text-2);
+  transition: fill var(--dur-hover-out) var(--ease-out);
+}
+.boothTier {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.monoTile {
+  fill: var(--surface);
+  stroke-width: 1;
+}
+.monoText {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.monoG {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.plus {
+  stroke: var(--line-hover);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke var(--dur-hover-out) var(--ease-out);
+}
+.ring {
+  fill: none;
+  stroke: var(--accent-ink);
+  stroke-width: 2.5;
+  opacity: 0;
+}
+.booth {
+  transition: opacity var(--dur-md) var(--ease-out);
+  &[data-dim] {
+    opacity: 0.32;
+  }
+}
+.boothText {
+  pointer-events: none;
+}
+.boothG {
+  cursor: pointer;
+  outline: none;
+  &:focus-visible .ring {
+    opacity: 1;
+  }
+}
+.booth[data-occupied] .boothG {
+  @include m.hover {
+    .shape {
+      stroke-width: 3;
+      fill-opacity: 0.28;
+      transition-duration: var(--dur-hover-in);
+    }
+    + .boothText .boothName {
+      fill: var(--text);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+}
+.booth[data-empty] {
+  .boothG {
+    @include m.hover {
+      .emptyShape {
+        fill-opacity: 1;
+        stroke: color-mix(in srgb, var(--accent-ink) 50%, transparent);
+        transition-duration: var(--dur-hover-in);
+      }
+      + .boothText .plus {
+        stroke: var(--accent-ink);
+        transition-duration: var(--dur-hover-in);
+      }
+    }
+  }
+  &[data-hot] .emptyShape {
+    fill-opacity: 1;
+    stroke: var(--accent-ink);
+    stroke-dasharray: none;
+  }
+  &[data-hot] .plus {
+    stroke: var(--accent-ink);
+  }
+}
+// A booth that was just assigned: the fill fades in and the monogram settles from 0.8.
+.fresh {
+  .shape {
+    animation: booth-fill var(--dur-hover-in) var(--ease-out) both;
+  }
+  .monoG {
+    animation: booth-mono var(--dur-hover-in) var(--ease-out) both;
+  }
+}
+@keyframes booth-fill {
+  from {
+    fill-opacity: 0;
+    stroke-opacity: 0.3;
+  }
+}
+@keyframes booth-mono {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+.tip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  strong {
+    font-weight: 600;
+  }
+  span {
+    opacity: 0.8;
+  }
+}
+.mapCaption {
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--line);
+  @include m.type(caption);
+  color: var(--muted);
+  @include m.sm {
+    padding: 12px 16px 14px;
+  }
+}
+
+// ---------- Assign popover ----------
+.assignPanel {
+  padding: 14px;
+  @include m.md {
+    padding: 0 12px 12px;
+  }
+}
+.assignTitle {
+  @include m.type(title);
+  color: var(--text);
+  margin-bottom: 10px;
+  @include m.md {
+    display: none;
+  }
+}
+.assignFoot {
+  display: flex;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+// ---------- Detail ----------
+.detailHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.detailName {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  > :last-child {
+    align-self: flex-start;
+  }
+  min-width: 0;
+  @include m.type(h3);
+}
+.sectionActions {
+  display: flex;
+  gap: 4px;
+}
+.staff {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.staffRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  & + & {
+    border-top: 1px solid var(--line);
+  }
+  .staffText {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    @include m.type(body-sm);
+    font-weight: 600;
+    color: var(--text);
+    small {
+      @include m.type(caption);
+      color: var(--muted);
+      @include m.truncate;
+    }
+  }
+}
+.empty {
+  @include m.type(body-sm);
+  color: var(--muted);
+  margin-bottom: 16px;
+}

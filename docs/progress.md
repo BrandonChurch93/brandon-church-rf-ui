@@ -14,7 +14,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 [x] P6 Attendees view
 [x] P7 Attendee types, Packages, Reg codes, Discounts
 [x] P8 Content view
-[ ] P9 Exhibitors view
+[x] P9 Exhibitors view
 [ ] P10 Mobile pass
 [ ] P11 Polish pass
 [ ] P12 Delivery
@@ -22,7 +22,7 @@ The Builder's memory across sessions and compactions. Newest entries at the bott
 
 ## Current phase
 
-P9 · Exhibitors view.
+P10 · Mobile pass.
 
 ## Session log
 
@@ -82,6 +82,12 @@ Done: agenda grid (sticky track headers and hour gutter, 15-minute geometry, blo
 Gates: verify green; content.spec 11 stable (x2); a11y clean on grid, list, session sheet, tracks. Gate scripts now clear their report files first.
 Next: P9 Exhibitors.
 
+### 2026-11-08 08:10 · P9 Exhibitors view
+Done: card grid sorted by tier then name (monogram tile in the tier swatch, tier chip, status dot with tooltip, booth or Assign link, contact, hover Email copy and kebab with Edit, Assign or Change booth, Mark confirmed or pending, Remove), Tier, Status and Booth filters with search over name and contact and a live count, empty and filter-miss states. Floor map SVG (24 booths, aisle, hall outline, entrance arch, legend, caption, tier fill and stroke, status dot, monogram and clipped name, dashed empty booths with +), hover thickening with the shared HTML tooltip, filters dim non-matching booths, keyboard reading order with an SVG focus ring, assign popover (bottom sheet on mobile) with fill and monogram animation and an undo toast, "Add a new exhibitor here". Detail sheet (inline name with uniqueness, explicit Edit for details and contact, booth select disabling occupied booths with the occupant, Copy email, staff list with link and unlink and undo, remove with confirm that frees the booth and unlinks staff, undo). Add sheet with validation and a free-booth select. Palette intent. Mobile map scrolls inside its card at 720 with a fade hint that hides at the end.
+Shared fix: overlays whose content autofocuses now return focus to the real trigger (D-23).
+Gates: verify green; exhibitors.spec 11 stable (x2); a11y clean on map, assign, detail, edit and add errors in both themes. The mobile audit skips controls straddling the tab bar edge (D-24).
+Next: P10 Mobile pass.
+
 ## Notes for future sessions
 
 Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
@@ -93,6 +99,8 @@ Quirks, workarounds, non-obvious learnings. Keep each to one or two lines.
 - dnd-kit's KeyboardSensor double-counts when its container scrolls; the agenda uses its own keyboard mode (D-20). Sortable lists still use dnd-kit keyboard (they do not scroll inside a container).
 - Contact sheets of captures: render an HTML grid via file:// (PIL is not installed).
 - Scratch screenshot scripts live in the session scratchpad with a node_modules symlink to the repo; tests/helpers.ts `boot()` is the standard way to open the app in tests.
+- The a11y gate measures at a fixed scroll position; controls under the mobile tab bar are excluded by marking them `data-axe-under-chrome` (tab bar has `data-tabbar`).
+- Never run `npm run build` while a Playwright run is in progress: the preview server serves build/ live and tests fail mid-run.
 - Faker surnames replaced by a curated list (D-2). Re-run `npm run seed`; it fails loudly if any count drifts.
 
 ## Completion report

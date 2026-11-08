@@ -27,7 +27,7 @@ export function BottomTabs({ route, onNavigate, hidden }: { route: Route; onNavi
     };
   }, [top]);
   return (
-    <nav className={s.tabbar} aria-label="Sections" data-hidden={hidden || layers > 0 ? 'true' : 'false'}>
+    <nav className={s.tabbar} aria-label="Sections" data-tabbar data-hidden={hidden || layers > 0 ? 'true' : 'false'}>
       <div ref={box} className={s.tabs}>
         {x !== null && <span className={`${s.tabIndicator} ${animate ? s.animate : ''}`} style={{ transform: `translateX(${x}px)` }} aria-hidden="true" />}
         {NAV.map((n) => (

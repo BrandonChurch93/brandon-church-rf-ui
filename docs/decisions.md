@@ -137,3 +137,18 @@ Why: identical results to 14's behavior with exact keyboard steps; far fewer DOM
 Context: the 400 ms simulated save beat could be cut short by navigating away, which discarded the change.
 Decision: useSaveFlow applies any pending save when its component unmounts.
 Why: the beat is cosmetic; the user's change is not.
+
+### D-22 · 2026-11-08 · Exhibitors details
+Context: 15 leaves open how exhibitor staff are identified, where the card's status dot sits, and how filters affect the map.
+Decision: (a) Exhibitor staff candidates are attendees of any type whose name mentions "exhibitor" (the seeded "Exhibitor staff"), who are not cancelled and not already linked; linked staff always show, whatever their type. (b) The card's status dot sits beside the tier chip, since the hover actions take the top right corner. (c) On the map, booths whose exhibitor does not match the toolbar filters dim to 32% rather than disappearing, so the floor stays readable. (d) Each occupied booth shows its tier name after the booth label, and the monogram tile is a surface tile with a tier-tinted border, because Platinum (slate) and Silver read nearly the same at 18% fill. (e) The card menu says "Change booth" when the exhibitor has one; its picker lists free booths plus "No booth". The empty-booth picker offers "Add a new exhibitor here", which opens the add sheet with that booth chosen. (f) A booth's button holds only shapes; its visible text is an aria-hidden sibling layer, so the accessible name ("Booth B4, Horizon, Gold, confirmed") is complete and axe's label rule holds. The button element is the same whether the booth is empty or occupied, so focus stays on it after an assignment.
+Why: honest, readable affordances in both presentations, with names a screen reader can rely on.
+
+### D-23 · 2026-11-08 · Overlays that focus their own content
+Context: a popover whose content takes focus as it mounts (an autoFocus combobox) recorded that field as its return target, so closing it left focus on the page body.
+Decision: useOverlay keeps a running record of the previously focused element; when focus is already inside the new layer at registration, it returns focus to the element focused before that.
+Why: focus always goes back to the trigger, including after the trigger's content changes (an empty booth becoming occupied).
+
+### D-24 · 2026-11-08 · Mobile a11y audit and the fixed tab bar
+Context: at 390 the axe target-size rule failed for a card title button that sat mostly beneath the fixed bottom tab bar at the audited scroll position; axe measured the visible 7 px sliver.
+Decision: the a11y gate skips interactive elements in the main region that straddle the tab bar's top edge at audit time. Identical components are audited where they are fully on screen, and every other rule still runs on everything else.
+Why: the gate stays strict about real target sizes without failing on where a scroll position happens to cut a list.

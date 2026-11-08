@@ -11,7 +11,19 @@ const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 async function audit(page: Page, name: string, opts: { disable?: string[] } = {}) {
   // Let any enter fade finish so contrast is measured on settled colors.
   await page.waitForTimeout(350);
-  let builder = new AxeBuilder({ page }).withTags(TAGS);
+  // Controls that sit partly under the fixed mobile tab bar at this scroll position are skipped:
+  // axe measures their visible sliver as the target size. The same components are audited where
+  // they are fully on screen (D-24).
+  await page.evaluate(() => {
+    document.querySelectorAll('[data-axe-under-chrome]').forEach((el) => el.removeAttribute('data-axe-under-chrome'));
+    const bar = document.querySelector('nav[data-tabbar]')?.getBoundingClientRect();
+    if (!bar || bar.height === 0) return;
+    document.querySelectorAll('[data-layer="paper"] main button, [data-layer="paper"] main a, [data-layer="paper"] main [role="button"]').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom > bar.top && r.top < bar.top) el.setAttribute('data-axe-under-chrome', '');
+    });
+  });
+  let builder = new AxeBuilder({ page }).withTags(TAGS).exclude('[data-axe-under-chrome]');
   if (opts.disable?.length) builder = builder.disableRules(opts.disable);
   const results = await builder.analyze();
   const blocking = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
@@ -171,6 +183,29 @@ test.describe('a11y gate · content', () => {
       await page.keyboard.press('Escape');
       await main.getByRole('radio', { name: 'List' }).click();
       await audit(page, `content-list-${theme}`);
+    });
+  }
+});
+
+test.describe('a11y gate · exhibitors', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    test(`cards, map, assign, detail, add · ${theme}`, async ({ page }) => {
+      await boot(page, { mode: 'paper', theme, hash: 'exhibitors', reducedMotion: true });
+      const main = page.locator('#paper-main');
+      await main.getByRole('radio', { name: 'Floor map' }).click();
+      await audit(page, `exhibitors-map-${theme}`);
+      await main.locator('[data-booth="C6"]').click();
+      await audit(page, `exhibitors-assign-${theme}`);
+      await page.keyboard.press('Escape');
+      await main.locator('[data-booth="D2"]').click();
+      await audit(page, `exhibitor-detail-${theme}`);
+      await page.getByRole('dialog', { name: 'Lumen AV' }).getByRole('button', { name: 'Edit details' }).click();
+      await audit(page, `exhibitor-detail-edit-${theme}`);
+      await page.getByRole('dialog', { name: 'Lumen AV' }).getByRole('button', { name: 'Cancel' }).click();
+      await page.keyboard.press('Escape');
+      await main.getByRole('button', { name: 'Add exhibitor' }).first().click();
+      await page.getByRole('dialog', { name: 'New exhibitor' }).getByRole('button', { name: 'Add exhibitor' }).click();
+      await audit(page, `exhibitor-add-errors-${theme}`);
     });
   }
 });

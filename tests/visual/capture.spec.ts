@@ -213,3 +213,31 @@ for (const theme of ['light', 'dark'] as const) {
     await shot(page, `states/${theme}/manage-tracks-1447.png`);
   });
 }
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`exhibitors states ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'exhibitors', reducedMotion: true });
+    const main = page.locator('#paper-main');
+    await main.locator('[data-flip-id]').first().hover();
+    await capture(page, `states/${theme}/exhibitors-card-hover-1447.png`, { full: false });
+    await main.getByRole('radio', { name: 'Floor map' }).click();
+    await main.locator('[data-booth="D2"]').hover();
+    await page.waitForTimeout(600);
+    await capture(page, `states/${theme}/exhibitors-map-hover-1447.png`, { full: false });
+    await main.locator('[data-booth="C6"]').click();
+    await shot(page, `states/${theme}/exhibitors-assign-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.locator('[data-booth="D3"]').click();
+    await shot(page, `states/${theme}/exhibitor-detail-1447.png`);
+    await page.keyboard.press('Escape');
+    await main.getByRole('button', { name: 'Add exhibitor' }).first().click();
+    await shot(page, `states/${theme}/exhibitor-add-1447.png`);
+  });
+  test(`exhibitors mobile ${theme}`, async ({ page }) => {
+    await boot(page, { mode: 'paper', theme, hash: 'exhibitors', width: 390, height: 844, reducedMotion: true });
+    await page.locator('#paper-main').getByRole('radio', { name: 'Floor map' }).click();
+    await shot(page, `states/${theme}/exhibitors-map-390.png`);
+    await page.locator('#paper-main').locator('[data-booth="A1"]').click();
+    await shot(page, `states/${theme}/exhibitors-assign-390.png`);
+  });
+}

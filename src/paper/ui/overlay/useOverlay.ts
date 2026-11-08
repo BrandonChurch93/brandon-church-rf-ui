@@ -22,6 +22,21 @@ let scrollLocks = 0;
 // The layer that closed most recently. A layer opened from inside it (a menu item that opens a
 // confirm) returns focus to that layer's trigger, since the menu item itself is going away.
 let recentlyClosed: { container: HTMLElement; returnTo: HTMLElement | null } | null = null;
+// The element focused before the current one. A layer whose content takes focus while it mounts
+// (an autoFocus field) has already moved focus by the time the layer registers, so the layer
+// returns focus to the element focused before that.
+let focusNow: HTMLElement | null = null;
+let focusBefore: HTMLElement | null = null;
+if (typeof document !== 'undefined')
+  document.addEventListener(
+    'focusin',
+    (e) => {
+      if (e.target === focusNow) return;
+      focusBefore = focusNow;
+      focusNow = e.target as HTMLElement;
+    },
+    true,
+  );
 function setScrollLock(on: boolean) {
   scrollLocks = Math.max(0, scrollLocks + (on ? 1 : -1));
   const layer = document.querySelector<HTMLElement>('[data-layer="paper"]');
@@ -37,7 +52,8 @@ export function useOverlay(o: OverlayOptions) {
 
   useLayoutEffect(() => {
     if (!o.open) return;
-    const active = document.activeElement as HTMLElement | null;
+    let active = document.activeElement as HTMLElement | null;
+    if (active && o.container.current?.contains(active)) active = focusBefore;
     returnTo.current = recentlyClosed && active && recentlyClosed.container.contains(active) ? recentlyClosed.returnTo : active;
     layerStack.push({ id, close: (c) => opts.current.onClose(c), stepAside: Boolean(o.stepAside) });
     if (o.lockScroll) setScrollLock(true);
