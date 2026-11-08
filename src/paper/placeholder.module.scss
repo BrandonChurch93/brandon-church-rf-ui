@@ -1,0 +1,23 @@
+.page {
+  min-height: 100%;
+  padding: 40px 48px;
+  background: var(--canvas);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.header h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.header p {
+  color: var(--muted);
+  margin-top: 8px;
+}
+.card {
+  height: 200px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+}

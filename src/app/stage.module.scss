@@ -6,7 +6,13 @@
   perspective: 1600px;
   perspective-origin: 50% 40%;
   overflow: hidden;
+}
+// What shows behind the receding card is the arriving mode's canvas.
+.toFaithful {
   background: #ffffff;
+}
+.toPaper {
+  background: var(--canvas);
 }
 
 .layer {
@@ -14,4 +20,24 @@
   inset: 0;
   overflow: auto;
   overscroll-behavior: contain;
+  backface-visibility: hidden;
+}
+
+// The outgoing layer during the transition: a rounded, lifted card whose scroll is frozen.
+.layer:global(.is-card) {
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  box-shadow:
+    0 40px 120px rgba(20, 10, 40, 0.45),
+    0 10px 30px rgba(20, 10, 40, 0.25);
+}
+
+// Dims both layers during the camera move. Above the layers, below the pill.
+.dim {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgba(20, 14, 34, 0.35) 0%, rgba(20, 14, 34, 0.7) 100%);
 }

@@ -62,3 +62,18 @@ Why: a dark OS or a persisted dark theme must have zero effect on faithful mode.
 Context: 18-accessibility and 19-testing allow exactly one exception on faithful mode: `color-contrast` is disabled because the design's #777777 labels are below AA on white.
 Decision: that rule is the only one disabled. Two invisible additions keep the rest of axe green without changing a pixel: the user link's accessible name is "FL, First Name Last Name" (label in name, WCAG 2.5.3), and below 900 px the open drawer is a modal dialog (focus moves in, Tab is trapped, Escape and the scrim close it, focus returns to the menu button; the closed drawer is `inert`).
 Why: faithful mode must reproduce the design exactly; accessibility fixes that do not render are allowed and expected.
+
+### D-7 · 2026-11-07 · Overlay portal and Paper base scope
+Context: 03 scopes every Paper base style under `[data-layer="paper"]`. Sheets, menus and toasts need a portal; portaling to `<body>` would lose those base styles, and a second element carrying `data-layer="paper"` would break the structural test hooks.
+Decision: overlays portal into a root inside the paper layer (`data-paper-root`), and the Paper base styles are scoped to `:where([data-layer='paper'], [data-paper-root])`. The paper layer is its own scroll container; rail and sidebar are sticky inside it.
+Why: one scroll container per layer (03), base styles reach overlays, and the transition still freezes the outgoing layer's scroll.
+
+### D-8 · 2026-11-07 · Motion gate uses the real clock
+Context: 19 says every test installs the fake clock; the motion gate measures real wall-clock duration and long tasks.
+Decision: the motion gate does not install the clock; every other suite does. A sanity test in `pill.spec.ts` proves GSAP advances under the installed clock.
+Why: the gate's subject is real time; a faked `performance.now` would make its duration meaningless.
+
+### D-9 · 2026-11-07 · Pill structure
+Context: the pill's entrance and stepping aside move it vertically, the mobile position shift moves it vertically, and hover, magnetic and press transform it too.
+Decision: a fixed dock wraps the button. The dock owns position, entrance (`yPercent`), stepping aside (`yPercent`) and the mobile position slide (`y`, FLIP from the previous position, starting at t = 300 for 480 ms). The button owns hover scale, magnetic `x`/`y` and press. The visually hidden description sits outside the button so it is not part of the accessible name.
+Why: separate transform owners never fight, and GSAP composes `yPercent` with `y` cleanly.

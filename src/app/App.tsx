@@ -1,12 +1,15 @@
-import { FaithfulPage } from '@/faithful/FaithfulPage';
-import s from './stage.module.scss';
+import { useEffect } from 'react';
+import { ModeStage } from './ModeStage';
+import { useThemeSync } from './theme';
+import { registerHook } from './testHooks';
+import { useStore } from '@/store/store';
 
 export function App() {
-  return (
-    <div className={s.stage}>
-      <div className={s.layer} data-layer="faithful">
-        <FaithfulPage />
-      </div>
-    </div>
-  );
+  useThemeSync();
+  useEffect(() => {
+    registerHook('setTheme', (t) => useStore.getState().setTheme(t));
+    registerHook('setReduceMotion', (v) => useStore.getState().setReduceMotion(v));
+    registerHook('getState', () => JSON.parse(JSON.stringify(useStore.getState())));
+  }, []);
+  return <ModeStage />;
 }
