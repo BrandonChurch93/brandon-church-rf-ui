@@ -1,0 +1,575 @@
+// Faithful mode: a pixel-exact recreation of the Figma frame "RainFocus UI Challenge- Updated".
+// Ported from reference/faithful/styles.scss. Every value is a token from faithful-tokens.scss.
+// Figma draws strokes inside the padding, so a 1 px border replaces 1 px of padding throughout.
+// Organized in page order: layer root, shell, rail, sidebar, body, header, intro, module, steps, cards, responsive.
+
+@use '../styles/faithful-tokens' as *;
+
+// ---------- Layer root (what the reference sets on body, plus its element resets) ----------
+:global([data-layer='faithful']) {
+  font-family: $rf-font;
+  color: $rf-text-header;
+  background: $rf-white;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+:where(:global([data-layer='faithful'])) {
+  :where(a) {
+    color: inherit;
+    text-decoration: none;
+  }
+  :where(ul) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  :where(h1, h2, h3, p) {
+    margin: 0;
+  }
+  :where(img) {
+    display: block;
+  }
+  :where(button) {
+    font: inherit;
+    cursor: pointer;
+  }
+  // The one permitted addition: a visible focus ring for keyboard users.
+  :where(:focus-visible) {
+    outline: 2px solid $rf-grape;
+    outline-offset: 2px;
+  }
+  :where(:focus:not(:focus-visible)) {
+    outline: none;
+  }
+}
+
+// ---------- Shell ----------
+.app {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+.drawer {
+  display: flex;
+  flex: 0 0 auto;
+}
+.topbar,
+.scrim {
+  display: none;
+}
+
+// ---------- Left rail (63 px) ----------
+.rail {
+  flex: 0 0 $rf-rail-width;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 6.5px;
+  border-left: 1px solid $rf-border;
+  border-right: 1px solid $rf-border;
+  background: $rf-white;
+
+  &__top,
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    width: 48px;
+    height: 64px;
+    padding: 8px 0 24px 12px;
+    border-radius: $rf-radius-md;
+  }
+  &__org {
+    display: flex;
+    align-items: center;
+    width: 48px;
+    height: 44px;
+    padding: 4px 8px 8px;
+    border-radius: $rf-radius-md;
+    background: $rf-white;
+    img {
+      border-radius: $rf-radius-sm;
+      object-fit: cover;
+    }
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+    width: 48px;
+    height: 40px;
+    padding: 4px 8px;
+    border-radius: $rf-radius-md;
+    background: $rf-white;
+  }
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $rf-text-g3;
+  color: $rf-white;
+  font: 400 16px/18.2px $rf-font;
+}
+
+// ---------- Sidebar (215 px) ----------
+.sidebar {
+  flex: 0 0 $rf-sidebar-width;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 7px 12px 8px;
+  border-right: 1px solid $rf-border;
+
+  &__header {
+    padding: 8px 8px 12px;
+  }
+  &__title {
+    font: 600 14px/18.2px $rf-font;
+    color: $rf-black;
+  }
+  &__details {
+    display: flex;
+    padding: 0 8px 12px;
+    font: 500 10px/18.2px $rf-font;
+    color: $rf-black;
+  }
+  &__dot {
+    width: 15px;
+    text-align: center;
+  }
+  &__search {
+    padding: 0 8px 12px;
+  }
+}
+
+// Search field
+.search {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  height: 24px;
+  padding: 4px;
+  border: 0;
+  border-radius: $rf-radius-sm;
+  background: $rf-search-bg;
+  color: $rf-text-muted;
+  font: 600 10px/10px $rf-font;
+}
+
+// Mega nav
+.meganav {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: $rf-radius-md;
+    background: $rf-white;
+    color: $rf-text-muted;
+
+    &.isActive {
+      background: $rf-active-tint;
+      color: $rf-grape;
+      .meganav__icon {
+        background: $rf-grape;
+      }
+    }
+  }
+  &__icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 15px;
+    background: $rf-text-muted;
+  }
+  &__label {
+    font: 600 14px/18.2px $rf-font;
+  }
+}
+
+// Attendees sub-list
+.subnav {
+  padding: 4px 12px 12px 48px;
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 8px 0;
+    font: 600 14px/14px $rf-font;
+    color: $rf-text-muted;
+  }
+}
+
+// ---------- Body ----------
+.body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 48px;
+}
+
+// ---------- Event header ----------
+.event {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  &__logo {
+    flex: 0 0 95px;
+    width: 95px;
+    height: 95px;
+    border-radius: $rf-radius-md;
+    object-fit: cover;
+  }
+  &__meta {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__title {
+    font: 300 32px/normal $rf-font;
+    color: $rf-text-header;
+  }
+  &__details p {
+    font: 400 16px/24px $rf-font;
+    color: $rf-text-body;
+  }
+}
+
+// "Edit event" button
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: $rf-radius-sm;
+  font: 700 14px/normal $rf-font;
+  background: $rf-grape;
+  color: $rf-white;
+}
+
+// ---------- Section intro ----------
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__title {
+    font: 600 24px/normal $rf-font;
+    color: $rf-text-header;
+  }
+  &__desc {
+    font: 400 16px/24px $rf-font;
+    color: $rf-text-body;
+  }
+}
+
+// ---------- Module: Attendee ----------
+.module {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid $rf-border;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  &__title {
+    font: 600 20px/normal $rf-font;
+    color: $rf-text-header;
+  }
+}
+
+// ---------- Steps ----------
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    font: 400 14px/normal $rf-font;
+    color: $rf-text-g3;
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+// Step 1 row of settings
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  height: 120px;
+  padding: 15px 23px;
+  border: 1px solid $rf-border;
+  border-radius: $rf-radius-sm;
+  background: $rf-white;
+}
+.setting {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 221px;
+  padding: 8px;
+  border-radius: $rf-radius-sm;
+  background: $rf-white;
+
+  &__title {
+    font: 700 13px/16px $rf-font;
+    color: $rf-text-header;
+  }
+  &__desc {
+    font: 400 12px/normal $rf-font;
+    color: $rf-text-body;
+  }
+}
+
+// ---------- Step 2 and 3 cards ----------
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 120px;
+  padding: 23px 31px;
+  border: 1px solid $rf-border;
+  border-radius: $rf-radius-sm;
+  background: $rf-white;
+  color: $rf-text-header;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 24px;
+  }
+  &__title {
+    font: 700 13px/normal $rf-font;
+  }
+  &__desc {
+    width: 267px;
+    max-width: 100%;
+    font: 400 12px/normal $rf-font;
+    color: $rf-text-body;
+  }
+
+  &--add {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .card__desc {
+      width: 100%;
+    }
+  }
+  &--filler {
+    border-color: transparent;
+  }
+}
+
+// ---------- Responsive: 900 to 1199 ----------
+@media (max-width: $rf-bp-lg) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .card--filler {
+    display: none;
+  }
+  .stepRow {
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    height: auto;
+  }
+  .setting {
+    width: calc(50% - 16px);
+  }
+}
+
+// ---------- Responsive: 600 to 899 (top bar and drawer) ----------
+@media (max-width: $rf-bp-md) {
+  .app {
+    flex-direction: column;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: $rf-topbar-height;
+    padding: 0 16px;
+    border-bottom: 1px solid $rf-border;
+    background: $rf-white;
+
+    &__badge {
+      border-radius: $rf-radius-sm;
+    }
+    &__title {
+      flex: 1 1 auto;
+      font: 600 14px/18.2px $rf-font;
+      color: $rf-black;
+    }
+    &__menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding: 0 9px;
+      border: 0;
+      border-radius: $rf-radius-md;
+      background: none;
+      cursor: pointer;
+      span {
+        display: block;
+        height: 2px;
+        border-radius: 1px;
+        background: $rf-text-g3;
+      }
+    }
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    background: $rf-white;
+    box-shadow: 0 0 0 1px $rf-border;
+  }
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: block;
+    background: $rf-scrim;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .isOpen .drawer {
+    transform: none;
+  }
+  .isOpen .scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .rail {
+    border-left: 0;
+  }
+
+  .body {
+    gap: 32px;
+    padding: 24px 24px 88px;
+  }
+
+  .event {
+    flex-wrap: wrap;
+    &__logo {
+      flex-basis: 72px;
+      width: 72px;
+      height: 72px;
+    }
+    &__meta {
+      flex: 1 1 200px;
+    }
+    &__title {
+      font-size: 28px;
+    }
+    .button {
+      flex: 1 0 100%;
+    }
+  }
+}
+
+// ---------- Responsive: 320 to 599 (single column) ----------
+@media (max-width: $rf-bp-sm) {
+  .body {
+    gap: 24px;
+    padding: 16px 16px 88px;
+  }
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card {
+    height: auto;
+    min-height: 120px;
+  }
+  .card__desc {
+    width: auto;
+  }
+  .stepRow {
+    flex-direction: column;
+    gap: 8px;
+    padding: 7px;
+  }
+  .setting {
+    width: 100%;
+  }
+  .event {
+    &__logo {
+      flex-basis: 64px;
+      width: 64px;
+      height: 64px;
+    }
+    &__title {
+      font-size: 24px;
+    }
+    &__details p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  .intro__title {
+    font-size: 20px;
+  }
+  .intro__desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .module__header {
+    gap: 16px;
+  }
+  .module__title {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .scrim {
+    transition-duration: 0.01s;
+  }
+}

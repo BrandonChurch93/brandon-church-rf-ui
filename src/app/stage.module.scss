@@ -1,0 +1,17 @@
+// The stage holds both mode layers. A full-viewport fixed element, so the containing block its
+// perspective creates for fixed descendants is the viewport itself.
+.stage {
+  position: fixed;
+  inset: 0;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}

@@ -1,7 +1,12 @@
+import { FaithfulPage } from '@/faithful/FaithfulPage';
+import s from './stage.module.scss';
+
 export function App() {
   return (
-    <div data-layer="faithful" style={{ padding: 48, fontFamily: 'Inter, sans-serif' }}>
-      <h1>RainFocus Summit</h1>
+    <div className={s.stage}>
+      <div className={s.layer} data-layer="faithful">
+        <FaithfulPage />
+      </div>
     </div>
   );
 }

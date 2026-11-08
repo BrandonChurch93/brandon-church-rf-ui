@@ -57,3 +57,8 @@ Why: the zip must build from source as well as open from `build/`.
 Context: a `color-scheme` meta would let the OS theme tint default controls and scrollbars in faithful mode.
 Decision: no meta tag; `color-scheme` is set per theme on `:root[data-theme]` for Brandon's Mode, and the faithful layer pins `color-scheme: light`.
 Why: a dark OS or a persisted dark theme must have zero effect on faithful mode.
+
+### D-6 · 2026-11-07 · Faithful a11y exceptions and additions
+Context: 18-accessibility and 19-testing allow exactly one exception on faithful mode: `color-contrast` is disabled because the design's #777777 labels are below AA on white.
+Decision: that rule is the only one disabled. Two invisible additions keep the rest of axe green without changing a pixel: the user link's accessible name is "FL, First Name Last Name" (label in name, WCAG 2.5.3), and below 900 px the open drawer is a modal dialog (focus moves in, Tab is trapped, Escape and the scrim close it, focus returns to the menu button; the closed drawer is `inert`).
+Why: faithful mode must reproduce the design exactly; accessibility fixes that do not render are allowed and expected.
