@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   DndContext,
   KeyboardSensor,
@@ -43,7 +43,11 @@ export function SortableList<T>({ items, getId, getName, onReorder, render, layo
     useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
-  const ids = items.map(getId);
+  // dnd-kit compares the id list by reference. A fresh array on every render reads as "the items
+  // changed", and each item then keeps an inline `transition: transform 0ms` that overrides the
+  // card's own hover transitions. The list keeps its reference while its ids stay the same.
+  const idKey = items.map(getId).join('\u0000');
+  const ids = useMemo(() => (idKey ? idKey.split('\u0000') : []), [idKey]);
   const nameOf = (id: UniqueIdentifier) => {
     const it = items.find((x) => getId(x) === id);
     return it ? getName(it) : 'item';
@@ -78,8 +82,10 @@ export function SortableList<T>({ items, getId, getName, onReorder, render, layo
 }
 
 function SortableItem({ id, name, disabled, children }: { id: string; name: string; disabled?: boolean; children: (p: SortableRenderProps) => ReactNode }) {
-  const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({ id, disabled, transition: { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' } });
-  const style: CSSProperties = { transform: CSS.Translate.toString(transform), transition, position: 'relative', zIndex: isDragging ? 5 : undefined };
+  const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging, isSorting } = useSortable({ id, disabled, transition: { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' } });
+  const translate = CSS.Translate.toString(transform);
+  const live = useLiveTransition(transition, translate, isSorting);
+  const style: CSSProperties = { transform: translate, transition: live, position: 'relative', zIndex: isDragging ? 5 : undefined };
   const handle = (
     <DragHandle
       ref={setActivatorNodeRef}
@@ -91,4 +97,28 @@ function SortableItem({ id, name, disabled, children }: { id: string; name: stri
     />
   );
   return <>{children({ setNodeRef, style, isDragging, handle })}</>;
+}
+
+/** Longer than the 320 ms sort transition, so a drop or a reorder finishes its settle first. */
+const SETTLE_MS = 400;
+
+/**
+ * dnd-kit's inline transition, only while it is doing something. After a drop or a reorder it
+ * leaves its transition on the element until the next render, and an inline `transition` replaces
+ * every transition the element's stylesheet declares (hover included). Once nothing has moved for
+ * SETTLE_MS, the element goes back to its stylesheet transitions.
+ */
+function useLiveTransition(transition: string | undefined, transform: string | undefined, isSorting: boolean) {
+  const [settled, setSettled] = useState(false);
+  const [seen, setSeen] = useState({ transition, transform, isSorting });
+  if (seen.transition !== transition || seen.transform !== transform || seen.isSorting !== isSorting) {
+    setSeen({ transition, transform, isSorting });
+    setSettled(false);
+  }
+  useEffect(() => {
+    if (!transition || isSorting || settled) return;
+    const t = window.setTimeout(() => setSettled(true), SETTLE_MS);
+    return () => window.clearTimeout(t);
+  }, [transition, transform, isSorting, settled]);
+  return settled ? undefined : transition;
 }

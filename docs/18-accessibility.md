@@ -34,7 +34,7 @@ Target: WCAG 2.2 AA across both modes, both themes, all breakpoints. The owner's
 
 ## Motion and vestibular safety
 - `prefers-reduced-motion: reduce` and the user's setting disable transforms over 200 ms, parallax-like effects, the pill's beats and ring rotation, and replace the mode transition with a crossfade (`06-motion.md`).
-- No flashing content. The pill's ripple and sweep are slow and low contrast.
+- No flashing content. The pill's sweep is slow and low contrast.
 
 ## Forms
 - Every input has a visible label (`<label for>`), help text linked via `aria-describedby`, errors linked via `aria-describedby` and `aria-invalid="true"`, and error text that says how to fix it.

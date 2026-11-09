@@ -160,3 +160,9 @@ Owner's next steps: refinement round via /partner, then create the GitHub repo a
 Sandbox options:
 - Upload the zip to CodeSandbox ("Import from zip") or StackBlitz, set the start command to `npm run dev`, and set sharing to "anyone with the link".
 - Or import the GitHub repository once it exists.
+
+## Post-delivery refinements · 2026-11-08 (owner review)
+
+- Sortable lists: dnd-kit's inline `transition: transform 0ms` stuck to every sortable item after any re-render (opening the workflow editor was enough), replacing the cards' stylesheet hover transitions so hovers snapped. Fixed in src/paper/ui/Sortable.tsx: the id list keeps its reference while the ids are unchanged, and dnd-kit's inline transition is released 400 ms after the items stop moving. Covers workflow cards, the workflow step list, attendee attributes, attendee types and tracks. Regression test in tests/e2e/guide.spec.ts.
+- Pill: the idle ring pulse and the click ripple are removed (D-28). Everything else about the pill is unchanged.
+- npm run verify: green (148 e2e, faithful 6, a11y 21, motion 7, build 10, visual 50).

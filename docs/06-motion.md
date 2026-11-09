@@ -125,7 +125,6 @@ On first paint of faithful mode, the pill starts at `translateY(140%)`, `opacity
 ### Idle attention beats (until the first click)
 A single GSAP timeline, `repeat: -1`, 4.2 s per cycle:
 - 0.0 s: shadow intensifies to `0 14px 40px rgba(92,0,220,.55), 0 2px 6px rgba(92,0,220,.3)` over 1.6 s `sine.inOut`, back to rest over the next 1.6 s. (Shadow tween is allowed here: a roughly 150 x 44 px element.)
-- 0.2 s: a 1.5 px ring (`border: 1.5px solid rgba(138, 63, 255, 0.7)`, same radius, inset 0, pointer-events none) scales 1 → 1.9 and fades 0.8 → 0 over 1.4 s `power2.out`.
 - 3.0 s: a light sweep: a clipped child spanning the pill with a `linear-gradient(115deg, transparent 40%, rgba(255,255,255,.38) 50%, transparent 60%)` translates from -60% to 60% over 0.9 s `power2.inOut`. At the same moment the glyph rotates +90° over 0.5 s `back.out(2)`.
 - Hover pauses the loop; leave resumes it.
 
@@ -133,7 +132,7 @@ A single GSAP timeline, `repeat: -1`, 4.2 s per cycle:
 - Enter: `scale → 1.04`, 250 ms ease-out; the surface gradient position shifts (if a gradient is used on the surface; with the solid `#1E0A3F` surface, instead brighten the halo opacity to 0.8).
 - Magnetic: on `mousemove` within the pill, translate by `(cursor − center) × 0.18`, 300 ms `power2.out`.
 - Leave: `x, y → 0`, `scale → 1`, 500 ms `elastic.out(1, 0.5)`.
-- Press: `scale → 0.96` 100 ms; release `→ 1.04` 200 ms; on click, a hard ripple: the ring scales 1 → 2.6 and fades 1 → 0 over 700 ms `power3.out`.
+- Press: `scale → 0.96` 100 ms; release `→ 1.04` 200 ms. No ripple on click (D-28).
 - Keyboard: Enter and Space trigger; focus ring is a 2 px white outline, offset 3.
 
 ### Stepping aside
@@ -158,7 +157,7 @@ Timeline (t in milliseconds from the click; eases are GSAP names):
 
 | t | Target | Tween |
 |---|---|---|
-| 0 | pill | hard ripple (above); label crossfade 300 ms; `aria-pressed` flips |
+| 0 | pill | label crossfade 300 ms; `aria-pressed` flips |
 | 0 | dim | `opacity 0 → 0.8`, 500 ms, `sine.out` |
 | 0 | outgoing layer | `scale 1 → 0.88`, `y 0 → -30`, `rotateX 0 → 7deg`, 1400 ms, `power2.out` |
 | 100 | outgoing layer | `opacity 1 → 0`, 900 ms, `power1.inOut` (reaches 0 at 1000) |

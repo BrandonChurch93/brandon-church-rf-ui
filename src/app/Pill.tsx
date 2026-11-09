@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react';
 import { gsap } from 'gsap';
 import s from './pill.module.scss';
-import { pillEntrance, pillIdle, pillRipple, stopPillIdle } from '@/motion/pillIdle';
+import { pillEntrance, pillIdle, stopPillIdle } from '@/motion/pillIdle';
 import { useReducedMotion } from '@/motion/reduced';
 
 export type Mode = 'faithful' | 'paper';
@@ -32,7 +32,6 @@ const MAGNET = 0.18;
 export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: PillProps) {
   const dock = useRef<HTMLDivElement>(null);
   const pill = useRef<HTMLButtonElement>(null);
-  const ring = useRef<HTMLSpanElement>(null);
   const sweep = useRef<HTMLElement>(null);
   const glyph = useRef<HTMLSpanElement>(null);
   const idle = useRef<gsap.core.Timeline | null>(null);
@@ -44,7 +43,7 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
   const asideRef = useRef(stepAside);
   asideRef.current = stepAside;
 
-  const parts = () => ({ pill: pill.current!, ring: ring.current!, sweep: sweep.current!, glyph: glyph.current! });
+  const parts = () => ({ pill: pill.current!, sweep: sweep.current!, glyph: glyph.current! });
 
   // Entrance on first paint, then the idle beats until the first click.
   useEffect(() => {
@@ -142,7 +141,6 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
   };
   const onClick = () => {
     if (isBusy()) return;
-    if (!reduced && ring.current) pillRipple(ring.current);
     onToggle();
   };
 
@@ -166,7 +164,6 @@ export function Pill({ mode, calm, stepAside, isBusy, onToggle, onIntent }: Pill
         onFocus={onIntent}
         onClick={onClick}
       >
-        <span ref={ring} className={s.ring} aria-hidden="true" />
         <span className={s.sweepClip} aria-hidden="true">
           <i ref={sweep} className={s.sweep} />
         </span>

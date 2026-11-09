@@ -225,6 +225,33 @@ test.describe('guide · workflows', () => {
     await expect.poll(async () => (await state(page)).events['evt-rainfocus-summit'].guide.workflows.at(-1).name).toBe('Attendee Registration');
   });
 
+  // Regression: dnd-kit's inline transition used to stick to every card after any re-render (opening
+  // the editor was enough), replacing the cards' hover transitions so hovers snapped instantly.
+  test('cards keep their hover transitions after the editor closes and after a reorder', async ({ page }) => {
+    await boot(page, { mode: 'paper' });
+    const cards = main(page).locator('[data-flip-id]');
+    const inlineTransitions = () => cards.evaluateAll((els) => els.map((el) => (el as HTMLElement).style.transition));
+    const durations = () => cards.evaluateAll((els) => els.map((el) => getComputedStyle(el).transitionDuration));
+    const expectStylesheetTransitions = async () => {
+      await expect.poll(async () => (await inlineTransitions()).every((t) => t === '')).toBe(true);
+      expect((await durations()).every((d) => d.split(',').some((x) => parseFloat(x) > 0))).toBe(true);
+    };
+    await expectStylesheetTransitions();
+
+    await main(page).getByRole('button', { name: /^Staff Registration,/ }).click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    await expectStylesheetTransitions();
+
+    await main(page).getByRole('button', { name: 'Reorder Staff Registration' }).focus();
+    for (const key of ['Space', 'ArrowLeft', 'Space']) {
+      await page.keyboard.press(key);
+      await page.waitForTimeout(150);
+    }
+    await expectStylesheetTransitions();
+  });
+
   test('show all appears past six workflows', async ({ page }) => {
     await boot(page, { mode: 'paper' });
     for (const t of ['Speaker', 'Press', 'VIP', 'Exhibitor staff']) {

@@ -167,3 +167,8 @@ Why: every control is comfortably tappable and nothing important hides behind th
 Context: in P11 the motion gate occasionally reported a long task near or over 100 ms. A serial probe of the same transitions showed no long tasks at all; the readings came from seven Chromium workers competing for the CPU while the gate measured main-thread time.
 Decision: gate:motion runs with one worker. Mounting the incoming layer in a React transition was tried and reverted: it did not change the isolated result and added about 80 ms before the motion starts.
 Why: a performance gate is only meaningful when nothing else is running; the transition itself has no long tasks (three consecutive runs: in about 1.96 s, out about 1.73 s, reduced about 0.28 s, longest task 0 ms).
+
+### D-28 · 2026-11-08 · The pill loses its pulse
+Context: owner review. The pill's expanding ring (the idle pulse at 0.2 s of each cycle, and the larger ripple on click) did not land; everything else about the pill did.
+Decision: the ring element, the idle ring pulse and the click ripple are removed. The spinning border, halo, shadow breath, light sweep, glyph turn, hover, magnetic pull and press stay as they were. docs/06-motion.md is updated to match.
+Why: owner preference; the remaining beats still draw the eye to the pill before its first use.

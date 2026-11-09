@@ -156,16 +156,6 @@ $tabbar-h: calc(64px + env(safe-area-inset-bottom));
   transition: none;
 }
 
-// The attention ring and the click ripple.
-.ring {
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid rgba(138, 63, 255, 0.7);
-  border-radius: inherit;
-  opacity: 0;
-  pointer-events: none;
-}
-
 // The idle light sweep: the one shimmer the spec allows, and only before the first click.
 .sweepClip {
   position: absolute;
